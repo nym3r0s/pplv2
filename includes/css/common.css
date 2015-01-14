@@ -1,0 +1,26 @@
+body{
+    width:100%;
+    overflow-x: hidden;
+}
+
+.navbar-header{
+	padding:0px 40px 0px 0px;
+}
+
+.header{
+	border-bottom:1px solid #099;
+}
+
+.footer p{
+	color:#777;
+	padding-top:10px;
+    font-size:12px;
+	text-align:center;
+}
+
+.btn{
+	border:none;
+}
+.btn:hover{
+	transition:background 0.5s;
+}

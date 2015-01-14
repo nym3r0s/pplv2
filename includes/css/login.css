@@ -1,0 +1,34 @@
+.panel-info{
+	border-color:#099;
+}
+
+.panel-info>.panel-heading {
+	color:#FFF;
+	background-color:#099;
+	border-color:#099;
+}
+
+#loginbox{
+	width:30%;
+	background-color:#f8f8f8;
+	margin:0 auto;
+	border-radius:20px;
+	padding:30px 20px 40px 20px;
+	margin-top:10%;
+}
+
+.form-control{
+	float:left;
+	width:80%;
+	font-size:14px;
+}
+
+.btn{
+	width:30%;
+	margin:0 auto;
+	font-size:15px;
+	border:none;
+}
+.btn:hover{
+	transition:background 0.5s;
+}

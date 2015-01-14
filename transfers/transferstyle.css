@@ -1,0 +1,166 @@
+#playerList{
+    position:absolute;
+    height:50%;
+    width:48.5%;
+	top:30%;
+	background-color:#f8f8f8;
+    left:1%;
+    overflow-y: auto;
+    text-align: center;
+}
+#userSquad{
+    position:absolute;
+    height:50%;
+    width:48.5%;
+	top:30%;
+    right:1%;
+	background-color:#f8f8f8;
+	overflow-y: auto;
+    text-align: center;
+}
+#playerBalance{
+	position:absolute;
+	top:10%;
+	width:100%;
+    text-align: center;
+}
+#transferBalance{
+	position:absolute;
+	top:15%;
+    width:100%;
+    text-align: center;
+    float:right;
+}
+.player{
+    width:90%;
+	margin:0 auto;
+    height:30px;
+}
+.userplayer{
+    width:90%;
+	margin:0 auto;
+    height:30px;
+}
+.player:hover, .userplayer:hover
+{
+    background-color: yellow;
+    opacity: 1;
+    color:black;
+}
+
+#switches{
+	position:absolute;
+    text-align: center;
+	top:24%;
+    width:50%;
+}
+
+#progbardiv{
+    position:absolute;
+    width:50%;
+	height:5px;
+	left:15%;
+    bottom:9%;
+}
+#progbar{
+    min-width:1%;
+}
+#playerInfo
+{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+
+    z-index: 1000;
+    background-color: #3c3c3c;
+    height:80%;
+    width:80%;
+
+    border-radius: 15px;
+
+/*    display:none;*/
+}
+#modalclose
+{
+    position:absolute;
+    height:20px;
+    width:20px;
+    top:1.5%;
+    right:1.5%;
+    color:red;
+    text-align: center;
+}
+#playerData
+{
+    position:absolute;
+    width:90%;
+    height:90%;
+
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    margin:auto;
+}
+
+#playerProfile
+{
+    position:absolute;
+    left:2%;
+    height:100%;
+    width:30%;
+    text-align: center;
+}
+#playerStats
+{
+    position:absolute;
+    right:2%;
+    height:100%;
+    width:65%;
+    text-align: center;
+}
+#playerpic
+{
+    width:200px;
+    height: 200px;
+}
+
+div.row > div.col-md-5
+{
+    text-align: right;
+}
+div.row > div.col-md-7
+{
+    text-align: left;
+}
+div.panel-heading
+{
+    font-size: 17px;
+}
+#battingStats,
+#bowlingStats
+{
+    height:50%;
+    padding: 5%;
+}
+
+#battingTable,#bowlingTable
+{
+    width:95%;
+    position:absolute;
+    left:0;
+    right:0;
+    margin:auto;
+
+}
+#confirmSquad
+{
+    position:absolute;
+    width:20%;
+    bottom:10%;
+    right:10%;
+
+}
