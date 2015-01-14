@@ -135,10 +135,10 @@ function updateChanges()
 
     transferChanges = numchanges;
 
-    var transfers = "<h5>Transfers Remaining: "+transferBalance+"</h5>";
-    var numchanges = "<h5>Changes: "+numchanges+"</h5>";
-    $('#playerBalance').html(transfers);
-    $('#transferBalance').html(numchanges);
+    var balance = "<h5>Current Balance: "+presentBalance+"</h5>";
+    var transferChanges = "<h5>Transfers Remaining: "+transferBalance+"</h5><h5>Changes: "+numchanges+"</h5>";
+    $('#playerBalance').html(balance);
+    $('#transferBalance').html(transferChanges);
 
 }
 
@@ -177,7 +177,7 @@ function generatePresentBalance()
     }
 //    alert((parseInt(confirmedBalance)-spent));
     presentBalance = (parseInt(confirmedBalance)-spent);
-    return (parseInt(confirmedBalance)-spent) ;
+//    return (parseInt(confirmedBalance)-spent) ;
 
 }
 
