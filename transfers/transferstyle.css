@@ -5,8 +5,15 @@
 	top:30%;
 	background-color:#f8f8f8;
     left:1%;
-    overflow-y: auto;
+    overflow-y: scroll;
     text-align: center;
+	cursor:pointer;
+	
+	-webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #userSquad{
     position:absolute;
@@ -15,8 +22,15 @@
 	top:30%;
     right:1%;
 	background-color:#f8f8f8;
-	overflow-y: auto;
+	overflow-y: scroll;
     text-align: center;
+	cursor:pointer;
+	
+	-webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #playerBalance{
 	position:absolute;
@@ -34,18 +48,16 @@
 .player{
     width:90%;
 	margin:0 auto;
+	border-radius:5px;
+	font-size:13px;
     height:30px;
 }
 .userplayer{
     width:90%;
 	margin:0 auto;
+	font-size:13px;
+	border-radius:5px;
     height:30px;
-}
-.player:hover, .userplayer:hover
-{
-    background-color: yellow;
-    opacity: 1;
-    color:black;
 }
 
 #switches{
@@ -62,9 +74,7 @@
 	left:15%;
     bottom:9%;
 }
-#progbar{
-    min-width:1%;
-}
+
 #playerInfo
 {
     position:absolute;
@@ -128,18 +138,6 @@
     height: 200px;
 }
 
-div.row > div.col-md-5
-{
-    text-align: right;
-}
-div.row > div.col-md-7
-{
-    text-align: left;
-}
-div.panel-heading
-{
-    font-size: 17px;
-}
 #battingStats,
 #bowlingStats
 {

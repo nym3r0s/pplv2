@@ -17,9 +17,9 @@ $userResult = mysql_query($userQuery);
 
 if(isset($userResult))
 {
-    $userBalance = mysql_result($userResult,0,"money");
+    $userBalance = mysql_result($userResult,0,"actualBalance");
     $userTeamId  = mysql_result($userResult,0,"teamId");
-    echo('<h3>'.$userBalance.'</h3>');
+    echo($userBalance);
 }
 
 ?>

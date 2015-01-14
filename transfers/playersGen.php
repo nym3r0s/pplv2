@@ -21,19 +21,10 @@ if(isset($userResult))
     $userTeamId  = mysql_result($userResult,0,"teamId");
 }
 
-
-$query = "SELECT * from userSquad WHERE teamId=$userTeamId;";
-$result = mysql_query($query);
-
-$playerList = array();
-
-for($i=0;$i<mysql_num_rows($result);$i++)
-{
-    $playerList[] = mysql_result($result,$i,"playerId");
-}
-
 $playerQuery = "SELECT * FROM players";
 $playerResult = mysql_query($playerQuery);
+
+$jsonarray = [];
 
 for($i=0;$i<mysql_num_rows($playerResult);$i++)
 {
@@ -47,9 +38,6 @@ for($i=0;$i<mysql_num_rows($playerResult);$i++)
     $pcostresult = mysql_query($pcostquery);
     $pcost = mysql_result($pcostresult,0,"cost");
 
-    if(!in_array($playerId,$playerList))
-    {
-
         if(strpos($playerType,'tsman')) $pclass = 'batsman';
         else if(strpos($playerType,'keeper')) $pclass = 'wkeeper';
         else if(strpos($playerType,'Rounder')) $pclass = 'rounder';
@@ -58,9 +46,18 @@ for($i=0;$i<mysql_num_rows($playerResult);$i++)
         if($playerCaptain!="") $pclass = $pclass." captain";
 
 
-
-echo('<div id="'.$playerId.'" class="player row '.$pclass.'"><div class="col-sm-4">'.$playerName.'</div><div class="col-sm-3">'.$playerCountry.'</div><div class="col-sm-3">'.$playerType.'</div><div class="col-sm-1">'.$pcost.'</div><div class="col-sm-1">'.$playerCaptain."</div></div>") ;
-    }
+    $obj['playerId'] = $playerId;
+    $obj['playerName'] = $playerName;
+    $obj['playerCountry'] = $playerCountry;
+    $obj['playerType'] = $playerType;
+    $obj['playerCaptain'] = $playerCaptain;
+    $obj['playerClass'] = $pclass;
+    $obj['playerCost'] = $pcost;
+    $jsonarray[] = $obj;
 }
+
+$jsonString = json_encode($jsonarray,JSON_PRETTY_PRINT);
+//echo("Number of results ".mysql_num_rows($playerResult)." <br>");
+echo($jsonString);
 
 ?>

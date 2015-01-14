@@ -3,69 +3,258 @@ function AJAXcalls(callback)
     {
         var playerRequest = $.ajax({
             url:"./playersGen.php"}).done(function(msg){
-            $('#playerList').html(msg);
+//            $('#playerList').html(msg);
+            createPlayersArray(msg);
             });
 
         var squadRequest = $.ajax({
             url:"./userGen.php"}).done(function(msg){
-            $('#userSquad').html(msg);
+//            $('#userSquad').html(msg);
+            confirmedSquadArray(msg);
             });
 
         var balanceRequest =$.ajax({
             url:"./balance.php"}).done(function(msg){
-            $('#playerBalance').html(msg);
+//            $('#playerBalance').html(msg);
+            confirmedBalance = parseInt(msg);
+            console.log(confirmedBalance);
             });
         var changesRequest =$.ajax({
-            url:"./changes.php"}).done(function(msg){
-            $('#transferBalance').html(msg);
+            url:"./remainingTransfers.php"}).done(function(msg){
+//            $('#transferBalance').html(msg);
+            transferBalance = parseInt(msg);
+            console.log("Transfers: "+transferBalance);
             });
 
         playerRequest.done(function(){
             squadRequest.done(function(){
-                callback();
-                updateProgressBar();
-//                setTimeout(restoreButtons,200);
-                restoreButtons();
+                balanceRequest.done(function(){
+                    presentSquadArray();
+                    generatePlayers();
+                    callback();
+                    updateProgressBar();
+                    resetButtons();
+                    generatePresentBalance();
+                    updateChanges();
+                });
             });
         });
     }
 function bindClickEvents()
     {
         $('.player').dblclick(function(){
+
             $('#pleaseWait').show();
             var playerId = $(this).attr('id');
-            $.ajax({
-                url: "./transferToSquad.php",
-                method: "POST",
-                data: { req: playerId },
-                dataType: "html"
-            }).done(function(msg){
+            var player = getPlayer(playerId);
+            var tmpbal = presentBalance - parseInt(player.playerCost);
 
-            AJAXcalls(function(){bindClickEvents();});
+//            alert(presentBalance);
+//            alert(player.playerName + presentBalance);
+//            console.log(player);
+//            alert(presentBalance+" "+tmpbal);
+
+
+
+            if( ($('.userplayer').length < 16) && (tmpbal >=0) )
+            {
+                presentBalance = tmpbal;
+                $(this).detach().appendTo('#userSquadTable').removeClass().addClass('userplayer');
+//                alert("moving Element"+playerId);
+                presentPlayers.push(playerId);
+                localStorage.removeItem('playerList');
+                localStorage.setItem('playerList',presentPlayers.join(','));
+            }
+            refreshElements();
             $('#pleaseWait').hide();
-            });
-
         });
 
         $('.userplayer').dblclick(function(){
             $('#pleaseWait').show();
             var playerId = $(this).attr('id');
-            $.ajax({
-                url: "./transferFromSquad.php",
-                method: "POST",
-                data: { req: playerId },
-                dataType: "html"
-            }).done(function(msg){
-            AJAXcalls(function(){bindClickEvents();});
+            var player = getPlayer(playerId);
+            $(this).detach().appendTo('#playerListTable').removeClass().addClass('player').addClass(player.playerClass);
+//            alert("moving Element"+playerId);
+            var index = $.inArray(playerId,presentPlayers);
+            presentPlayers.splice(index,1);
+
+            localStorage.removeItem('playerList');
+            localStorage.setItem('playerList',presentPlayers.join(','));
+            refreshElements();
             $('#pleaseWait').hide();
-            });
         });
 
-         $(".player,.userplayer").bind("contextmenu",function(event){
+
+        $(".player,.userplayer").bind("contextmenu",function(event){
                 showmodal($(this).attr('id'));
-                return false;
         });
+//         $(".player,.userplayer").click("contextmenu",function(event){
+//                $click++;
+//                $id = $(this).attr('id')
+//                setTimeout(function(){
+//                    if($click == 1){
+//                    showmodal($id);
+//                    $click = 0;
+//                     return false;
+//                    }
+//                else $click = 0;
+//                },500);
+//         });
+
+
     }
+//Function to get Player Details
+function getPlayer(playerId)
+{
+    return players[parseInt(playerId)-1000];
+}
+
+// Function to refresh dynamic elements
+function refreshElements()
+{
+    presentSquadArray();
+    generatePlayers();
+    bindClickEvents();
+    updateProgressBar();
+    resetButtons();
+    generatePresentBalance();
+    updateChanges();
+}
+
+//Function to update the changes and transfers
+
+function updateChanges()
+{
+    var i;
+    var numchanges = 0;
+    for(i=0;i<presentPlayers.length;i++)
+    {
+        if($.inArray(presentPlayers[i],confirmedSquad) == -1)
+            numchanges++;
+    }
+
+    transferChanges = numchanges;
+
+    var transfers = "<h5>Transfers Remaining: "+transferBalance+"</h5>";
+    var numchanges = "<h5>Changes: "+numchanges+"</h5>";
+    $('#playerBalance').html(transfers);
+    $('#transferBalance').html(numchanges);
+
+}
+
+// The Functions to create player Divs.
+
+var players; // The array of players
+var confirmedSquad // The list of Ids of Confirmed Players
+var presentPlayers //The list of existing players. Default = Confirmed Players
+var confirmedBalance;
+var presentBalance;
+var transferBalance;
+var transferChanges;
+
+function createPlayersArray(json)
+{
+    players = $.parseJSON(json);
+//    console.log(players);
+//    console.log(players[0]);
+//    console.log(players[0]['playerName']);
+}
+
+function generatePresentBalance()
+{
+    var i;
+    var spent = 0;
+
+    for(i=0;i<presentPlayers.length;i++)
+    {
+        spent = spent + parseInt(getPlayer(presentPlayers[i]).playerCost);
+    }
+//    subtracting confirmed squad's Amount. Essentially only the difference of ppl is calculated
+
+    for(i=0;i<confirmedSquad.length;i++)
+    {
+        spent = spent - parseInt(getPlayer(confirmedSquad[i]).playerCost);
+    }
+//    alert((parseInt(confirmedBalance)-spent));
+    presentBalance = (parseInt(confirmedBalance)-spent);
+    return (parseInt(confirmedBalance)-spent) ;
+
+}
+
+function confirmedSquadArray(msg)
+{
+    confirmedSquad = msg.split(",");
+//    console.log(confirmedSquad);
+//    console.log(confirmedSquad.length);
+}
+
+function presentSquadArray()
+{
+//    localStorage.setItem('playerList','100,200,300');
+//    localStorage.removeItem('playerList');
+    var presentList = localStorage.getItem("playerList");
+    console.log(presentList);
+
+    if(presentList==null)
+    {
+        presentPlayers = confirmedSquad.slice();
+    }
+    else
+    {
+        presentPlayers = presentList.split(",");
+    }
+    console.log(presentPlayers);
+}
+
+function generatePlayers()
+{
+//    Clearing playerList and userSquad
+    $('#playerListTable').empty();
+    $('#userSquadTable').empty();
+
+//    console.log(players);
+    $.each(players,function(id,obj){
+//        console.log(obj);
+//        console.log(obj.playerId);
+
+        var playerId = obj.playerId;
+        var playerName = obj.playerName;
+        var playerType = obj.playerType;
+        var playerCaptain = obj.playerCaptain;
+        var playerCountry = obj.playerCountry;
+        var playerClass = obj.playerClass;
+        var playerCost = obj.playerCost;
+
+        if($.inArray(playerId,presentPlayers) == -1)
+        {
+            playerClass = playerClass+ ' player';
+
+            var divText = '<td>'+playerName+'</td><td>'+playerCountry;
+            divText = divText + '</td><td>' +playerType + '</td><td>'+playerCost+'</td>';
+
+            var divName = '<tr id=\"'+playerId+'\"></tr>';
+
+            $(divName).addClass(playerClass).html(divText).appendTo('#playerListTable');
+
+//            console.log("appending"+playerId);
+        }
+        else
+        {
+            playerClass = 'userplayer';
+
+            var divText = '<td>'+playerName+'</td><td>'+playerCountry;
+            divText = divText + '</td><td>' +playerType + '</td><td>'+playerCost+'</td>';
+
+
+            var divName = '<tr id=\"'+playerId+'\"></tr>';
+
+            $(divName).addClass(playerClass).html(divText).appendTo('#userSquadTable');
+        }
+    });
+}
+
+//Functions to Hide or show the players
+
 function hideNonCaptain(type)
 {
 //    alert("Hiding"+type);
@@ -132,7 +321,7 @@ function updateProgressBar()
     if(value<20)
         $('#progbar').addClass('progress-bar-danger');
 
-    else if (value<50)
+    else if (value<60)
         $('#progbar').addClass('progress-bar-warning');
     else if (value<100)
         $('#progbar').addClass('progress-bar-info');
@@ -165,30 +354,6 @@ function showmodal(id)
     });
 }
 
-function restoreButtons()
-{
-    if(!$('#batsman').hasClass('btn-danger'))
-    {
-        $('#batsman').trigger('click');
-    }
-    if(!$('#bowler').hasClass('btn-danger'))
-    {
-        $('#bowler').trigger('click');
-    }
-    if(!$('#wkeeper').hasClass('btn-danger'))
-    {
-        $('#wkeeper').trigger('click');
-    }
-    if(!$('#rounder').hasClass('btn-danger'))
-    {
-        $('#rounder').trigger('click');
-    }
-    if(!$('#captain').hasClass('btn-danger'))
-    {
-        $('#captain').trigger('click');
-    }
-}
-
 function confirm16()
 {
     var num = $('.userplayer').length;
@@ -197,9 +362,15 @@ function confirm16()
     var ids = [];
     var iter = 0;
     $.each($(".userplayer"),function(i,obj){
+          if($.inArray($(obj).attr('id'),ids)==-1)
+          {
            ids[iter] = $(obj).attr('id');
             iter++;
+          }
            });
+    if(ids.length!=16)
+        return false;
+
     var idString = ids.join(',');
 
     $.ajax({
@@ -217,7 +388,7 @@ function confirm16()
 $(document).ready(function(){
 
 //    Clicking The other buttons.
-
+    $click = 0;
     AJAXcalls(function(){
         bindClickEvents();
         setTimeout(function(){
