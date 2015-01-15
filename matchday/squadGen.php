@@ -21,18 +21,23 @@ if(isset($userResult))
     $userTeamId  = mysql_result($userResult,0,"teamId");
 }
 
-$playerQuery = "SELECT * FROM players";
-$playerResult = mysql_query($playerQuery);
+$squadQuery = "SELECT * FROM confirmedSquad WHERE teamId=$userTeamId";
+$squadResult = mysql_query($squadQuery);
 
 $jsonarray = [];
 
-for($i=0;$i<mysql_num_rows($playerResult);$i++)
+for($i=0;$i<mysql_num_rows($squadResult);$i++)
 {
-    $playerId    = mysql_result($playerResult,$i,"playerId");
-    $playerName    = mysql_result($playerResult,$i,"name");
-    $playerCountry = mysql_result($playerResult,$i,"country");
-    $playerType    = mysql_result($playerResult,$i,"type");
-    $playerCaptain = mysql_result($playerResult,$i,"captain");
+    $playerId    = mysql_result($squadResult,$i,"playerId");
+
+    $playerQuery = "SELECT * FROM players WHERE playerId=$playerId";
+    $playerResult = mysql_query($playerQuery);
+
+
+    $playerName    = mysql_result($playerResult,0,"name");
+    $playerCountry = mysql_result($playerResult,0,"country");
+    $playerType    = mysql_result($playerResult,0,"type");
+    $playerCaptain = mysql_result($playerResult,0,"captain");
 
     $pcostquery = "SELECT * FROM playerData where playerId=$playerId";
     $pcostresult = mysql_query($pcostquery);

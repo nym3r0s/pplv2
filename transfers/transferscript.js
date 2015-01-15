@@ -48,14 +48,6 @@ function bindClickEvents()
             var playerId = $(this).attr('id');
             var player = getPlayer(playerId);
             var tmpbal = presentBalance - parseInt(player.playerCost);
-
-//            alert(presentBalance);
-//            alert(player.playerName + presentBalance);
-//            console.log(player);
-//            alert(presentBalance+" "+tmpbal);
-
-
-
             if( ($('.userplayer').length < 16) && (tmpbal >=0) )
             {
                 presentBalance = tmpbal;
@@ -116,9 +108,9 @@ function refreshElements()
     generatePlayers();
     bindClickEvents();
     updateProgressBar();
-    resetButtons();
     generatePresentBalance();
     updateChanges();
+    restoreButtons();
 }
 
 //Function to update the changes and transfers
@@ -195,7 +187,7 @@ function presentSquadArray()
     var presentList = localStorage.getItem("playerList");
     console.log(presentList);
 
-    if(presentList==null)
+    if(presentList == null)
     {
         presentPlayers = confirmedSquad.slice();
     }
@@ -217,13 +209,13 @@ function generatePlayers()
 //        console.log(obj);
 //        console.log(obj.playerId);
 
-        var playerId = obj.playerId;
-        var playerName = obj.playerName;
-        var playerType = obj.playerType;
+        var playerId      = obj.playerId;
+        var playerName    = obj.playerName;
+        var playerType    = obj.playerType;
         var playerCaptain = obj.playerCaptain;
         var playerCountry = obj.playerCountry;
-        var playerClass = obj.playerClass;
-        var playerCost = obj.playerCost;
+        var playerClass   = obj.playerClass;
+        var playerCost    = obj.playerCost;
 
         if($.inArray(playerId,presentPlayers) == -1)
         {
@@ -303,10 +295,18 @@ function hideCaptain()
 
 function resetButtons()
 {
-    $("#batsman, #bowler, #wkeeper,#rounder,#captain").removeClass("btn-danger");
+//    $("#batsman, #bowler, #wkeeper,#rounder,#captain").removeClass("btn-danger");
     $('#batsman').trigger('click');
 }
 
+function restoreButtons()
+{
+    if(!$('#batsman').hasClass('btn-danger')) $('#batsman').trigger('click');
+    else if(!$('#bowler').hasClass('btn-danger')) $('#bowler').trigger('click');
+    else if(!$('#wkeeper').hasClass('btn-danger')) $('#wkeeper').trigger('click');
+    else if(!$('#rounder').hasClass('btn-danger')) $('#rounder').trigger('click');
+    else if(!$('#captain').hasClass('btn-danger')) $('#captain').trigger('click');
+}
 function updateProgressBar()
 {
     var number = $('.userplayer').length;
