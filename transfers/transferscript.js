@@ -97,10 +97,16 @@ function bindClickEvents()
             $('#pleaseWait').hide();
         });
 
-
-        $(".player,.userplayer").bind("contextmenu",function(event){
-                showmodal($(this).attr('id'));
-        });
+		var click = 0;
+        $(".player,.userplayer").click("contextmenu",function(event){
+			id = $(this).attr('id');
+			click++;
+			setTimeout(function(){
+                if(click == 1)
+					showmodal(id);
+				click = 0; 
+			},500);
+		});
 //         $(".player,.userplayer").click("contextmenu",function(event){
 //                $click++;
 //                $id = $(this).attr('id')
@@ -409,7 +415,6 @@ function confirm16()
 $(document).ready(function(){
 
 //    Clicking The other buttons.
-    $click = 0;
     AJAXcalls(function(){
         bindClickEvents();
         setTimeout(function(){

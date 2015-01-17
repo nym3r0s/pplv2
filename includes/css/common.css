@@ -27,3 +27,7 @@ body{
 .btn:hover{
 	transition:background 0.5s;
 }
+
+th{
+	text-align:center;
+}

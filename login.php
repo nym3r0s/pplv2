@@ -52,7 +52,7 @@ session_destroy();
 	
 	<nav class=" footer navbar navbar-default navbar-fixed-bottom">
 		<div class="footer">
-			<p class="navbar-text">Developed by Delta Force</p>
+			<p>Developed by Delta Force</p>
 		</div>
 	</nav>
 </body>
