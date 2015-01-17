@@ -29,13 +29,16 @@ function AJAXcalls(callback)
         playerRequest.done(function(){
             squadRequest.done(function(){
                 balanceRequest.done(function(){
-                    presentSquadArray();
-                    generatePlayers();
-                    callback();
-                    updateProgressBar();
-                    resetButtons();
-                    generatePresentBalance();
-                    updateChanges();
+                    changesRequest.done(function(){
+
+                        presentSquadArray();
+                        generatePlayers();
+                        callback();
+                        updateProgressBar();
+                        resetButtons();
+                        generatePresentBalance();
+                        updateChanges();
+                    });
                 });
             });
         });
@@ -46,12 +49,28 @@ function bindClickEvents()
 
             $('#pleaseWait').show();
             var playerId = $(this).attr('id');
-            var player = getPlayer(playerId);
+//            var player = getPlayer(playerId);
+//            var tmpbal = presentBalance - parseInt(player.playerCost);
+//            if( ($('.userplayer').length < 16) && (tmpbal >=0) )
+//            {
+//                presentBalance = tmpbal;
+//                $(this).detach().appendTo('#userSquadTable').removeClass().addClass('userplayer');
+////                alert("moving Element"+playerId);
+//                presentPlayers.push(playerId);
+//                localStorage.removeItem('playerList');
+//                localStorage.setItem('playerList',presentPlayers.join(','));
+//            }
+//            refreshElements();
+//            $('#pleaseWait').hide();
+            var thiselem = $(this);
+            $.when(getPlayer(playerId)).done(function(player){
+//                alert(player);
+//                console.log(player);
             var tmpbal = presentBalance - parseInt(player.playerCost);
             if( ($('.userplayer').length < 16) && (tmpbal >=0) )
             {
                 presentBalance = tmpbal;
-                $(this).detach().appendTo('#userSquadTable').removeClass().addClass('userplayer');
+                $(thiselem).detach().appendTo('#userSquadTable').removeClass().addClass('userplayer');
 //                alert("moving Element"+playerId);
                 presentPlayers.push(playerId);
                 localStorage.removeItem('playerList');
@@ -59,6 +78,8 @@ function bindClickEvents()
             }
             refreshElements();
             $('#pleaseWait').hide();
+            });
+
         });
 
         $('.userplayer').dblclick(function(){
