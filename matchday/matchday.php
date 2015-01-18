@@ -36,6 +36,7 @@ if(isset($userResult))
     <link href="./matchdayStyle.css" rel="stylesheet">
 
     <!-- Adding the Appropriate JS file  -->
+    <script src="./ratioCheck.js"></script>
 <?php
 
     if($userP11 == 0)

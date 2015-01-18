@@ -34,9 +34,20 @@ function bindClickEvents()
         });
 
 
-        $(".player,.userplayer").bind("contextmenu",function(event){
-                showmodal($(this).attr('id'));
+//        $(".player,.userplayer").bind("contextmenu",function(event){
+//                showmodal($(this).attr('id'));
+//        });
+//            var click = 0;
+        $(".player,.userplayer").click("contextmenu",function(event){
+            id = $(this).attr('id');
+            click++;
+            setTimeout(function(){
+                if(click == 1)
+                    showmodal(id);
+                click = 0;
+            },500);
         });
+
     }
 
 
@@ -48,7 +59,15 @@ var presentPlayers //The list of existing players. Default = Confirmed Players
 
 function getPlayer(playerId)
 {
-    return players[parseInt(playerId)-1000];
+    var i;
+    for(i=0;i<players.length;i++)
+    {
+        if(players[i].playerId == playerId)
+        {
+            return players[i];
+            break;
+        }
+    }
 }
 
 //Function to create JSON array of objects
@@ -98,6 +117,7 @@ function refreshElements()
     bindClickEvents();
     updateProgressBar();
     },1);
+    click = 0;
 }
 
 function updateProgressBar()
@@ -177,11 +197,11 @@ function confirm11()
     });
 }
 
-
+var click;
 $(document).ready(function(){
 
 //    Clicking The other buttons.
-    $click = 0;
+    click = 0;
     AJAXcalls(function(){
         bindClickEvents();
     });
@@ -194,8 +214,19 @@ $(document).ready(function(){
     });
 
     $('#confirmSquad').click(function(){
-        confirm11();
-        AJAXcalls(function(){bindClickEvents();});
+        if(ratioCheck())
+        {
+        alert('condition true. Entering confirm11');
+        $.when(confirm11()).then(function(){
+            location.reload();
+        });
+
+        }
+        else
+        {
+            alert("ratiocheck returns: "+ratioCheck());
+        }
+//        AJAXcalls(function(){bindClickEvents();});
     });
 
 

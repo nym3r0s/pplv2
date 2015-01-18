@@ -65,28 +65,25 @@ $playerStumpings = mysql_result($fieldResult,0,"stumpings");
 /*Starting to create HTML*/
 
 
-echo('<div class="panel panel-default" id="playerProfile">');
+echo('<div class="panel panel-primary" id="playerProfile">');
     echo('<div class="panel-heading"><h3 class="panel-title">'.$playerName.'</h3></div>');
     echo('<div class="panel-body">');
         echo('<img class="img-circle" id="playerpic" src="'.$playerPhoto.'">');
-//        echo('<div class="row"><div class="col-md-5"><b>'.''.'</b></div><div class="col-md-7">'..'</div></div><br>');
-        echo('<br><br>');
-        echo('<div class="row"><div class="col-md-5"><b>'.'Country'.'</b></div><div class="col-md-7">'.$playerCountry.'</div></div><br>');
-        echo('<div class="row"><div class="col-md-5"><b>'.'Playing Role'.'</b></div><div class="col-md-7">'.$playerType.'</div></div><br>');
-        echo('<div class="row"><div class="col-md-5"><b>'.'Matches'.'</b></div><div class="col-md-7">'.$playerMatches.'</div></div><br>');
-        echo('<div class="row"><div class="col-md-3"><b>'.'Form'.'</b></div><div class="col-md-3">'.$playerForm.'</div>');
-        echo('<div class="col-md-3"><b>'.'Confidence'.'</b></div><div class="col-md-3">'.$playerConfidence.'</div></div><br>');
+
+        echo('<div class="row_left"> <div><b>Country</b></div> <div><b>Player Role</b></div> <div><b>Matches</b></div> <div><b>Form</b></div> <div><b>Confidence</b></div> </div>');
+
+		echo('<div class="row_right"> <div>'.$playerCountry.'</div> <div>'.$playerType.'</div> <div>'.$playerMatches.'</div> <div>'.$playerForm.'</div><div>'.$playerConfidence.'</div></div>');
 
 if($playerCaptain != ""){    echo('<div class="row"><b>Captain</b></div><br>'); }
         echo('</div>');
 echo('</div>');
 
-echo('<div class="panel panel-default" id="playerStats">');
-
+echo('<div class="panel panel-primary" id="playerStats">');
+echo('<div class="panel-heading"><h3 class="panel-title">Performance</h3></div>');
 echo('<div id="battingStats">');
-echo("<h5>Batting and Fielding</h5>");
+echo("<h5>Batting statistics</h5>");
 
-echo('<table class="table table-striped table-hover table-bordered" id="battingTable">');
+echo('<table class="table table-striped table-bordered" id="battingTable">');
   echo('<thead>');
     echo('<tr>');
       echo('<th>Runs</th>');
@@ -95,8 +92,6 @@ echo('<table class="table table-striped table-hover table-bordered" id="battingT
       echo('<th>Strike Rate</th>');
       echo('<th>Hundreds</th>');
       echo('<th>Fifties</th>');
-      echo('<th>Catches</th>');
-      echo('<th>Stumpings</th>');
     echo('</tr>');
   echo('</thead>');
   echo('<tbody>');
@@ -107,19 +102,17 @@ echo('<table class="table table-striped table-hover table-bordered" id="battingT
       echo('<td>'.$playerStrikeRate.'</td>');
       echo('<td>'.$playerHundred.'</td>');
       echo('<td>'.$playerFifty.'</td>');
-      echo('<td>'.$playerCatches.'</td>');
-      echo('<td>'.$playerStumpings.'</td>');
     echo('</tr>');
   echo('</tbody>');
 echo('</table>');
 
-
 echo('</div>');
 
-echo('<div id="bowlingStats">');
-echo("<h5>Bowling</h5>");
 
-echo('<table class="table table-striped table-hover table-bordered" id="bowlingTable">');
+echo('<div id="bowlingStats">');
+echo("<h5>Bowling statistics</h5>");
+
+echo('<table class="table table-striped table-bordered" id="bowlingTable">');
   echo('<thead>');
     echo('<tr>');
       echo('<th>Wickets</th>');
@@ -143,5 +136,26 @@ echo('<table class="table table-striped table-hover table-bordered" id="bowlingT
 echo('</table>');
 
 echo('</div>');
+
+echo('<div id="fieldingStats">');
+echo("<h5>Fielding statistics</h5>");
+
+echo('<table class="table table-striped table-bordered" id="battingTable">');
+  echo('<thead>');
+    echo('<tr>');
+      echo('<th>Catches</th>');
+      echo('<th>Stumpings</th>');
+    echo('</tr>');
+  echo('</thead>');
+  echo('<tbody>');
+    echo('<tr>');
+      echo('<td>'.$playerCatches.'</td>');
+      echo('<td>'.$playerStumpings.'</td>');
+    echo('</tr>');
+  echo('</tbody>');
+echo('</table>');
+
+echo('</div>');
+
 echo('</div>');
 

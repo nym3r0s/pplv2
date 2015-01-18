@@ -97,16 +97,17 @@ function bindClickEvents()
             $('#pleaseWait').hide();
         });
 
-		var click = 0;
+        var click = 0;
         $(".player,.userplayer").click("contextmenu",function(event){
-			id = $(this).attr('id');
-			click++;
-			setTimeout(function(){
+            id = $(this).attr('id');
+            click++;
+            setTimeout(function(){
                 if(click == 1)
-					showmodal(id);
-				click = 0; 
-			},500);
-		});
+                    showmodal(id);
+
+                click = 0;
+            },500);
+        });
 //         $(".player,.userplayer").click("contextmenu",function(event){
 //                $click++;
 //                $id = $(this).attr('id')
