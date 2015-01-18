@@ -45,6 +45,10 @@ function AJAXcalls(callback)
     }
 function bindClickEvents()
     {
+
+        $('.player,.userplayer').unbind('click');
+        $('.player,.userplayer').unbind('dblclick');
+
         $('.player').dblclick(function(){
 
             $('#pleaseWait').show();
@@ -409,6 +413,7 @@ function confirm16()
     }).done(function(msg){
         alert(msg);
 //        console.log(msg);
+        location.reload();
     });
 }
 

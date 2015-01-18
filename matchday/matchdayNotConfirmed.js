@@ -15,6 +15,9 @@ function AJAXcalls(callback)
     }
 function bindClickEvents()
     {
+        $('.player,.userplayer').unbind('click');
+        $('.player,.userplayer').unbind('dblclick');
+
         $('.player').dblclick(function(){
             var playerId = $(this).attr('id');
 //            console.log(player);
@@ -38,13 +41,20 @@ function bindClickEvents()
 //                showmodal($(this).attr('id'));
 //        });
 //            var click = 0;
-        $(".player,.userplayer").click("contextmenu",function(event){
+        $(".player,.userplayer").click(function(event){
             id = $(this).attr('id');
             click++;
+
             setTimeout(function(){
                 if(click == 1)
+                {
                     showmodal(id);
-                click = 0;
+                    click= 0;
+                }
+                else
+                {
+                    click = 0;
+                }
             },500);
         });
 
