@@ -191,7 +191,18 @@ function generatePresentBalance()
 
     for(i=0;i<presentPlayers.length;i++)
     {
-        spent = spent + parseInt(getPlayer(presentPlayers[i]).playerCost);
+//        spent = spent + parseInt(getPlayer(presentPlayers[i]).playerCost);
+       $.when(getPlayer(presentPlayers[i])).then(function(obj){
+//           console.log(presentPlayers[i]);
+//           console.log(obj);
+           if(obj.playerCost==undefined)
+           {
+               localStorage.removeItem('playerList');
+               location.reload();
+           }
+           spent = spent + parseInt(obj.playerCost);
+
+       });
     }
 //    subtracting confirmed squad's Amount. Essentially only the difference of ppl is calculated
 
