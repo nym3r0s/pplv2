@@ -17,13 +17,13 @@ function AJAXcalls(callback)
             url:"./balance.php"}).done(function(msg){
 //            $('#playerBalance').html(msg);
             confirmedBalance = parseInt(msg);
-            console.log(confirmedBalance);
+//            console.log(confirmedBalance);
             });
         var changesRequest =$.ajax({
             url:"./remainingTransfers.php"}).done(function(msg){
 //            $('#transferBalance').html(msg);
             transferBalance = parseInt(msg);
-            console.log("Transfers: "+transferBalance);
+//            console.log("Transfers: "+transferBalance);
             });
 
         playerRequest.done(function(){
@@ -169,8 +169,8 @@ function updateChanges()
 // The Functions to create player Divs.
 
 var players; // The array of players
-var confirmedSquad // The list of Ids of Confirmed Players
-var presentPlayers //The list of existing players. Default = Confirmed Players
+var confirmedSquad; // The list of Ids of Confirmed Players
+var presentPlayers; //The list of existing players. Default = Confirmed Players
 var confirmedBalance;
 var presentBalance;
 var transferBalance;
@@ -188,28 +188,36 @@ function generatePresentBalance()
 {
     var i;
     var spent = 0;
-
+//    console.log('presentplyers in balance: '+presentPlayers);
+//    console.log(presentPlayers.length);
     for(i=0;i<presentPlayers.length;i++)
     {
 //        spent = spent + parseInt(getPlayer(presentPlayers[i]).playerCost);
        $.when(getPlayer(presentPlayers[i])).then(function(obj){
 //           console.log(presentPlayers[i]);
 //           console.log(obj);
-           if(obj.playerCost==undefined)
+           var k = undefined;
+           k = obj;
+           if(k==undefined)
            {
                localStorage.removeItem('playerList');
                location.reload();
            }
-           spent = spent + parseInt(obj.playerCost);
+           else
+           {
+               spent = spent + parseInt(obj.playerCost);
+           }
 
        });
     }
 //    subtracting confirmed squad's Amount. Essentially only the difference of ppl is calculated
-
+if(confirmedSquad!=null)
+{
     for(i=0;i<confirmedSquad.length;i++)
     {
         spent = spent - parseInt(getPlayer(confirmedSquad[i]).playerCost);
     }
+}
 //    alert((parseInt(confirmedBalance)-spent));
     presentBalance = (parseInt(confirmedBalance)-spent);
 //    return (parseInt(confirmedBalance)-spent) ;
@@ -218,7 +226,19 @@ function generatePresentBalance()
 
 function confirmedSquadArray(msg)
 {
-    confirmedSquad = msg.split(",");
+//    console.log('entering confirmedSquadArray');
+    if(msg.indexOf(',')!=-1)
+    {
+        confirmedSquad = msg.split(",");
+//
+//        console.log("msg");
+//        console.log(msg);
+    }
+    else
+    {
+        confirmedSquad = null;
+//        console.log('confirmedSquad set as null');
+    }
 //    console.log(confirmedSquad);
 //    console.log(confirmedSquad.length);
 }
@@ -228,17 +248,31 @@ function presentSquadArray()
 //    localStorage.setItem('playerList','100,200,300');
 //    localStorage.removeItem('playerList');
     var presentList = localStorage.getItem("playerList");
-    console.log(presentList);
-
+//    console.log('present list: ');
+//    console.log(presentList);
     if(presentList == null)
     {
+//        console.log('entering null condition');
+//        console.log('confirmed squad'+confirmedSquad);
+//        console.log(confirmedSquad);
+        if(confirmedSquad != null)
+        {
         presentPlayers = confirmedSquad.slice();
+        }
+        else
+        {
+//            console.log('no confirmed squad');
+            presentPlayers = [];
+        }
     }
     else
     {
+//        console.log('entering other condition');
+//        console.log('non empty list');
         presentPlayers = presentList.split(",");
+
     }
-    console.log(presentPlayers);
+//    console.log(presentPlayers);
 }
 
 function generatePlayers()

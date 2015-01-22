@@ -68,7 +68,7 @@ function ratioCheck()
 
             if(captain >= 1)
             {
-                if((checkString=='5411')||(checkString=='5321')||(checkString=='4331')||(checkString=='6321'))
+                if((checkString=='5411')||(checkString=='5321')||(checkString=='4331'))
                 {
                     alert('correct Ratio:'+checkString);
                     returnVal = true;

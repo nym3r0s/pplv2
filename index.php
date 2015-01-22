@@ -3,8 +3,8 @@
 session_start();
 require './includes/dbconfig.php';
 
-$uname = $_POST['user'];
-$pass = $_POST['pass'];
+$uname = mysql_real_escape_string($_POST['user']);
+$pass = mysql_real_escape_string($_POST['pass']);
 
 $pass = sha1($pass);
 

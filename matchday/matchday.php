@@ -143,10 +143,10 @@ else
         <div class="table-responsive">
             <table id="sort" class="table">
                 <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Country</th>
-                    <th>Role</th>
+                  <tr id="p11Heading">
+                    <th style="text-align:left;">Name</th>
+                    <th style="text-align:left;">Country</th>
+                    <th style="text-align:left;">Role</th>
                   </tr>
                 </thead>
                 <tbody id="userSquadTable">
