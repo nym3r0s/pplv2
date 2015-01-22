@@ -1,7 +1,7 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = $_SESSION['user'];
+$user = mysql_real_escape_string($_SESSION['user']);
 if(!isset($user))
 {
     header('Location: ./../login.php');

@@ -4,8 +4,8 @@ require './../includes/dbconfig.php';
 
 //echo("done");
 
-$playerId = $_POST['req'];
-$user = $_SESSION['user'];
+$playerId = mysql_real_escape_string($_POST['req']);
+$user = mysql_real_escape_string($_SESSION['user']);
 
 if(!isset($user))
 {
@@ -72,7 +72,7 @@ echo('<div class="panel panel-primary" id="playerProfile">');
 
         echo('<div class="row_left"> <div><b>Country</b></div> <div><b>Player Role</b></div> <div><b>Matches</b></div> <div><b>Form</b></div> <div><b>Confidence</b></div> </div>');
 
-		echo('<div class="row_right"> <div>'.$playerCountry.'</div> <div>'.$playerType.'</div> <div>'.$playerMatches.'</div> <div>'.$playerForm.'</div><div>'.$playerConfidence.'</div></div>');
+        echo('<div class="row_right"> <div>'.$playerCountry.'</div> <div>'.$playerType.'</div> <div>'.$playerMatches.'</div> <div>'.$playerForm.'</div><div>'.$playerConfidence.'</div></div>');
 
 if($playerCaptain != ""){    echo('<div class="row"><b>Captain</b></div><br>'); }
         echo('</div>');

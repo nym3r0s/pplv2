@@ -1,13 +1,13 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = $_SESSION['user'];
+$user = mysql_real_escape_string($_SESSION['user'])s;
 if(!isset($user))
 {
     header('Location: ./../login.php');
 }
 
-$idString = $_POST['c11'];
+$idString = mysql_real_escape_string($_POST['c11']);
 echo($idString."\n");
 $ids = explode(',',$idString);
 sort($ids);

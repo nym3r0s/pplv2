@@ -1,7 +1,7 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = $_SESSION['user'];
+$user = mysql_real_escape_string($_SESSION['user']);
 if(!isset($user))
 {
     header('Location: ./../login.php');
@@ -50,11 +50,11 @@ if(!isset($user))
     </nav>
 
 <!-- Nav  Ends here-->
-	<div class="transferDetails">
-		<div id="playerBalance"></div>
-		<div id="transferBalance"></div>
-	</div>
-		
+    <div class="transferDetails">
+        <div id="playerBalance"></div>
+        <div id="transferBalance"></div>
+    </div>
+
     <div id="switches">
         <div class="btn-group" role="group" aria-label="...">
             <div class="btn-group" role="group">
