@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 3.4.11.1deb2+deb7u1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 03, 2015 at 06:40 PM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Host: localhost
+-- Generation Time: Feb 03, 2015 at 11:43 PM
+-- Server version: 5.5.41
+-- PHP Version: 5.4.36-0+deb7u3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,19 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminlogin`
+-- Table structure for table `adminLogin`
 --
 
-CREATE TABLE IF NOT EXISTS `adminlogin` (
+CREATE TABLE IF NOT EXISTS `adminLogin` (
   `userId` bigint(20) NOT NULL,
   `password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `adminlogin`
+-- Dumping data for table `adminLogin`
 --
 
-INSERT INTO `adminlogin` (`userId`, `password`) VALUES
+INSERT INTO `adminLogin` (`userId`, `password`) VALUES
 (1, 'd033e22ae348aeb5660fc2140aec35850c4da997');
 
 -- --------------------------------------------------------
@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `batting` (
   `average` float NOT NULL,
   `strikeRate` float NOT NULL,
   `hundred` bigint(20) NOT NULL,
-  `fifty` bigint(20) NOT NULL
+  `fifty` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -288,7 +289,8 @@ CREATE TABLE IF NOT EXISTS `bowling` (
   `average` float NOT NULL,
   `economy` float NOT NULL,
   `four` bigint(20) NOT NULL,
-  `five` bigint(20) NOT NULL
+  `five` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -515,26 +517,65 @@ INSERT INTO `bowling` (`playerId`, `wickets`, `best`, `average`, `economy`, `fou
 -- --------------------------------------------------------
 
 --
--- Table structure for table `confirmedp11`
+-- Table structure for table `confirmedP11`
 --
 
-CREATE TABLE IF NOT EXISTS `confirmedp11` (
+CREATE TABLE IF NOT EXISTS `confirmedP11` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `confirmedP11`
+--
+
+INSERT INTO `confirmedP11` (`teamId`, `playerId`) VALUES
+(1, 1047),
+(1, 1053),
+(1, 1067),
+(1, 1074),
+(1, 1092),
+(1, 1095),
+(1, 1118),
+(1, 1142),
+(1, 1147),
+(1, 1149),
+(1, 1178);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `confirmedsquad`
+-- Table structure for table `confirmedSquad`
 --
 
-CREATE TABLE IF NOT EXISTS `confirmedsquad` (
+CREATE TABLE IF NOT EXISTS `confirmedSquad` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
   `confidence` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `confirmedSquad`
+--
+
+INSERT INTO `confirmedSquad` (`teamId`, `playerId`, `form`, `confidence`) VALUES
+(1, 1032, 1000, 1000),
+(1, 1047, 1000, 1000),
+(1, 1053, 1000, 1000),
+(1, 1067, 1000, 1000),
+(1, 1074, 1000, 1000),
+(1, 1092, 1000, 1000),
+(1, 1095, 1000, 1000),
+(1, 1118, 1000, 1000),
+(1, 1126, 1000, 1000),
+(1, 1142, 1000, 1000),
+(1, 1147, 1000, 1000),
+(1, 1149, 1000, 1000),
+(1, 1150, 1000, 1000),
+(1, 1151, 1000, 1000),
+(1, 1178, 1000, 1000),
+(1, 1206, 1000, 1000);
 
 -- --------------------------------------------------------
 
@@ -546,7 +587,8 @@ CREATE TABLE IF NOT EXISTS `fielding` (
   `playerId` bigint(20) NOT NULL,
   `innings` bigint(20) NOT NULL,
   `catches` bigint(20) NOT NULL,
-  `stumpings` bigint(20) NOT NULL
+  `stumpings` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -773,10 +815,84 @@ INSERT INTO `fielding` (`playerId`, `innings`, `catches`, `stumpings`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playerdata`
+-- Table structure for table `matchDetailsBatting`
 --
 
-CREATE TABLE IF NOT EXISTS `playerdata` (
+CREATE TABLE IF NOT EXISTS `matchDetailsBatting` (
+  `playerName` varchar(40) NOT NULL,
+  `playerWicketBowler` varchar(40) NOT NULL,
+  `runs` int(11) NOT NULL,
+  `four` int(11) NOT NULL,
+  `six` int(11) NOT NULL,
+  `strikeRate` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matchDetailsBatting`
+--
+
+INSERT INTO `matchDetailsBatting` (`playerName`, `playerWicketBowler`, `runs`, `four`, `six`, `strikeRate`) VALUES
+('AJ Finch', 'Anderson', 0, 0, 0, 0),
+('DA Warner', 'Anderson', 12, 2, 0, 66.66),
+('SPD Smith', 'Ali', 40, 5, 0, 80),
+('GJ Bailey', 'Broad', 2, 0, 0, 11.76),
+('GJ Maxwell', 'Broad', 95, 15, 0, 96.93),
+('MR Marsh', '(Anderson/ Buttler)', 60, 7, 1, 88.23),
+('BJ Haddin', 'Broad', 9, 1, 0, 75),
+('JP Faulkner', 'out', 50, 4, 4, 208.33),
+('MG Johnson', 'Finn', 3, 0, 0, 30),
+('MA Starc', 'out', 0, 0, 0, 0),
+('MM Ali', 'Johnson', 26, 5, 0, 86.66),
+('IR Bell', 'Hazlewood', 8, 2, 0, 88.88),
+('JWA Taylor', 'Johnson', 4, 0, 0, 22.22),
+('JE Root', 'Faulkner', 25, 2, 0, 67.56),
+('EJG Morgan', 'Johnson', 0, 0, 0, 0),
+('RS Bopara', 'Maxwell', 33, 1, 0, 55.93),
+('JC Buttler', 'Maxwell', 17, 3, 0, 77.27),
+('CR Woakes', 'Maxwell', 0, 0, 0, 0),
+('SCJ Broad', 'Maxwell', 24, 2, 2, 120),
+('ST Finn', 'Hazlewood', 6, 0, 0, 16.66),
+('JM Anderson', 'out', 5, 1, 0, 250);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `matchDetailsBowling`
+--
+
+CREATE TABLE IF NOT EXISTS `matchDetailsBowling` (
+  `playerName` varchar(40) NOT NULL,
+  `overs` int(11) NOT NULL,
+  `maidens` int(11) NOT NULL,
+  `wickets` int(11) NOT NULL,
+  `economy` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matchDetailsBowling`
+--
+
+INSERT INTO `matchDetailsBowling` (`playerName`, `overs`, `maidens`, `wickets`, `economy`) VALUES
+('JM Anderson', 10, 2, 2, 3.8),
+('CR Woakes', 10, 0, 0, 8.9),
+('SCJ Broad', 10, 1, 3, 5.5),
+('ST Finn', 10, 0, 1, 5.3),
+('MM Ali', 10, 0, 1, 3.9),
+('MA Starc', 7, 0, 0, 5.71),
+('JR Hazlewood', 6, 2, 2, 2.1),
+('MG Johnson', 7, 2, 3, 3.85),
+('MR Marsh', 7, 0, 0, 2.57),
+('GJ Maxwell', 9, 0, 4, 5.11),
+('JP Faulkner', 2, 1, 1, 4.4),
+('AJ Finch', 0, 0, 0, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `playerData`
+--
+
+CREATE TABLE IF NOT EXISTS `playerData` (
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
   `confidence` bigint(20) NOT NULL,
@@ -784,225 +900,225 @@ CREATE TABLE IF NOT EXISTS `playerdata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `playerdata`
+-- Dumping data for table `playerData`
 --
 
-INSERT INTO `playerdata` (`playerId`, `form`, `confidence`, `cost`) VALUES
-(1000, 1000, 1000, 1000000),
-(1001, 1000, 1000, 1050000),
-(1002, 1000, 1000, 900000),
-(1003, 1000, 1000, 900000),
-(1004, 1000, 1000, 950000),
-(1005, 1000, 1000, 900000),
-(1006, 1000, 1000, 1000000),
-(1007, 1000, 1000, 900000),
-(1008, 1000, 1000, 950000),
-(1009, 1000, 1000, 1000000),
-(1010, 1000, 1000, 1050000),
-(1011, 1000, 1000, 950000),
-(1012, 1000, 1000, 1000000),
-(1013, 1000, 1000, 1000000),
-(1014, 1000, 1000, 1050000),
-(1015, 1000, 1000, 750000),
-(1016, 1000, 1000, 850000),
-(1017, 1000, 1000, 1050000),
-(1018, 1000, 1000, 1000000),
-(1019, 1000, 1000, 1700000),
-(1020, 1000, 1000, 1300000),
-(1021, 1000, 1000, 1000000),
-(1022, 1000, 1000, 1200000),
-(1023, 1000, 1000, 1100000),
-(1024, 1000, 1000, 1450000),
-(1025, 1000, 1000, 1250000),
-(1026, 1000, 1000, 1000000),
-(1027, 1000, 1000, 1700000),
-(1028, 1000, 1000, 950000),
-(1029, 1000, 1000, 1050000),
-(1030, 1000, 1000, 1150000),
-(1031, 1000, 1000, 1150000),
-(1032, 1000, 1000, 1200000),
-(1033, 1000, 1000, 1650000),
-(1034, 1000, 1000, 1650000),
-(1035, 1000, 1000, 1000000),
-(1036, 1000, 1000, 1100000),
-(1037, 1000, 1000, 950000),
-(1038, 1000, 1000, 1300000),
-(1039, 1000, 1000, 950000),
-(1040, 1000, 1000, 1350000),
-(1041, 1000, 1000, 1000000),
-(1042, 1000, 1000, 1200000),
-(1043, 1000, 1000, 950000),
-(1044, 1000, 1000, 1650000),
-(1045, 1000, 1000, 1100000),
-(1046, 1000, 1000, 1050000),
-(1047, 1000, 1000, 1300000),
-(1048, 1000, 1000, 950000),
-(1049, 1000, 1000, 1450000),
-(1050, 1000, 1000, 1000000),
-(1051, 1000, 1000, 1700000),
-(1052, 1000, 1000, 950000),
-(1053, 1000, 1000, 1450000),
-(1054, 1000, 1000, 1200000),
-(1055, 1000, 1000, 1550000),
-(1056, 1000, 1000, 1150000),
-(1057, 1000, 1000, 1200000),
-(1058, 1000, 1000, 1400000),
-(1059, 1000, 1000, 1050000),
-(1060, 1000, 1000, 1200000),
-(1061, 1000, 1000, 1050000),
-(1062, 1000, 1000, 1200000),
-(1063, 1000, 1000, 1100000),
-(1064, 1000, 1000, 1550000),
-(1065, 1000, 1000, 1400000),
-(1066, 1000, 1000, 1000000),
-(1067, 1000, 1000, 1300000),
-(1068, 1000, 1000, 1500000),
-(1069, 1000, 1000, 1700000),
-(1070, 1000, 1000, 1150000),
-(1071, 1000, 1000, 1200000),
-(1072, 1000, 1000, 1150000),
-(1073, 1000, 1000, 1100000),
-(1074, 1000, 1000, 1600000),
-(1075, 1000, 1000, 600000),
-(1076, 1000, 1000, 1350000),
-(1077, 1000, 1000, 1400000),
-(1078, 1000, 1000, 1100000),
-(1079, 1000, 1000, 1100000),
-(1080, 1000, 1000, 1000000),
-(1081, 1000, 1000, 1000000),
-(1082, 1000, 1000, 1050000),
-(1083, 1000, 1000, 1050000),
-(1084, 1000, 1000, 1100000),
-(1085, 1000, 1000, 850000),
-(1086, 1000, 1000, 950000),
-(1087, 1000, 1000, 1050000),
-(1088, 1000, 1000, 1100000),
-(1089, 1000, 1000, 950000),
-(1090, 1000, 1000, 1200000),
-(1091, 1000, 1000, 900000),
-(1092, 1000, 1000, 1100000),
-(1093, 1000, 1000, 1000000),
-(1094, 1000, 1000, 950000),
-(1095, 1000, 1000, 1700000),
-(1096, 1000, 1000, 1050000),
-(1097, 1000, 1000, 1000000),
-(1098, 1000, 1000, 1050000),
-(1099, 1000, 1000, 1300000),
-(1100, 1000, 1000, 1100000),
-(1101, 1000, 1000, 950000),
-(1102, 1000, 1000, 1150000),
-(1103, 1000, 1000, 1700000),
-(1104, 1000, 1000, 900000),
-(1105, 1000, 1000, 1050000),
-(1106, 1000, 1000, 1350000),
-(1107, 1000, 1000, 1500000),
-(1108, 1000, 1000, 1700000),
-(1109, 1000, 1000, 1100000),
-(1110, 1000, 1000, 1500000),
-(1111, 1000, 1000, 1150000),
-(1112, 1000, 1000, 950000),
-(1113, 1000, 1000, 650000),
-(1114, 1000, 1000, 1200000),
-(1115, 1000, 1000, 1350000),
-(1116, 1000, 1000, 1150000),
-(1117, 1000, 1000, 1150000),
-(1118, 1000, 1000, 1700000),
-(1119, 1000, 1000, 1000000),
-(1120, 1000, 1000, 1000000),
-(1121, 1000, 1000, 1200000),
-(1122, 1000, 1000, 1150000),
-(1123, 1000, 1000, 950000),
-(1124, 1000, 1000, 1250000),
-(1125, 1000, 1000, 1000000),
-(1126, 1000, 1000, 1050000),
-(1127, 1000, 1000, 1100000),
-(1128, 1000, 1000, 750000),
-(1129, 1000, 1000, 1050000),
-(1130, 1000, 1000, 950000),
-(1131, 1000, 1000, 1000000),
-(1132, 1000, 1000, 600000),
-(1133, 1000, 1000, 1050000),
-(1134, 1000, 1000, 1050000),
-(1135, 1000, 1000, 950000),
-(1136, 1000, 1000, 1050000),
-(1137, 1000, 1000, 900000),
-(1138, 1000, 1000, 900000),
-(1139, 1000, 1000, 900000),
-(1140, 1000, 1000, 1700000),
-(1141, 1000, 1000, 1650000),
-(1142, 1000, 1000, 1000000),
-(1143, 1000, 1000, 1050000),
-(1144, 1000, 1000, 1100000),
-(1145, 1000, 1000, 1400000),
-(1146, 1000, 1000, 1050000),
-(1147, 1000, 1000, 1150000),
-(1148, 1000, 1000, 1250000),
-(1149, 1000, 1000, 1500000),
-(1150, 1000, 1000, 1150000),
-(1151, 1000, 1000, 900000),
-(1152, 1000, 1000, 1100000),
-(1153, 1000, 1000, 1050000),
-(1154, 1000, 1000, 1500000),
-(1155, 1000, 1000, 1400000),
-(1156, 1000, 1000, 1150000),
-(1157, 1000, 1000, 1150000),
-(1158, 1000, 1000, 1700000),
-(1159, 1000, 1000, 1250000),
-(1160, 1000, 1000, 1700000),
-(1161, 1000, 1000, 800000),
-(1162, 1000, 1000, 1650000),
-(1163, 1000, 1000, 1100000),
-(1164, 1000, 1000, 1700000),
-(1165, 1000, 1000, 950000),
-(1166, 1000, 1000, 1400000),
-(1167, 1000, 1000, 1050000),
-(1168, 1000, 1000, 1700000),
-(1169, 1000, 1000, 1150000),
-(1170, 1000, 1000, 1100000),
-(1171, 1000, 1000, 900000),
-(1172, 1000, 1000, 800000),
-(1173, 1000, 1000, 900000),
-(1174, 1000, 1000, 1050000),
-(1175, 1000, 1000, 1000000),
-(1176, 1000, 1000, 900000),
-(1177, 1000, 1000, 900000),
-(1178, 1000, 1000, 1000000),
-(1179, 1000, 1000, 1000000),
-(1180, 1000, 1000, 1000000),
-(1181, 1000, 1000, 1050000),
-(1182, 1000, 1000, 950000),
-(1183, 1000, 1000, 1050000),
-(1184, 1000, 1000, 1100000),
-(1185, 1000, 1000, 1050000),
-(1186, 1000, 1000, 1400000),
-(1187, 1000, 1000, 1100000),
-(1188, 1000, 1000, 1150000),
-(1189, 1000, 1000, 1150000),
-(1190, 1000, 1000, 900000),
-(1191, 1000, 1000, 1700000),
-(1192, 1000, 1000, 1250000),
-(1193, 1000, 1000, 1250000),
-(1194, 1000, 1000, 1300000),
-(1195, 1000, 1000, 1150000),
-(1196, 1000, 1000, 1350000),
-(1197, 1000, 1000, 1100000),
-(1198, 1000, 1000, 1250000),
-(1199, 1000, 1000, 1350000),
-(1200, 1000, 1000, 1400000),
-(1201, 1000, 1000, 1100000),
-(1202, 1000, 1000, 1050000),
-(1203, 1000, 1000, 950000),
-(1204, 1000, 1000, 1100000),
-(1205, 1000, 1000, 1000000),
-(1206, 1000, 1000, 1300000),
-(1207, 1000, 1000, 1150000),
-(1208, 1000, 1000, 1000000),
-(1209, 1000, 1000, 1150000),
-(1210, 1000, 1000, 1100000),
-(1211, 1000, 1000, 1000000),
-(1212, 1000, 1000, 1500000),
-(1213, 1000, 1000, 1550000),
-(1214, 1000, 1000, 1100000);
+INSERT INTO `playerData` (`playerId`, `form`, `confidence`, `cost`) VALUES
+(1000, 1000, 1000, 850),
+(1001, 1000, 1000, 950),
+(1002, 1000, 1000, 750),
+(1003, 1000, 1000, 950),
+(1004, 1000, 1000, 800),
+(1005, 1000, 1000, 800),
+(1006, 1000, 1000, 850),
+(1007, 1000, 1000, 900),
+(1008, 1000, 1000, 850),
+(1009, 1000, 1000, 950),
+(1010, 1000, 1000, 950),
+(1011, 1000, 1000, 800),
+(1012, 1000, 1000, 900),
+(1013, 1000, 1000, 800),
+(1014, 1000, 1000, 900),
+(1015, 1000, 1000, 900),
+(1016, 1000, 1000, 700),
+(1017, 1000, 1000, 950),
+(1018, 1000, 1000, 900),
+(1019, 1000, 1000, 1300),
+(1020, 1000, 1000, 1100),
+(1021, 1000, 1000, 850),
+(1022, 1000, 1000, 950),
+(1023, 1000, 1000, 1000),
+(1024, 1000, 1000, 750),
+(1025, 1000, 1000, 1200),
+(1026, 1000, 1000, 800),
+(1027, 1000, 1000, 1250),
+(1028, 1000, 1000, 900),
+(1029, 1000, 1000, 950),
+(1030, 1000, 1000, 1000),
+(1031, 1000, 1000, 1000),
+(1032, 1000, 1000, 900),
+(1033, 1000, 1000, 1300),
+(1034, 1000, 1000, 1200),
+(1035, 1000, 1000, 800),
+(1036, 1000, 1000, 1050),
+(1037, 1000, 1000, 800),
+(1038, 1000, 1000, 1100),
+(1039, 1000, 1000, 900),
+(1040, 1000, 1000, 1300),
+(1041, 1000, 1000, 950),
+(1042, 1000, 1000, 950),
+(1043, 1000, 1000, 850),
+(1044, 1000, 1000, 1250),
+(1045, 1000, 1000, 1000),
+(1046, 1000, 1000, 850),
+(1047, 1000, 1000, 900),
+(1048, 1000, 1000, 800),
+(1049, 1000, 1000, 1150),
+(1050, 1000, 1000, 950),
+(1051, 1000, 1000, 1300),
+(1052, 1000, 1000, 1000),
+(1053, 1000, 1000, 1050),
+(1054, 1000, 1000, 1050),
+(1055, 1000, 1000, 1100),
+(1056, 1000, 1000, 1100),
+(1057, 1000, 1000, 950),
+(1058, 1000, 1000, 1050),
+(1059, 1000, 1000, 900),
+(1060, 1000, 1000, 950),
+(1061, 1000, 1000, 1000),
+(1062, 1000, 1000, 950),
+(1063, 1000, 1000, 900),
+(1064, 1000, 1000, 1600),
+(1065, 1000, 1000, 1050),
+(1066, 1000, 1000, 900),
+(1067, 1000, 1000, 1100),
+(1068, 1000, 1000, 1150),
+(1069, 1000, 1000, 1100),
+(1070, 1000, 1000, 950),
+(1071, 1000, 1000, 900),
+(1072, 1000, 1000, 1050),
+(1073, 1000, 1000, 1050),
+(1074, 1000, 1000, 1200),
+(1075, 1000, 1000, 900),
+(1076, 1000, 1000, 1000),
+(1077, 1000, 1000, 1050),
+(1078, 1000, 1000, 900),
+(1079, 1000, 1000, 1000),
+(1080, 1000, 1000, 900),
+(1081, 1000, 1000, 850),
+(1082, 1000, 1000, 850),
+(1083, 1000, 1000, 850),
+(1084, 1000, 1000, 1000),
+(1085, 1000, 1000, 700),
+(1086, 1000, 1000, 850),
+(1087, 1000, 1000, 900),
+(1088, 1000, 1000, 1000),
+(1089, 1000, 1000, 850),
+(1090, 1000, 1000, 900),
+(1091, 1000, 1000, 800),
+(1092, 1000, 1000, 1000),
+(1093, 1000, 1000, 850),
+(1094, 1000, 1000, 800),
+(1095, 1000, 1000, 1400),
+(1096, 1000, 1000, 950),
+(1097, 1000, 1000, 850),
+(1098, 1000, 1000, 950),
+(1099, 1000, 1000, 1050),
+(1100, 1000, 1000, 1000),
+(1101, 1000, 1000, 800),
+(1102, 1000, 1000, 900),
+(1103, 1000, 1000, 1300),
+(1104, 1000, 1000, 750),
+(1105, 1000, 1000, 1000),
+(1106, 1000, 1000, 1050),
+(1107, 1000, 1000, 1100),
+(1108, 1000, 1000, 1500),
+(1109, 1000, 1000, 1000),
+(1110, 1000, 1000, 1050),
+(1111, 1000, 1000, 950),
+(1112, 1000, 1000, 800),
+(1113, 1000, 1000, 900),
+(1114, 1000, 1000, 950),
+(1115, 1000, 1000, 1200),
+(1116, 1000, 1000, 900),
+(1117, 1000, 1000, 1050),
+(1118, 1000, 1000, 1650),
+(1119, 1000, 1000, 700),
+(1120, 1000, 1000, 850),
+(1121, 1000, 1000, 1200),
+(1122, 1000, 1000, 950),
+(1123, 1000, 1000, 800),
+(1124, 1000, 1000, 1200),
+(1125, 1000, 1000, 850),
+(1126, 1000, 1000, 850),
+(1127, 1000, 1000, 850),
+(1128, 1000, 1000, 950),
+(1129, 1000, 1000, 950),
+(1130, 1000, 1000, 800),
+(1131, 1000, 1000, 850),
+(1132, 1000, 1000, 900),
+(1133, 1000, 1000, 850),
+(1134, 1000, 1000, 950),
+(1135, 1000, 1000, 1000),
+(1136, 1000, 1000, 850),
+(1137, 1000, 1000, 750),
+(1138, 1000, 1000, 850),
+(1139, 1000, 1000, 750),
+(1140, 1000, 1000, 1200),
+(1141, 1000, 1000, 1200),
+(1142, 1000, 1000, 850),
+(1143, 1000, 1000, 800),
+(1144, 1000, 1000, 1100),
+(1145, 1000, 1000, 1100),
+(1146, 1000, 1000, 950),
+(1147, 1000, 1000, 950),
+(1148, 1000, 1000, 1050),
+(1149, 1000, 1000, 1100),
+(1150, 1000, 1000, 950),
+(1151, 1000, 1000, 750),
+(1152, 1000, 1000, 900),
+(1153, 1000, 1000, 1000),
+(1154, 1000, 1000, 1100),
+(1155, 1000, 1000, 1200),
+(1156, 1000, 1000, 1000),
+(1157, 1000, 1000, 1100),
+(1158, 1000, 1000, 1400),
+(1159, 1000, 1000, 1000),
+(1160, 1000, 1000, 1450),
+(1161, 1000, 1000, 800),
+(1162, 1000, 1000, 1200),
+(1163, 1000, 1000, 900),
+(1164, 1000, 1000, 1300),
+(1165, 1000, 1000, 850),
+(1166, 1000, 1000, 1050),
+(1167, 1000, 1000, 900),
+(1168, 1000, 1000, 1650),
+(1169, 1000, 1000, 950),
+(1170, 1000, 1000, 950),
+(1171, 1000, 1000, 800),
+(1172, 1000, 1000, 950),
+(1173, 1000, 1000, 800),
+(1174, 1000, 1000, 950),
+(1175, 1000, 1000, 850),
+(1176, 1000, 1000, 750),
+(1177, 1000, 1000, 750),
+(1178, 1000, 1000, 950),
+(1179, 1000, 1000, 850),
+(1180, 1000, 1000, 850),
+(1181, 1000, 1000, 950),
+(1182, 1000, 1000, 850),
+(1183, 1000, 1000, 950),
+(1184, 1000, 1000, 950),
+(1185, 1000, 1000, 900),
+(1186, 1000, 1000, 1150),
+(1187, 1000, 1000, 900),
+(1188, 1000, 1000, 1100),
+(1189, 1000, 1000, 1050),
+(1190, 1000, 1000, 750),
+(1191, 1000, 1000, 1400),
+(1192, 1000, 1000, 1000),
+(1193, 1000, 1000, 1200),
+(1194, 1000, 1000, 1000),
+(1195, 1000, 1000, 950),
+(1196, 1000, 1000, 1100),
+(1197, 1000, 1000, 950),
+(1198, 1000, 1000, 1050),
+(1199, 1000, 1000, 1000),
+(1200, 1000, 1000, 1150),
+(1201, 1000, 1000, 1000),
+(1202, 1000, 1000, 900),
+(1203, 1000, 1000, 850),
+(1204, 1000, 1000, 1050),
+(1205, 1000, 1000, 850),
+(1206, 1000, 1000, 1100),
+(1207, 1000, 1000, 1000),
+(1208, 1000, 1000, 900),
+(1209, 1000, 1000, 900),
+(1210, 1000, 1000, 900),
+(1211, 1000, 1000, 900),
+(1212, 1000, 1000, 1150),
+(1213, 1000, 1000, 1200),
+(1214, 1000, 1000, 1000);
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1133,8 @@ CREATE TABLE IF NOT EXISTS `players` (
   `photoUrl` varchar(400) NOT NULL,
   `type` varchar(20) NOT NULL,
   `matches` bigint(20) NOT NULL,
-  `captain` varchar(20) NOT NULL
+  `captain` varchar(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1058,7 +1175,7 @@ INSERT INTO `players` (`playerId`, `name`, `country`, `photoUrl`, `type`, `match
 (1030, 'Steven Smith', 'Australia', './../playerImages/1030.jpg', 'Batsman', 47, ''),
 (1031, 'Mitchell Starc', 'Australia', './../playerImages/1031.jpg', 'Pace Bowler', 30, ''),
 (1032, 'David Warner', 'Australia', './../playerImages/1032.jpg', 'Batsman', 52, ''),
-(1033, 'Shane Watson', 'Australia', './../playerImages/1033.jpg', 'All-Rounder', 180, ''),
+(1033, 'Shane Watson', 'Australia', './../playerImages/1033.jpg', 'Batsman', 180, ''),
 (1034, 'Mashrafe Mortaza', 'Bangladesh', './../playerImages/1034.jpg', 'Pace Bowler', 144, ''),
 (1035, 'Al-Amin Hossain', 'Bangladesh', './../playerImages/1035.jpg', ' Pace Bowler', 11, ''),
 (1036, 'Anamul Haque', 'Bangladesh', './../playerImages/1036.jpg', 'Wicketkeeper', 27, ''),
@@ -1244,10 +1361,10 @@ INSERT INTO `players` (`playerId`, `name`, `country`, `photoUrl`, `type`, `match
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pplround_1`
+-- Table structure for table `pplRound_1`
 --
 
-CREATE TABLE IF NOT EXISTS `pplround_1` (
+CREATE TABLE IF NOT EXISTS `pplRound_1` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
@@ -1255,10 +1372,10 @@ CREATE TABLE IF NOT EXISTS `pplround_1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pplround_1`
+-- Dumping data for table `pplRound_1`
 --
 
-INSERT INTO `pplround_1` (`teamId`, `playerId`, `form`, `confidence`) VALUES
+INSERT INTO `pplRound_1` (`teamId`, `playerId`, `form`, `confidence`) VALUES
 (1, 1012, 1000, 1000),
 (1, 1013, 1000, 1000),
 (1, 1014, 1000, 1000),
@@ -1274,10 +1391,10 @@ INSERT INTO `pplround_1` (`teamId`, `playerId`, `form`, `confidence`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pplround_2`
+-- Table structure for table `pplRound_2`
 --
 
-CREATE TABLE IF NOT EXISTS `pplround_2` (
+CREATE TABLE IF NOT EXISTS `pplRound_2` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
@@ -1287,10 +1404,10 @@ CREATE TABLE IF NOT EXISTS `pplround_2` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pplround_3`
+-- Table structure for table `pplRound_3`
 --
 
-CREATE TABLE IF NOT EXISTS `pplround_3` (
+CREATE TABLE IF NOT EXISTS `pplRound_3` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
@@ -1300,84 +1417,46 @@ CREATE TABLE IF NOT EXISTS `pplround_3` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userdata`
+-- Table structure for table `userData`
 --
 
-CREATE TABLE IF NOT EXISTS `userdata` (
+CREATE TABLE IF NOT EXISTS `userData` (
   `teamId` bigint(20) NOT NULL,
   `userId1` bigint(20) NOT NULL,
   `userId2` bigint(20) NOT NULL,
   `score` bigint(20) NOT NULL,
   `actualBalance` bigint(20) NOT NULL,
   `p11` int(11) NOT NULL,
-  `transferNum` int(11) NOT NULL
+  `transferNum` int(11) NOT NULL,
+  UNIQUE KEY `teamId` (`teamId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `userdata`
+-- Dumping data for table `userData`
 --
 
-INSERT INTO `userdata` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`, `p11`, `transferNum`) VALUES
-(1, 1, 2, 0, 20000000, 0, 30);
+INSERT INTO `userData` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`, `p11`, `transferNum`) VALUES
+(1, 1, 2, 0, 4600, 1, 84);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userlogin`
+-- Table structure for table `userLogin`
 --
 
-CREATE TABLE IF NOT EXISTS `userlogin` (
+CREATE TABLE IF NOT EXISTS `userLogin` (
   `userId` bigint(20) NOT NULL,
-  `password` varchar(40) NOT NULL
+  `password` varchar(40) NOT NULL,
+  UNIQUE KEY `userId` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `userlogin`
+-- Dumping data for table `userLogin`
 --
 
-INSERT INTO `userlogin` (`userId`, `password`) VALUES
+INSERT INTO `userLogin` (`userId`, `password`) VALUES
 (1, '356a192b7913b04c54574d18c28d46e6395428ab'),
 (2, '356a192b7913b04c54574d18c28d46e6395428ab');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `batting`
---
-ALTER TABLE `batting`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `bowling`
---
-ALTER TABLE `bowling`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `fielding`
---
-ALTER TABLE `fielding`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `players`
---
-ALTER TABLE `players`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `userdata`
---
-ALTER TABLE `userdata`
- ADD UNIQUE KEY `teamId` (`teamId`);
-
---
--- Indexes for table `userlogin`
---
-ALTER TABLE `userlogin`
- ADD UNIQUE KEY `userId` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
