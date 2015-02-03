@@ -7,7 +7,7 @@ if(!isset($user))
     header('Location: ./../login.php');
 }
 
-$userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
+$userQuery = "SELECT * FROM userdata WHERE userId1='$user' or userId2='$user' ; ";
 $userResult = mysql_query($userQuery);
 
 if(isset($userResult))
