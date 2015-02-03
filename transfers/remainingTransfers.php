@@ -9,12 +9,12 @@ if(!isset($user))
 
 // Getting User Balance and data.
 
-$userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
+$userQuery = "SELECT * FROM userdata WHERE userId1='$user' or userId2='$user' ; ";
 $userResult = mysql_query($userQuery);
 
 if(isset($userResult))
 {
-    $userBalance = mysql_result($userResult,0,"money");
+    $userBalance = mysql_result($userResult,0,"actualBalance");
     $userTeamId  = mysql_result($userResult,0,"teamId");
     $transferNum = mysql_result($userResult,0,"transferNum");
 

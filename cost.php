@@ -6,25 +6,37 @@ $dbname = 'ppl';
 mysql_connect($dbhost,$dbuser,$dbpass) or die('MySQL Connection Failed');
 mysql_select_db($dbname);
 
-$id = 1000;
 $cost = 0;
 
-//Base point(850) + No. of matches player + Average*3 + (Strike rate-50)*4 + Wickets + (10-economy)*20 + catches/2 + stumpings*2
-
-for($id; $id<1420; $id++){
+for($id = 1000; $id < 1215; $id++){
+	
+	$runs = 0; $average = 0; $strike = 70 ; $wickets = 0; $economy = 10;  $catches = 0; $stumpings = 0;
+	
+	$query = 'SELECT `type` FROM `players` WHERE playerId='.$id.'';
+	$res = mysql_query($query);
+	$type = mysql_result($res,0,"type");	
 	
 	$query = 'SELECT `matches` FROM `players` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$matches = mysql_result($res,0,"matches");
 	
+	if($type == "Batsman" || $type == "All-Rounder"){
 	$query = 'SELECT `average` FROM `batting` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$average =	mysql_result($res,0,"average");
+
+	$query = 'SELECT `runs` FROM `batting` WHERE playerId='.$id.'';
+	$res = mysql_query($query);
+	$runs =	mysql_result($res,0,"runs");
 	
 	$query = 'SELECT `strikeRate` FROM `batting` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$strike = mysql_result($res,0,"strikeRate");
-
+	
+	$cost = 600 + $matches + $runs/20 + $average*10 + ($strike-60)*4;
+	}
+	
+	if($type != "Batsman"){
 	$query = 'SELECT `wickets` FROM `bowling` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$wickets = mysql_result($res,0,"wickets");
@@ -32,7 +44,13 @@ for($id; $id<1420; $id++){
 	$query = 'SELECT `economy` FROM `bowling` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$economy = mysql_result($res,0,"economy");
-
+	
+	if($type == "All-rounder")
+		$cost = $cost + $wickets*3 + (10-$economy)*20;
+	else
+		$cost = 850 + $matches + $wickets*3 + (10-$economy)*20;
+	}
+	
 	$query = 'SELECT `catches` FROM `fielding` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$catches = mysql_result($res,0,"catches");
@@ -40,8 +58,8 @@ for($id; $id<1420; $id++){
 	$query = 'SELECT `stumpings` FROM `fielding` WHERE playerId='.$id.'';
 	$res = mysql_query($query);
 	$stumpings = mysql_result($res,0,"stumpings");
-
-	$cost = 900 + $matches + $average*3 + ($strike-50)*4 + $wickets + (10-$economy)*20 + $catches/2 + $stumpings*3;
+	
+	$cost =$cost + $catches/2 + $stumpings*3;
 	
 	$roundoff = $cost%100;
 	if($roundoff < 25)
@@ -51,11 +69,11 @@ for($id; $id<1420; $id++){
 	else 
 		$cost = $cost - $roundoff +100;
 	
-	if($cost > 1650)$cost = 1650;
-	
+	if($cost > 1700)$cost = 1700;
+	else if($cost < 600) $cost = 600;
 	$cost = intval($cost) * 1000;
 	
-	$query = 'INSERT INTO `cost`(`playerId`, `Cost`) VALUES ('.$id.','.$cost.')';
+	$query = 'UPDATE `playerdata` SET cost = '.$cost.' WHERE playerId='.$id.'';
 	mysql_query($query);
 }
 ?>
