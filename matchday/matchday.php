@@ -7,7 +7,7 @@ if(!isset($user))
     header('Location: ./../login.php');
 }
 
-$userQuery = "SELECT * FROM userdata WHERE userId1='$user' or userId2='$user' ; ";
+$userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
 $userResult = mysql_query($userQuery);
 
 if(isset($userResult))
@@ -87,6 +87,7 @@ if($userP11 == 0)
     echo <<< EOD
 
 <!--      The 2 divs for the players-->
+    <div id="ratioCheckDiv">Player Ratio</div>
     <div id="playerList">
         <div class="table-responsive">
             <table class="table table-hover">

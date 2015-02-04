@@ -6,7 +6,7 @@ function ratioCheck()
 
     if($('.userplayer').length!=11)
     {
-        alert('not 11 players');
+        //alert('not 11 players');
         return returnVal;
     }
 

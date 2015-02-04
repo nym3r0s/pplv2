@@ -25,6 +25,7 @@ function bindClickEvents()
             {
                 $(this).detach().appendTo('#userSquadTable').removeClass().addClass('userplayer');
                 refreshElements();
+                updateRatioDiv();
             }
         });
 
@@ -34,6 +35,7 @@ function bindClickEvents()
 //            alert($(this).attr('id'));
             $(this).detach().appendTo('#playerListTable').removeClass().addClass('player');
             refreshElements();
+            updateRatioDiv();
         });
 
 
@@ -207,9 +209,21 @@ function confirm11()
     });
 }
 
+function updateRatioDiv()
+{
+    if(ratioCheck())
+    {
+        $('#ratioCheckDiv').removeClass('btn-danger').addClass('btn-success');
+    }
+    else
+    {
+        $('#ratioCheckDiv').removeClass('btn-success').addClass('btn-danger');
+    }
+}
+
 var click;
 $(document).ready(function(){
-
+    updateRatioDiv();
 //    Clicking The other buttons.
     click = 0;
     AJAXcalls(function(){

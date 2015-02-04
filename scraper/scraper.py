@@ -108,6 +108,7 @@ def parse():
 
 if(__name__ == "__main__"):
     #getPage("http://www.espncricinfo.com/carlton-mid-triangular-series-2015/engine/match/754761.html")
+    getPage("http://www.espncricinfo.com/new-zealand-v-pakistan-2014-15/engine/match/749797.html")
     cur.execute('TRUNCATE TABLE matchDetailsBatting')
     cur.execute('TRUNCATE TABLE matchDetailsBowling')
     parse()

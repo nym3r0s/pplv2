@@ -189,4 +189,15 @@
 
     text-align: left;
 }
-
+#ratioCheckDiv
+{
+    position:absolute;
+    width: 20%;
+    height:7%;
+    top:10%;
+    right:15%;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+}
