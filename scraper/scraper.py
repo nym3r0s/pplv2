@@ -6,7 +6,7 @@ import MySQLdb
 db = MySQLdb.connect(
 host = "localhost",
 user = "root",
-passwd = "stein238",
+passwd = "Mysql131",
 db = "ppl"
 )
 cur = db.cursor()
@@ -16,6 +16,13 @@ cur = db.cursor()
 def getPage(url):
     urllib.urlretrieve(url,"test.html")
 
+def find_between(s, first, last ):
+    try:
+        start = s.index( first ) + len( first )
+        end = s.index( last, start )
+        return s[start:end]
+    except ValueError:
+        return ""
 # The tag details from batting table. 
 
         #<th scope="col" class="th-r" title="runs scored">R</th>
@@ -54,8 +61,10 @@ def parse():
                 #print info.select('td')[1].select('a')[0].contents[0]    
                 playerName = info.select('td')[1].select('a')[0].contents[0]    
                 #print info.select('td')[2].contents[0].split(" ")[-3]
-                playerWicketBowler= info.select('td')[2].contents[0].split(" ")[-3].replace(u'\u2020',' ').encode('utf-8')
-                #print info.select('td')[3].contents[0] 
+                playerWicketBowler= info.select('td')[2].contents[0].replace(u'\u2020',' ').encode('utf-8')
+		
+		playerWicketBowler =  find_between( playerWicketBowler, "c ", " b" )
+		#print info.select('td')[3].contents[0] 
                 playerRuns =  info.select('td')[3].contents[0] 
                 #print info.select('td')[6].contents[0] 
                 playerFour = info.select('td')[6].contents[0] 
@@ -71,7 +80,7 @@ def parse():
                 a.append(playerSix)
                 a.append(playerStrikeRate)
                 # Creating SQL Query
-                battingInsertQuery = "INSERT INTO matchDetailsBatting VALUES ('"+ "','".join(a) + "');"
+                battingInsertQuery = "INSERT INTO matchdetailsbatting VALUES ('"+ "','".join(a) + "');"
                 print battingInsertQuery                
                 cur.execute(battingInsertQuery)
                 db.commit()
@@ -101,7 +110,7 @@ def parse():
                 a.append(playerMaidens)
                 a.append(playerWickets)
                 a.append(playerEcon)
-                bowlingInsertQuery= "INSERT INTO matchDetailsBowling VALUES ('"+ "','".join(a) + "');"
+                bowlingInsertQuery= "INSERT INTO matchdetailsbowling VALUES ('"+ "','".join(a) + "');"
                 print bowlingInsertQuery
                 cur.execute(bowlingInsertQuery)
                 db.commit()
@@ -109,6 +118,6 @@ def parse():
 if(__name__ == "__main__"):
     #getPage("http://www.espncricinfo.com/carlton-mid-triangular-series-2015/engine/match/754761.html")
     getPage("http://www.espncricinfo.com/new-zealand-v-pakistan-2014-15/engine/match/749797.html")
-    cur.execute('TRUNCATE TABLE matchDetailsBatting')
-    cur.execute('TRUNCATE TABLE matchDetailsBowling')
+    cur.execute('TRUNCATE TABLE matchdetailsbatting')
+    cur.execute('TRUNCATE TABLE matchdetailsbowling')
     parse()
