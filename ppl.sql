@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 05, 2015 at 05:51 PM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Host: localhost
+-- Generation Time: Feb 06, 2015 at 07:55 PM
+-- Server version: 5.6.19-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `batting` (
   `average` float NOT NULL,
   `strikeRate` float NOT NULL,
   `hundred` bigint(20) NOT NULL,
-  `fifty` bigint(20) NOT NULL
+  `fifty` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -288,7 +289,8 @@ CREATE TABLE IF NOT EXISTS `bowling` (
   `average` float NOT NULL,
   `economy` float NOT NULL,
   `four` bigint(20) NOT NULL,
-  `five` bigint(20) NOT NULL
+  `five` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -546,7 +548,8 @@ CREATE TABLE IF NOT EXISTS `fielding` (
   `playerId` bigint(20) NOT NULL,
   `innings` bigint(20) NOT NULL,
   `catches` bigint(20) NOT NULL,
-  `stumpings` bigint(20) NOT NULL
+  `stumpings` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -790,27 +793,24 @@ CREATE TABLE IF NOT EXISTS `matchdetailsbatting` (
 --
 
 INSERT INTO `matchdetailsbatting` (`playerName`, `playerWicketBowler`, `runs`, `four`, `six`, `strikeRate`) VALUES
-('AJ Finch', 'Anderson', 0, 0, 0, 0),
-('DA Warner', 'Anderson', 12, 2, 0, 66.66),
-('SPD Smith', 'Ali', 40, 5, 0, 80),
-('GJ Bailey', 'Broad', 2, 0, 0, 11.76),
-('GJ Maxwell', 'Broad', 95, 15, 0, 96.93),
-('MR Marsh', '(Anderson/ Buttler)', 60, 7, 1, 88.23),
-('BJ Haddin', 'Broad', 9, 1, 0, 75),
-('JP Faulkner', 'out', 50, 4, 4, 208.33),
-('MG Johnson', 'Finn', 3, 0, 0, 30),
-('MA Starc', 'out', 0, 0, 0, 0),
-('MM Ali', 'Johnson', 26, 5, 0, 86.66),
-('IR Bell', 'Hazlewood', 8, 2, 0, 88.88),
-('JWA Taylor', 'Johnson', 4, 0, 0, 22.22),
-('JE Root', 'Faulkner', 25, 2, 0, 67.56),
-('EJG Morgan', 'Johnson', 0, 0, 0, 0),
-('RS Bopara', 'Maxwell', 33, 1, 0, 55.93),
-('JC Buttler', 'Maxwell', 17, 3, 0, 77.27),
-('CR Woakes', 'Maxwell', 0, 0, 0, 0),
-('SCJ Broad', 'Maxwell', 24, 2, 2, 120),
-('ST Finn', 'Hazlewood', 6, 0, 0, 16.66),
-('JM Anderson', 'out', 5, 1, 0, 250);
+('MJ Guptill', 'Bilawal Bhatti', 76, 8, 1, 86.36),
+('BB McCullum', '', 31, 5, 1, 114.81),
+('KS Williamson', 'Haris Sohail', 112, 14, 1, 127.27),
+('LRPL Taylor', '', 102, 13, 2, 145.71),
+('GD Elliott', 'Haris Sohail', 28, 0, 2, 133.33),
+('L Ronchi', ' Sarfraz Ahmed', 0, 0, 0, 0),
+('NL McCullum', '', 9, 0, 1, 180),
+('Mohammad Hafeez', 'Milne', 86, 5, 3, 96.62),
+('Ahmed Shehzad', 'Milne', 55, 8, 0, 88.7),
+('Younis Khan', 'Southee', 11, 1, 0, 78.57),
+('Misbah-ul-Haq', 'Taylor', 45, 2, 1, 88.23),
+('Shahid Afridi', 'Elliott', 11, 1, 0, 122.22),
+('Umar Akmal', '', 4, 1, 0, 200),
+('Haris Sohail', 'BB McCullum', 6, 1, 0, 100),
+('Sarfraz Ahmed', 'BB McCullum', 13, 1, 0, 108.33),
+('Bilawal Bhatti', 'Guptill', 9, 1, 0, 81.81),
+('Ehsan Adil', ' Ronchi', 1, 0, 0, 50),
+('Mohammad Irfan', '', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -831,18 +831,19 @@ CREATE TABLE IF NOT EXISTS `matchdetailsbowling` (
 --
 
 INSERT INTO `matchdetailsbowling` (`playerName`, `overs`, `maidens`, `wickets`, `economy`) VALUES
-('JM Anderson', 10, 2, 2, 3.8),
-('CR Woakes', 10, 0, 0, 8.9),
-('SCJ Broad', 10, 1, 3, 5.5),
-('ST Finn', 10, 0, 1, 5.3),
-('MM Ali', 10, 0, 1, 3.9),
-('MA Starc', 7, 0, 0, 5.71),
-('JR Hazlewood', 6, 2, 2, 2.1),
-('MG Johnson', 7, 2, 3, 3.85),
-('MR Marsh', 7, 0, 0, 2.57),
-('GJ Maxwell', 9, 0, 4, 5.11),
-('JP Faulkner', 2, 1, 1, 4.4),
-('AJ Finch', 0, 0, 0, 6);
+('Mohammad Irfan', 10, 0, 2, 5.2),
+('Bilawal Bhatti', 10, 0, 0, 9.3),
+('Shahid Afridi', 10, 0, 1, 5.7),
+('Ehsan Adil', 8, 0, 1, 8.5),
+('Haris Sohail', 6, 0, 0, 7.83),
+('Younis Khan', 2, 0, 0, 8.5),
+('Ahmed Shehzad', 4, 0, 1, 7.25),
+('TG Southee', 8, 0, 2, 6.5),
+('TA Boult', 8, 0, 1, 4.28),
+('DL Vettori', 10, 0, 1, 4.1),
+('AF Milne', 8, 0, 2, 6.5),
+('NL McCullum', 5, 0, 2, 6.6),
+('GD Elliott', 4, 0, 2, 8.75);
 
 -- --------------------------------------------------------
 
@@ -1092,7 +1093,8 @@ CREATE TABLE IF NOT EXISTS `players` (
   `type` varchar(20) NOT NULL,
   `matches` bigint(20) NOT NULL,
   `captain` varchar(20) NOT NULL,
-  `secondName` varchar(40) NOT NULL
+  `secondName` varchar(40) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1385,7 +1387,8 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   `score` bigint(20) NOT NULL,
   `actualBalance` bigint(20) NOT NULL,
   `p11` int(11) NOT NULL,
-  `transferNum` int(11) NOT NULL
+  `transferNum` int(11) NOT NULL,
+  UNIQUE KEY `teamId` (`teamId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1403,7 +1406,8 @@ INSERT INTO `userdata` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`
 
 CREATE TABLE IF NOT EXISTS `userlogin` (
   `userId` bigint(20) NOT NULL,
-  `password` varchar(40) NOT NULL
+  `password` varchar(40) NOT NULL,
+  UNIQUE KEY `userId` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1413,46 +1417,6 @@ CREATE TABLE IF NOT EXISTS `userlogin` (
 INSERT INTO `userlogin` (`userId`, `password`) VALUES
 (1, '356a192b7913b04c54574d18c28d46e6395428ab'),
 (2, '356a192b7913b04c54574d18c28d46e6395428ab');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `batting`
---
-ALTER TABLE `batting`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `bowling`
---
-ALTER TABLE `bowling`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `fielding`
---
-ALTER TABLE `fielding`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `players`
---
-ALTER TABLE `players`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `userdata`
---
-ALTER TABLE `userdata`
- ADD UNIQUE KEY `teamId` (`teamId`);
-
---
--- Indexes for table `userlogin`
---
-ALTER TABLE `userlogin`
- ADD UNIQUE KEY `userId` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
