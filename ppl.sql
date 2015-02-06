@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Feb 06, 2015 at 07:55 PM
--- Server version: 5.6.19-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.5
+-- Host: 127.0.0.1
+-- Generation Time: Feb 06, 2015 at 02:37 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -51,8 +51,7 @@ CREATE TABLE IF NOT EXISTS `batting` (
   `average` float NOT NULL,
   `strikeRate` float NOT NULL,
   `hundred` bigint(20) NOT NULL,
-  `fifty` bigint(20) NOT NULL,
-  UNIQUE KEY `playerId` (`playerId`)
+  `fifty` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -289,8 +288,7 @@ CREATE TABLE IF NOT EXISTS `bowling` (
   `average` float NOT NULL,
   `economy` float NOT NULL,
   `four` bigint(20) NOT NULL,
-  `five` bigint(20) NOT NULL,
-  UNIQUE KEY `playerId` (`playerId`)
+  `five` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -548,8 +546,7 @@ CREATE TABLE IF NOT EXISTS `fielding` (
   `playerId` bigint(20) NOT NULL,
   `innings` bigint(20) NOT NULL,
   `catches` bigint(20) NOT NULL,
-  `stumpings` bigint(20) NOT NULL,
-  UNIQUE KEY `playerId` (`playerId`)
+  `stumpings` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -781,7 +778,7 @@ INSERT INTO `fielding` (`playerId`, `innings`, `catches`, `stumpings`) VALUES
 
 CREATE TABLE IF NOT EXISTS `matchdetailsbatting` (
   `playerName` varchar(40) NOT NULL,
-  `playerWicketBowler` varchar(40) NOT NULL,
+  `wicketInfo` varchar(40) NOT NULL,
   `runs` int(11) NOT NULL,
   `four` int(11) NOT NULL,
   `six` int(11) NOT NULL,
@@ -792,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `matchdetailsbatting` (
 -- Dumping data for table `matchdetailsbatting`
 --
 
-INSERT INTO `matchdetailsbatting` (`playerName`, `playerWicketBowler`, `runs`, `four`, `six`, `strikeRate`) VALUES
+INSERT INTO `matchdetailsbatting` (`playerName`, `wicketInfo`, `runs`, `four`, `six`, `strikeRate`) VALUES
 ('MJ Guptill', 'Bilawal Bhatti', 76, 8, 1, 86.36),
 ('BB McCullum', '', 31, 5, 1, 114.81),
 ('KS Williamson', 'Haris Sohail', 112, 14, 1, 127.27),
@@ -1094,229 +1091,229 @@ CREATE TABLE IF NOT EXISTS `players` (
   `matches` bigint(20) NOT NULL,
   `captain` varchar(20) NOT NULL,
   `secondName` varchar(40) NOT NULL,
-  UNIQUE KEY `playerId` (`playerId`)
+  `roundOne` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `players`
 --
 
-INSERT INTO `players` (`playerId`, `name`, `country`, `photoUrl`, `type`, `matches`, `captain`, `secondName`) VALUES
-(1000, 'Mohammad Nabi', 'Afghanistan', './../playerImages/1000.jpg', 'Pace Bowler', 25, 'Captain', ''),
-(1001, 'Afsar Zazai', 'Afghanistan', './../playerImages/1001.jpg', 'Wicketkeeper', 1, '', ''),
-(1002, 'Aftab Alam', 'Afghanistan', './../playerImages/1002.jpg', 'Pace Bowler', 4, '', ''),
-(1003, 'Asghar Stanikzai', 'Afghanistan', './../playerImages/1003.jpg', 'Batsman', 13, '', ''),
-(1004, 'Dawlat Zadran', 'Afghanistan', './../playerImages/1004.jpg', 'Pace Bowler', 11, '', ''),
-(1005, 'Gulbadin Naib', 'Afghanistan', './../playerImages/1005.jpg', ' All-Rounder', 13, '', ''),
-(1006, 'Hamid Hassan', 'Afghanistan', './../playerImages/1006.jpg', ' Pace Bowler', 14, '', ''),
-(1007, 'Javed Ahmadi', 'Afghanistan', './../playerImages/1007.jpg', 'Batsman', 2, '', ''),
-(1008, 'Mirwais Ashraf', 'Afghanistan', './../playerImages/1008.jpg', 'Pace Bowler', 17, '', ''),
-(1009, 'Najibullah Zadran', 'Afghanistan', './../playerImages/1009.jpg', 'Batsman', 8, '', ''),
-(1010, 'Nasir Jamal', 'Afghanistan', './../playerImages/1010.jpg', 'All-Rounder', 1, '', ''),
-(1011, 'Nawroz Mangal', 'Afghanistan', './../playerImages/1011.jpg', 'Batsman', 24, '', ''),
-(1012, 'Samiullah Shenwari', 'Afghanistan', './../playerImages/1012.jpg', 'All-Rounder', 25, '', ''),
-(1013, 'Shapoor Zadran', 'Afghanistan', './../playerImages/1013.jpg', 'Pace Bowler', 20, '', ''),
-(1014, 'Usman Ghani', 'Afghanistan', './../playerImages/1014.jpg', 'Batsman', 14, '', ''),
-(1015, 'Hashmatullah Shaidi', 'Afghanistan', './../playerImages/1015.jpg', 'Batsman', 1, '', ''),
-(1016, 'Izatullah Dawlatzai', 'Afghanistan', './../playerImages/1016.jpg', 'Pace Bowler', 4, '', ''),
-(1017, 'Shafiqullah', 'Afghanistan', './../playerImages/1017.jpg', 'Wicketkeeper', 12, '', ''),
-(1018, 'Sharafuddin Ashraf', 'Afghanistan', './../playerImages/1018.jpg', 'Spin Bowler', 1, '', ''),
-(1019, 'Michael Clarke', 'Australia', './../playerImages/1019.jpg', 'Batsman', 238, 'Captain', ''),
-(1020, 'George Bailey', 'Australia', './../playerImages/1020.jpg', 'Batsman', 54, '', ''),
-(1021, 'Pat Cummins', 'Australia', './../playerImages/1021.jpg', 'Pace Bowler', 9, '', ''),
-(1022, 'Xavier Doherty', 'Australia', './../playerImages/1022.jpg', 'Spin Bowler', 58, '', ''),
-(1023, 'James Faulkner', 'Australia', './../playerImages/1023.jpg', 'All-Rounder', 35, '', ''),
-(1024, 'Aaron Finch', 'Australia', './../playerImages/1024.jpg', 'Batsman', 22, '', ''),
-(1025, 'Brad Haddin', 'Australia', './../playerImages/1025.jpg', 'Wicketkeeper', 115, '', ''),
-(1026, 'Josh Hazlewood', 'Australia', './../playerImages/1026.jpg', 'Pace Bowler', 6, '', ''),
-(1027, 'Mitchell Johnson', 'Australia', './../playerImages/1027.jpg', 'Pace Bowler', 144, '', ''),
-(1028, 'Mitchell Marsh', 'Australia', './../playerImages/1028.jpg', 'All-Rounder', 12, '', ''),
-(1029, 'Glenn Maxwell', 'Australia', './../playerImages/1029.jpg', 'All-Rounder', 38, '', ''),
-(1030, 'Steven Smith', 'Australia', './../playerImages/1030.jpg', 'Batsman', 47, '', 'SPD Smith'),
-(1031, 'Mitchell Starc', 'Australia', './../playerImages/1031.jpg', 'Pace Bowler', 30, '', ''),
-(1032, 'David Warner', 'Australia', './../playerImages/1032.jpg', 'Batsman', 52, '', ''),
-(1033, 'Shane Watson', 'Australia', './../playerImages/1033.jpg', 'Batsman', 180, '', ''),
-(1034, 'Mashrafe Mortaza', 'Bangladesh', './../playerImages/1034.jpg', 'Pace Bowler', 144, '', ''),
-(1035, 'Al-Amin Hossain', 'Bangladesh', './../playerImages/1035.jpg', ' Pace Bowler', 11, '', ''),
-(1036, 'Anamul Haque', 'Bangladesh', './../playerImages/1036.jpg', 'Wicketkeeper', 27, '', ''),
-(1037, 'Arafat Sunny', 'Bangladesh', './../playerImages/1037.jpg', ' Pace Bowler', 2, '', ''),
-(1038, 'Mahmudullah', 'Bangladesh', './../playerImages/1038.jpg', 'All-Rounder', 110, '', ''),
-(1039, 'Mominul Haque', 'Bangladesh', './../playerImages/1039.jpg', 'Batsman', 24, '', ''),
-(1040, 'Mushfiqur Rahim', 'Bangladesh', './../playerImages/1040.jpg', 'Wicketkeeper', 140, 'Captain', ''),
-(1041, 'Nasir Hossain', 'Bangladesh', './../playerImages/1041.jpg', 'All-Rounder', 41, '', ''),
-(1042, 'Rubel Hossain', 'Bangladesh', './../playerImages/1042.jpg', 'Pace Bowler', 53, '', ''),
-(1043, 'Sabbir Rahman', 'Bangladesh', './../playerImages/1043.jpg', ' All-Rounder', 5, '', ''),
-(1044, 'Shakib Al Hasan', 'Bangladesh', './../playerImages/1044.jpg', 'All-Rounder', 141, '', ''),
-(1045, 'Soumya Sarkar', 'Bangladesh', './../playerImages/1045.jpg', 'All-Rounder', 32, '', ''),
-(1046, 'Taijul Islam', 'Bangladesh', './../playerImages/1046.jpg', ' Spin Bowler', 1, '', ''),
-(1047, 'Tamim Iqbal', 'Bangladesh', './../playerImages/1047.jpg', 'Batsman', 135, '', ''),
-(1048, 'Taskin Ahmed', 'Bangladesh', './../playerImages/1048.jpg', ' Pace Bowler', 2, '', ''),
-(1049, 'Eoin Morgan', 'England', './../playerImages/1049.jpg', 'Batsman', 132, '', ''),
-(1050, 'Moeen Ali', 'England', './../playerImages/1050.jpg', 'All-Rounder', 14, '', 'MM Ali'),
-(1051, 'James Anderson', 'England', './../playerImages/1051.jpg', 'Pace Bowler', 185, '', 'JM Anderson'),
-(1052, 'Gary Ballance', 'England', './../playerImages/1052.jpg', 'Batsman', 12, '', ''),
-(1053, 'Ian Bell', 'England', './../playerImages/1053.jpg', 'Batsman', 152, '', ''),
-(1054, 'Ravi Bopara', 'England', './../playerImages/1054.jpg', 'All-Rounder', 116, '', ''),
-(1055, 'Stuart Broad', 'England', './../playerImages/1055.jpg', 'Pace Bowler', 110, '', ''),
-(1056, 'Jos Buttler', 'England', './../playerImages/1056.jpg', 'Wicketkeeper', 46, '', ''),
-(1057, 'Steven Finn', 'England', './../playerImages/1057.jpg', 'Pace Bowler', 49, '', ''),
-(1058, 'Alex Hales', 'England', './../playerImages/1058.jpg', 'Batsman', 33, '', ''),
-(1059, 'Chris Jordan', 'England', './../playerImages/1059.jpg', 'Pace Bowler', 20, '', ''),
-(1060, 'Joe Root', 'England', './../playerImages/1060.jpg', 'Batsman', 45, '', ''),
-(1061, 'James Taylor', 'England', './../playerImages/1061.jpg', 'Batsman', 8, '', 'JWA Taylor'),
-(1062, 'James Tredwell', 'England', './../playerImages/1062.jpg', 'Spin Bowler', 44, '', ''),
-(1063, 'Chris Woakes', 'England', './../playerImages/1063.jpg', 'All-Rounder', 26, '', ''),
-(1064, 'MS Dhoni', 'India', './../playerImages/1064.jpg', 'Wicketkeeper', 252, 'Captain', ''),
-(1065, 'Ravichandran Ashwin', 'India', './../playerImages/1065.jpg', 'Spin Bowler', 88, '', ''),
-(1066, 'Stuart Binny', 'India', './../playerImages/1066.jpg', 'All-Rounder', 7, '', ''),
-(1067, 'Shikhar Dhawan', 'India', './../playerImages/1067.jpg', 'Batsman', 51, '', ''),
-(1068, 'Ravindra Jadeja', 'India', './../playerImages/1068.jpg', 'All-Rounder', 109, '', ''),
-(1069, 'Virat Kohli', 'India', './../playerImages/1069.jpg', 'Batsman', 148, '', ''),
-(1070, 'Bhuvneshwar Kumar', 'India', './../playerImages/1070.jpg', 'Pace Bowler', 44, '', ''),
-(1071, 'Mohammed Shami', 'India', './../playerImages/1071.jpg', 'Pace Bowler', 38, '', ''),
-(1072, 'Axar Patel', 'India', './../playerImages/1072.jpg', ' All-Rounder', 11, '', ''),
-(1073, 'Ajinkya Rahane', 'India', './../playerImages/1073.jpg', 'Batsman', 44, '', ''),
-(1074, 'Suresh Raina', 'India', './../playerImages/1074.jpg', 'Batsman', 205, '', ''),
-(1075, 'Ambati Rayudu', 'India', './../playerImages/1075.jpg', 'Batsman', 1, '', ''),
-(1076, 'Ishant Sharma', 'India', './../playerImages/1076.jpg', 'Pace Bowler', 75, '', 'I Sharma'),
-(1077, 'Rohit Sharma', 'India', './../playerImages/1077.jpg', 'Batsman', 127, '', 'RG Sharma'),
-(1078, 'Umesh Yadav', 'India', './../playerImages/1078.jpg', 'Pace Bowler', 40, '', ''),
-(1079, 'William Porterfield', 'Ireland', './../playerImages/1079.jpg', 'Batsman', 37, 'Captain', ''),
-(1080, 'Andy Balbirnie', 'Ireland', './../playerImages/1080.jpg', ' Wicketkeeper', 9, '', ''),
-(1081, 'Peter Chase', 'Ireland', './../playerImages/1081.jpg', 'Pace Bowler ', 3, '', ''),
-(1082, 'Alex Cusack', 'Ireland', './../playerImages/1082.jpg', ' All-Rounder', 30, '', ''),
-(1083, 'George Dockrell', 'Ireland', './../playerImages/1083.jpg', 'Spin Bowler', 26, '', ''),
-(1084, 'Ed Joyce', 'Ireland', './../playerImages/1084.jpg', 'Batsman', 18, '', ''),
-(1085, 'Andy McBrine', 'Ireland', './../playerImages/1085.jpg', ' Spin Bowler', 2, '', ''),
-(1086, 'John Mooney', 'Ireland', './../playerImages/1086.jpg', 'All-Rounder', 23, '', ''),
-(1087, 'Kevin O''Brien', 'Ireland', './../playerImages/1087.jpg', ' All-Rounder', 37, '', 'KJ O''Brien'),
-(1088, 'Niall O''Brien', 'Ireland', './../playerImages/1088.jpg', 'Wicketkeeper', 21, '', 'NJ O''Brien'),
-(1089, 'Max Sorensen', 'Ireland', './../playerImages/1089.jpg', 'Pace Bowler', 16, '', ''),
-(1090, 'Paul Stirling', 'Ireland', './../playerImages/1090.jpg', 'Batsman', 26, '', ''),
-(1091, 'Stuart Thompson', 'Ireland', './../playerImages/1091.jpg', 'All-Rounder', 5, '', ''),
-(1092, 'Gary Wilson', 'Ireland', './../playerImages/1092.jpg', 'Wicketkeeper', 34, '', ''),
-(1093, 'Craig Young', 'Ireland', './../playerImages/1093.jpg', 'Pace Bowler', 1, '', ''),
-(1094, 'Tim Murtagh', 'Ireland', './../playerImages/1094.jpg', 'Pace Bowler', 7, '', ''),
-(1095, 'Brendon McCullum', 'New Zealand', './../playerImages/1095.jpg', 'Batsman', 236, 'Captain', 'BB McCullum'),
-(1096, 'Corey Anderson', 'New Zealand', './../playerImages/1096.jpg', 'All-Rounder', 22, '', 'CJ Anderson'),
-(1097, 'Trent Boult', 'New Zealand', './../playerImages/1097.jpg', 'Pace Bowler', 12, '', ''),
-(1098, 'Grant Elliott', 'New Zealand', './../playerImages/1098.jpg', 'All-Rounder', 53, '', ''),
-(1099, 'Martin Guptill', 'New Zealand', './../playerImages/1099.jpg', 'Batsman', 94, '', ''),
-(1100, 'Tom Latham', 'New Zealand', './../playerImages/1100.jpg', 'Wicketkeeper', 24, '', ''),
-(1101, 'Mitchell McClenaghan', 'New Zealand', './../playerImages/1101.jpg', 'Pace Bowler', 16, '', ''),
-(1102, 'Nathan McCullum', 'New Zealand', './../playerImages/1102.jpg', 'All-Rounder', 57, '', 'NL McCullum'),
-(1103, 'Kyle Mills', 'New Zealand', './../playerImages/1103.jpg', 'Pace Bowler', 167, '', ''),
-(1104, 'Adam Milne', 'New Zealand', './../playerImages/1104.jpg', 'Pace Bowler', 7, '', ''),
-(1105, 'Luke Ronchi', 'New Zealand', './../playerImages/1105.jpg', 'Wicketkeeper', 15, '', ''),
-(1106, 'Tim Southee', 'New Zealand', './../playerImages/1106.jpg', 'Pace Bowler', 82, '', ''),
-(1107, 'Ross Taylor', 'New Zealand', './../playerImages/1107.jpg', 'Batsman', 145, '', 'LRPL Taylor'),
-(1108, 'Daniel Vettori', 'New Zealand', './../playerImages/1108.jpg', 'All-Rounder', 283, '', ''),
-(1109, 'Kane Williamson', 'New Zealand', './../playerImages/1109.jpg', 'All-Rounder', 61, '', ''),
-(1110, 'Misbah-ul-Haq', 'Pakistan', './../playerImages/1110.jpg', 'Batsman', 153, 'Captain', ''),
-(1111, 'Ahmed Shehzad', 'Pakistan', './../playerImages/1111.jpg', 'Batsman', 56, '', ''),
-(1112, 'Ehsan Adil', 'Pakistan', './../playerImages/1112.jpg', 'Pace Bowler ', 2, '', ''),
-(1113, 'Haris Sohail', 'Pakistan', './../playerImages/1113.jpg', 'Batsman', 3, '', ''),
-(1114, 'Junaid Khan', 'Pakistan', './../playerImages/1114.jpg', 'Pace Bowler', 48, '', ''),
-(1115, 'Mohammad Hafeez', 'Pakistan', './../playerImages/1115.jpg', 'Batsman', 153, '', ''),
-(1116, 'Mohammad Irfan', 'Pakistan', './../playerImages/1116.jpg', 'Pace Bowler', 38, '', ''),
-(1117, 'Sarfraz Ahmed', 'Pakistan', './../playerImages/1117.jpg', 'Wicketkeeper', 34, '', ''),
-(1118, 'Shahid Afridi', 'Pakistan', './../playerImages/1118.jpg', 'All-Rounder', 389, '', ''),
-(1119, 'Sohaib Maqsood', 'Pakistan', './../playerImages/1119.jpg', 'Batsman', 14, '', ''),
-(1120, 'Sohail Khan', 'Pakistan', './../playerImages/1120.jpg', ' Pace Bowler', 5, '', ''),
-(1121, 'Umar Akmal', 'Pakistan', './../playerImages/1121.jpg', 'Wicketkeeper', 102, '', ''),
-(1122, 'Wahab Riaz', 'Pakistan', './../playerImages/1122.jpg', 'Pace Bowler', 47, '', ''),
-(1123, 'Yasir Shah', 'Pakistan', './../playerImages/1123.jpg', ' Spin Bowler', 1, '', ''),
-(1124, 'Younis Khan', 'Pakistan', './../playerImages/1124.jpg', ' Batsman', 259, '', ''),
-(1125, 'Preston Mommsen', 'Scotland', './../playerImages/1125.jpg', 'Batsman', 9, '', ''),
-(1126, 'Kyle Coetzer', 'Scotland', './../playerImages/1126.jpg', 'Batsman', 20, 'Captain', ''),
-(1127, 'Richie Berrington', 'Scotland', './../playerImages/1127.jpg', 'Batsman', 21, '', ''),
-(1128, 'Freddie Coleman', 'Scotland', './../playerImages/1128.jpg', 'Batsman', 1, '', ''),
-(1129, 'Matthew Cross', 'Scotland', './../playerImages/1129.jpg', ' Wicketkeeper', 4, '', ''),
-(1130, 'Josh Davey', 'Scotland', './../playerImages/1130.jpg', 'Pace Bowler', 1, '', ''),
-(1131, 'Alasdair Evans', 'Scotland', './../playerImages/1131.jpg', 'Pace Bowler', 8, '', ''),
-(1132, 'Hamish Gardiner', 'Scotland', './../playerImages/1132.jpg', 'Batsman', 1, '', ''),
-(1133, 'Majid Haq', 'Scotland', './../playerImages/1133.jpg', 'All-Rounder', 21, '', ''),
-(1134, 'Michael Leask', 'Scotland', './../playerImages/1134.jpg', 'All-Rounder', 3, '', ''),
-(1135, 'Matt Machan', 'England', './../playerImages/1135.jpg', 'All-Rounder', 6, '', ''),
-(1136, 'Calum MacLeod', 'Scotland', './../playerImages/1136.jpg', 'Batsman', 15, '', ''),
-(1137, 'Safyaan Sharif', 'Scotland', './../playerImages/1137.jpg', 'Pace Bowler', 7, '', ''),
-(1138, 'Rob Taylor', 'Scotland', './../playerImages/1138.jpg', 'Pace Bowler', 4, '', 'RML Taylor'),
-(1139, 'Iain Wardlaw', 'England', './../playerImages/1139.jpg', 'Pace Bowler', 4, '', ''),
-(1140, 'AB de Villiers', 'South Africa', './../playerImages/1140.jpg', 'Batsman', 177, 'Captain', ''),
-(1141, 'Hashim Amla', 'South Africa', './../playerImages/1141.jpg', 'Batsman', 105, '', ''),
-(1142, 'Kyle Abbott', 'South Africa', './../playerImages/1142.jpg', 'Pace Bowler', 9, '', ''),
-(1143, 'Farhaan Behardien', 'South Africa', './../playerImages/1143.jpg', 'Batsman', 19, '', ''),
-(1144, 'Quinton de Kock', 'South Africa', './../playerImages/1144.jpg', 'Wicketkeeper', 35, '', ''),
-(1145, 'Jean-Paul Duminy', 'South Africa', './../playerImages/1145.jpg', 'Batsman', 131, '', ''),
-(1146, 'Faf du Plessis', 'South Africa', './../playerImages/1146.jpg', ' All-Rounder', 64, '', ''),
-(1147, 'Imran Tahir', 'South Africa', './../playerImages/1147.jpg', 'Pace Bowler', 29, '', ''),
-(1148, 'David Miller', 'South Africa', './../playerImages/1148.jpg', 'Batsman', 31, '', ''),
-(1149, 'Morne Morkel', 'South Africa', './../playerImages/1149.jpg', 'Pace Bowler', 89, '', ''),
-(1150, 'Wayne Parnell', 'South Africa', './../playerImages/1150.jpg', 'Pace Bowler', 43, '', ''),
-(1151, 'Aaron Phangiso', 'South Africa', './../playerImages/1151.jpg', 'Pace Bowler', 5, '', ''),
-(1152, 'Vernon Philander', 'South Africa', './../playerImages/1152.jpg', 'Pace Bowler', 23, '', ''),
-(1153, 'Rilee Rossouw', 'South Africa', './../playerImages/1153.jpg', ' Batsman', 6, '', ''),
-(1154, 'Dale Steyn', 'South Africa', './../playerImages/1154.jpg', 'Pace Bowler', 95, '', ''),
-(1155, 'Angelo Mathews', 'Sri Lanka', './../playerImages/1155.jpg', 'All-Rounder', 149, 'Captain', ''),
-(1156, 'Lahiru Thirimanne', 'Sri Lanka', './../playerImages/1156.jpg', 'Batsman', 84, '', ''),
-(1157, 'Dinesh Chandimal', 'Sri Lanka', './../playerImages/1157.jpg', 'Wicketkeeper', 89, '', ''),
-(1158, 'Tillakaratne Dilshan', 'Sri Lanka', './../playerImages/1158.jpg', 'Batsman', 304, '', ''),
-(1159, 'Rangana Herath', 'Sri Lanka', './../playerImages/1159.jpg', 'Spin Bowler', 66, '', ''),
-(1160, 'Mahela Jayawardene', 'Sri Lanka', './../playerImages/1160.jpg', 'Batsman', 438, '', ''),
-(1161, 'Dimuth Karunaratne', 'Sri Lanka', './../playerImages/1161.jpg', 'Batsman', 10, '', ''),
-(1162, 'Nuwan Kulasekara', 'Sri Lanka', './../playerImages/1162.jpg', 'Pace Bowler', 163, '', ''),
-(1163, 'Suranga Lakmal', 'Sri Lanka', './../playerImages/1163.jpg', 'Pace Bowler', 29, '', ''),
-(1164, 'Lasith Malinga', 'Sri Lanka', './../playerImages/1164.jpg', 'Pace Bowler', 177, '', ''),
-(1165, 'Jeevan Mendis', 'Sri Lanka', './../playerImages/1165.jpg', 'All-Rounder', 16, '', ''),
-(1166, 'Thisara Perera', 'Sri Lanka', './../playerImages/1166.jpg', 'All-Rounder', 95, '', ''),
-(1167, 'Dhammika Prasad', 'Sri Lanka', './../playerImages/1167.jpg', 'Pace Bowler', 23, '', ''),
-(1168, 'Kumar Sangakkara', 'Sri Lanka', './../playerImages/1168.jpg', 'Wicketkeeper', 394, '', ''),
-(1169, 'Sachithra Senanayake', 'Sri Lanka', './../playerImages/1169.jpg', 'All-Rounder', 43, '', ''),
-(1170, 'Mohammad Tauqir', 'United Arab Emirates', './../playerImages/1170.jpg', ' Spin Bowler', 13, '', ''),
-(1171, 'Khurram Khan', 'United Arab Emirates', './../playerImages/1171.jpg', 'All-Rounder', 3, 'Captain', ''),
-(1172, 'Amjad Ali', 'United Arab Emirates', './../playerImages/1172.jpg', 'Batsman', 3, '', ''),
-(1173, 'Amjad Javed', 'United Arab Emirates', './../playerImages/1173.jpg', 'All-Rounder', 3, '', ''),
-(1174, 'Andri Berenger', 'United Arab Emirates', './../playerImages/1174.jpg', ' Batsman', 5, '', ''),
-(1175, 'Fahad Alhashmi', 'United Arab Emirates', './../playerImages/1175.jpg', ' Pace Bowler', 7, '', ''),
-(1176, 'Manjula Guruge', 'United Arab Emirates', './../playerImages/1176.jpg', 'Pace Bowler', 2, '', ''),
-(1177, 'Kamran Shazad', 'United Arab Emirates', './../playerImages/1177.jpg', 'Pace Bowler', 3, '', ''),
-(1178, 'Krishna Chandran', 'United Arab Emirates', './../playerImages/1178.jpg', ' All-Rounder', 15, '', ''),
-(1179, 'Mohammad Naveed', 'United Arab Emirates', './../playerImages/1179.jpg', 'Pace Bowler', 2, '', ''),
-(1180, 'Nasir Aziz', 'United Arab Emirates', './../playerImages/1180.jpg', ' Spin Bowler', 2, '', ''),
-(1181, 'Swapnil Patil', 'United Arab Emirates', './../playerImages/1181.jpg', 'Wicketkeeper', 3, '', ''),
-(1182, 'Rohan Mustafa', 'United Arab Emirates', './../playerImages/1182.jpg', 'All-Rounder', 3, '', ''),
-(1183, 'Saqlain Haider', 'United Arab Emirates', './../playerImages/1183.jpg', ' Batsman', 4, '', ''),
-(1184, 'Shaiman Anwar', 'United Arab Emirates', './../playerImages/1184.jpg', 'Batsman', 3, '', ''),
-(1185, 'Jason Holder', 'West Indies', './../playerImages/1185.jpg', 'All-Rounder', 23, '', ''),
-(1186, 'Marlon Samuels', 'West Indies', './../playerImages/1186.jpg', 'Batsman', 164, '', ''),
-(1187, 'Sulieman Benn', 'West Indies', './../playerImages/1187.jpg', ' Spin Bowler', 30, '', ''),
-(1188, 'Darren Bravo', 'West Indies', './../playerImages/1188.jpg', 'Batsman', 79, '', ''),
-(1189, 'Jonathan Carter', 'West Indies', './../playerImages/1189.jpg', ' Batsman', 51, '', ''),
-(1190, 'Sheldon Cottrell', 'West Indies', './../playerImages/1190.jpg', ' Pace Bowler', 6, '', ''),
-(1191, 'Chris Gayle', 'West Indies', './../playerImages/1191.jpg', 'Batsman', 260, '', ''),
-(1192, 'Sunil Narine', 'West Indies', './../playerImages/1192.jpg', ' Spin Bowler', 52, '', ''),
-(1193, 'Denesh Ramdin', 'West Indies', './../playerImages/1193.jpg', 'Wicketkeeper', 117, '', ''),
-(1194, 'Kemar Roach', 'West Indies', './../playerImages/1194.jpg', 'Pace Bowler', 64, '', ''),
-(1195, 'Andre Russell', 'West Indies', './../playerImages/1195.jpg', 'All-Rounder', 40, '', ''),
-(1196, 'Darren Sammy', 'West Indies', './../playerImages/1196.jpg', 'All-Rounder', 117, '', ''),
-(1197, 'Lendl Simmons', 'West Indies', './../playerImages/1197.jpg', 'Batsman', 61, '', ''),
-(1198, 'Dwayne Smith', 'West Indies', './../playerImages/1198.jpg', 'All-Rounder', 96, '', 'DR Smith'),
-(1199, 'Jerome Taylor', 'West Indies', './../playerImages/1199.jpg', 'Pace Bowler', 71, '', 'JE Taylor'),
-(1200, 'Elton Chigumbura', 'Zimbabwe', './../playerImages/1200.jpg', 'All-Rounder', 169, 'Captain', ''),
-(1201, 'Regis Chakabva', 'Zimbabwe', './../playerImages/1201.jpg', 'Wicketkeeper', 24, '', ''),
-(1202, 'Tendai Chatara', 'Zimbabwe', './../playerImages/1202.jpg', 'Pace Bowler', 21, '', ''),
-(1203, 'Chamu Chibhabha', 'Zimbabwe', './../playerImages/1203.jpg', ' All-Rounder', 17, '', ''),
-(1204, 'Craig Ervine', 'Zimbabwe', './../playerImages/1204.jpg', 'Batsman', 25, '', ''),
-(1205, 'Tafadzwa Kamungozi', 'Zimbabwe', './../playerImages/1205.jpg', ' Spin Bowler', 11, '', ''),
-(1206, 'Hamilton Masakadza', 'Zimbabwe', './../playerImages/1206.jpg', 'Batsman', 144, '', ''),
-(1207, 'Stuart Matsikenyeri', 'Zimbabwe', './../playerImages/1207.jpg', ' Batsman', 112, '', ''),
-(1208, 'Solomon Mire', 'Zimbabwe', './../playerImages/1208.jpg', ' Batsman', 13, '', ''),
-(1209, 'Tawanda Mupariwa', 'Zimbabwe', './../playerImages/1209.jpg', ' Pace Bowler', 35, '', ''),
-(1210, 'Tinashe Panyangara', 'Zimbabwe', './../playerImages/1210.jpg', 'Pace Bowler', 38, '', ''),
-(1211, 'Sikandar Raza', 'Zimbabwe', './../playerImages/1211.jpg', 'Batsman', 21, '', ''),
-(1212, 'Brendan Taylor', 'Zimbabwe', './../playerImages/1212.jpg', 'Batsman', 161, '', 'BRM Taylor'),
-(1213, 'Prosper Utseya', 'Zimbabwe', './../playerImages/1213.jpg', ' Spin Bowler', 160, '', ''),
-(1214, 'Sean Williams', 'Zimbabwe', './../playerImages/1214.jpg', 'All-Rounder', 69, '', '');
+INSERT INTO `players` (`playerId`, `name`, `country`, `photoUrl`, `type`, `matches`, `captain`, `secondName`, `roundOne`) VALUES
+(1000, 'Mohammad Nabi', 'Afghanistan', './../playerImages/1000.jpg', 'Pace Bowler', 25, 'Captain', '', 0),
+(1001, 'Afsar Zazai', 'Afghanistan', './../playerImages/1001.jpg', 'Wicketkeeper', 1, '', '', 0),
+(1002, 'Aftab Alam', 'Afghanistan', './../playerImages/1002.jpg', 'Pace Bowler', 4, '', '', 0),
+(1003, 'Asghar Stanikzai', 'Afghanistan', './../playerImages/1003.jpg', 'Batsman', 13, '', '', 0),
+(1004, 'Dawlat Zadran', 'Afghanistan', './../playerImages/1004.jpg', 'Pace Bowler', 11, '', '', 0),
+(1005, 'Gulbadin Naib', 'Afghanistan', './../playerImages/1005.jpg', ' All-Rounder', 13, '', '', 0),
+(1006, 'Hamid Hassan', 'Afghanistan', './../playerImages/1006.jpg', ' Pace Bowler', 14, '', '', 0),
+(1007, 'Javed Ahmadi', 'Afghanistan', './../playerImages/1007.jpg', 'Batsman', 2, '', '', 0),
+(1008, 'Mirwais Ashraf', 'Afghanistan', './../playerImages/1008.jpg', 'Pace Bowler', 17, '', '', 0),
+(1009, 'Najibullah Zadran', 'Afghanistan', './../playerImages/1009.jpg', 'Batsman', 8, '', '', 0),
+(1010, 'Nasir Jamal', 'Afghanistan', './../playerImages/1010.jpg', 'All-Rounder', 1, '', '', 0),
+(1011, 'Nawroz Mangal', 'Afghanistan', './../playerImages/1011.jpg', 'Batsman', 24, '', '', 0),
+(1012, 'Samiullah Shenwari', 'Afghanistan', './../playerImages/1012.jpg', 'All-Rounder', 25, '', '', 0),
+(1013, 'Shapoor Zadran', 'Afghanistan', './../playerImages/1013.jpg', 'Pace Bowler', 20, '', '', 0),
+(1014, 'Usman Ghani', 'Afghanistan', './../playerImages/1014.jpg', 'Batsman', 14, '', '', 0),
+(1015, 'Hashmatullah Shaidi', 'Afghanistan', './../playerImages/1015.jpg', 'Batsman', 1, '', '', 0),
+(1016, 'Izatullah Dawlatzai', 'Afghanistan', './../playerImages/1016.jpg', 'Pace Bowler', 4, '', '', 0),
+(1017, 'Shafiqullah', 'Afghanistan', './../playerImages/1017.jpg', 'Wicketkeeper', 12, '', '', 0),
+(1018, 'Sharafuddin Ashraf', 'Afghanistan', './../playerImages/1018.jpg', 'Spin Bowler', 1, '', '', 0),
+(1019, 'Michael Clarke', 'Australia', './../playerImages/1019.jpg', 'Batsman', 238, 'Captain', '', 0),
+(1020, 'George Bailey', 'Australia', './../playerImages/1020.jpg', 'Batsman', 54, '', '', 0),
+(1021, 'Pat Cummins', 'Australia', './../playerImages/1021.jpg', 'Pace Bowler', 9, '', '', 0),
+(1022, 'Xavier Doherty', 'Australia', './../playerImages/1022.jpg', 'Spin Bowler', 58, '', '', 0),
+(1023, 'James Faulkner', 'Australia', './../playerImages/1023.jpg', 'All-Rounder', 35, '', '', 0),
+(1024, 'Aaron Finch', 'Australia', './../playerImages/1024.jpg', 'Batsman', 22, '', '', 0),
+(1025, 'Brad Haddin', 'Australia', './../playerImages/1025.jpg', 'Wicketkeeper', 115, '', '', 0),
+(1026, 'Josh Hazlewood', 'Australia', './../playerImages/1026.jpg', 'Pace Bowler', 6, '', '', 0),
+(1027, 'Mitchell Johnson', 'Australia', './../playerImages/1027.jpg', 'Pace Bowler', 144, '', '', 0),
+(1028, 'Mitchell Marsh', 'Australia', './../playerImages/1028.jpg', 'All-Rounder', 12, '', '', 0),
+(1029, 'Glenn Maxwell', 'Australia', './../playerImages/1029.jpg', 'All-Rounder', 38, '', '', 0),
+(1030, 'Steven Smith', 'Australia', './../playerImages/1030.jpg', 'Batsman', 47, '', 'SPD Smith', 0),
+(1031, 'Mitchell Starc', 'Australia', './../playerImages/1031.jpg', 'Pace Bowler', 30, '', '', 0),
+(1032, 'David Warner', 'Australia', './../playerImages/1032.jpg', 'Batsman', 52, '', '', 0),
+(1033, 'Shane Watson', 'Australia', './../playerImages/1033.jpg', 'Batsman', 180, '', '', 0),
+(1034, 'Mashrafe Mortaza', 'Bangladesh', './../playerImages/1034.jpg', 'Pace Bowler', 144, '', '', 0),
+(1035, 'Al-Amin Hossain', 'Bangladesh', './../playerImages/1035.jpg', ' Pace Bowler', 11, '', '', 0),
+(1036, 'Anamul Haque', 'Bangladesh', './../playerImages/1036.jpg', 'Wicketkeeper', 27, '', '', 0),
+(1037, 'Arafat Sunny', 'Bangladesh', './../playerImages/1037.jpg', ' Pace Bowler', 2, '', '', 0),
+(1038, 'Mahmudullah', 'Bangladesh', './../playerImages/1038.jpg', 'All-Rounder', 110, '', '', 0),
+(1039, 'Mominul Haque', 'Bangladesh', './../playerImages/1039.jpg', 'Batsman', 24, '', '', 0),
+(1040, 'Mushfiqur Rahim', 'Bangladesh', './../playerImages/1040.jpg', 'Wicketkeeper', 140, 'Captain', '', 0),
+(1041, 'Nasir Hossain', 'Bangladesh', './../playerImages/1041.jpg', 'All-Rounder', 41, '', '', 0),
+(1042, 'Rubel Hossain', 'Bangladesh', './../playerImages/1042.jpg', 'Pace Bowler', 53, '', '', 0),
+(1043, 'Sabbir Rahman', 'Bangladesh', './../playerImages/1043.jpg', ' All-Rounder', 5, '', '', 0),
+(1044, 'Shakib Al Hasan', 'Bangladesh', './../playerImages/1044.jpg', 'All-Rounder', 141, '', '', 0),
+(1045, 'Soumya Sarkar', 'Bangladesh', './../playerImages/1045.jpg', 'All-Rounder', 32, '', '', 0),
+(1046, 'Taijul Islam', 'Bangladesh', './../playerImages/1046.jpg', ' Spin Bowler', 1, '', '', 0),
+(1047, 'Tamim Iqbal', 'Bangladesh', './../playerImages/1047.jpg', 'Batsman', 135, '', '', 0),
+(1048, 'Taskin Ahmed', 'Bangladesh', './../playerImages/1048.jpg', ' Pace Bowler', 2, '', '', 0),
+(1049, 'Eoin Morgan', 'England', './../playerImages/1049.jpg', 'Batsman', 132, '', '', 0),
+(1050, 'Moeen Ali', 'England', './../playerImages/1050.jpg', 'All-Rounder', 14, '', 'MM Ali', 0),
+(1051, 'James Anderson', 'England', './../playerImages/1051.jpg', 'Pace Bowler', 185, '', 'JM Anderson', 0),
+(1052, 'Gary Ballance', 'England', './../playerImages/1052.jpg', 'Batsman', 12, '', '', 0),
+(1053, 'Ian Bell', 'England', './../playerImages/1053.jpg', 'Batsman', 152, '', '', 0),
+(1054, 'Ravi Bopara', 'England', './../playerImages/1054.jpg', 'All-Rounder', 116, '', '', 0),
+(1055, 'Stuart Broad', 'England', './../playerImages/1055.jpg', 'Pace Bowler', 110, '', '', 0),
+(1056, 'Jos Buttler', 'England', './../playerImages/1056.jpg', 'Wicketkeeper', 46, '', '', 0),
+(1057, 'Steven Finn', 'England', './../playerImages/1057.jpg', 'Pace Bowler', 49, '', '', 0),
+(1058, 'Alex Hales', 'England', './../playerImages/1058.jpg', 'Batsman', 33, '', '', 0),
+(1059, 'Chris Jordan', 'England', './../playerImages/1059.jpg', 'Pace Bowler', 20, '', '', 0),
+(1060, 'Joe Root', 'England', './../playerImages/1060.jpg', 'Batsman', 45, '', '', 0),
+(1061, 'James Taylor', 'England', './../playerImages/1061.jpg', 'Batsman', 8, '', 'JWA Taylor', 0),
+(1062, 'James Tredwell', 'England', './../playerImages/1062.jpg', 'Spin Bowler', 44, '', '', 0),
+(1063, 'Chris Woakes', 'England', './../playerImages/1063.jpg', 'All-Rounder', 26, '', '', 0),
+(1064, 'MS Dhoni', 'India', './../playerImages/1064.jpg', 'Wicketkeeper', 252, 'Captain', '', 0),
+(1065, 'Ravichandran Ashwin', 'India', './../playerImages/1065.jpg', 'Spin Bowler', 88, '', '', 0),
+(1066, 'Stuart Binny', 'India', './../playerImages/1066.jpg', 'All-Rounder', 7, '', '', 0),
+(1067, 'Shikhar Dhawan', 'India', './../playerImages/1067.jpg', 'Batsman', 51, '', '', 0),
+(1068, 'Ravindra Jadeja', 'India', './../playerImages/1068.jpg', 'All-Rounder', 109, '', '', 0),
+(1069, 'Virat Kohli', 'India', './../playerImages/1069.jpg', 'Batsman', 148, '', '', 0),
+(1070, 'Bhuvneshwar Kumar', 'India', './../playerImages/1070.jpg', 'Pace Bowler', 44, '', '', 0),
+(1071, 'Mohammed Shami', 'India', './../playerImages/1071.jpg', 'Pace Bowler', 38, '', '', 0),
+(1072, 'Axar Patel', 'India', './../playerImages/1072.jpg', ' All-Rounder', 11, '', '', 0),
+(1073, 'Ajinkya Rahane', 'India', './../playerImages/1073.jpg', 'Batsman', 44, '', '', 0),
+(1074, 'Suresh Raina', 'India', './../playerImages/1074.jpg', 'Batsman', 205, '', '', 0),
+(1075, 'Ambati Rayudu', 'India', './../playerImages/1075.jpg', 'Batsman', 1, '', '', 0),
+(1076, 'Ishant Sharma', 'India', './../playerImages/1076.jpg', 'Pace Bowler', 75, '', 'I Sharma', 0),
+(1077, 'Rohit Sharma', 'India', './../playerImages/1077.jpg', 'Batsman', 127, '', 'RG Sharma', 0),
+(1078, 'Umesh Yadav', 'India', './../playerImages/1078.jpg', 'Pace Bowler', 40, '', '', 0),
+(1079, 'William Porterfield', 'Ireland', './../playerImages/1079.jpg', 'Batsman', 37, 'Captain', '', 0),
+(1080, 'Andy Balbirnie', 'Ireland', './../playerImages/1080.jpg', ' Wicketkeeper', 9, '', '', 0),
+(1081, 'Peter Chase', 'Ireland', './../playerImages/1081.jpg', 'Pace Bowler ', 3, '', '', 0),
+(1082, 'Alex Cusack', 'Ireland', './../playerImages/1082.jpg', ' All-Rounder', 30, '', '', 0),
+(1083, 'George Dockrell', 'Ireland', './../playerImages/1083.jpg', 'Spin Bowler', 26, '', '', 0),
+(1084, 'Ed Joyce', 'Ireland', './../playerImages/1084.jpg', 'Batsman', 18, '', '', 0),
+(1085, 'Andy McBrine', 'Ireland', './../playerImages/1085.jpg', ' Spin Bowler', 2, '', '', 0),
+(1086, 'John Mooney', 'Ireland', './../playerImages/1086.jpg', 'All-Rounder', 23, '', '', 0),
+(1087, 'Kevin O''Brien', 'Ireland', './../playerImages/1087.jpg', ' All-Rounder', 37, '', 'KJ O''Brien', 0),
+(1088, 'Niall O''Brien', 'Ireland', './../playerImages/1088.jpg', 'Wicketkeeper', 21, '', 'NJ O''Brien', 0),
+(1089, 'Max Sorensen', 'Ireland', './../playerImages/1089.jpg', 'Pace Bowler', 16, '', '', 0),
+(1090, 'Paul Stirling', 'Ireland', './../playerImages/1090.jpg', 'Batsman', 26, '', '', 0),
+(1091, 'Stuart Thompson', 'Ireland', './../playerImages/1091.jpg', 'All-Rounder', 5, '', '', 0),
+(1092, 'Gary Wilson', 'Ireland', './../playerImages/1092.jpg', 'Wicketkeeper', 34, '', '', 0),
+(1093, 'Craig Young', 'Ireland', './../playerImages/1093.jpg', 'Pace Bowler', 1, '', '', 0),
+(1094, 'Tim Murtagh', 'Ireland', './../playerImages/1094.jpg', 'Pace Bowler', 7, '', '', 0),
+(1095, 'Brendon McCullum', 'New Zealand', './../playerImages/1095.jpg', 'Batsman', 236, 'Captain', 'BB McCullum', 62),
+(1096, 'Corey Anderson', 'New Zealand', './../playerImages/1096.jpg', 'All-Rounder', 22, '', 'CJ Anderson', 0),
+(1097, 'Trent Boult', 'New Zealand', './../playerImages/1097.jpg', 'Pace Bowler', 12, '', '', 0),
+(1098, 'Grant Elliott', 'New Zealand', './../playerImages/1098.jpg', 'All-Rounder', 53, '', '', 65),
+(1099, 'Martin Guptill', 'New Zealand', './../playerImages/1099.jpg', 'Batsman', 94, '', '', 130),
+(1100, 'Tom Latham', 'New Zealand', './../playerImages/1100.jpg', 'Wicketkeeper', 24, '', '', 0),
+(1101, 'Mitchell McClenaghan', 'New Zealand', './../playerImages/1101.jpg', 'Pace Bowler', 16, '', '', 0),
+(1102, 'Nathan McCullum', 'New Zealand', './../playerImages/1102.jpg', 'All-Rounder', 57, '', 'NL McCullum', 10),
+(1103, 'Kyle Mills', 'New Zealand', './../playerImages/1103.jpg', 'Pace Bowler', 167, '', '', 0),
+(1104, 'Adam Milne', 'New Zealand', './../playerImages/1104.jpg', 'Pace Bowler', 7, '', '', 0),
+(1105, 'Luke Ronchi', 'New Zealand', './../playerImages/1105.jpg', 'Wicketkeeper', 15, '', '', -5),
+(1106, 'Tim Southee', 'New Zealand', './../playerImages/1106.jpg', 'Pace Bowler', 82, '', '', 0),
+(1107, 'Ross Taylor', 'New Zealand', './../playerImages/1107.jpg', 'Batsman', 145, '', 'LRPL Taylor', 197),
+(1108, 'Daniel Vettori', 'New Zealand', './../playerImages/1108.jpg', 'All-Rounder', 283, '', '', 0),
+(1109, 'Kane Williamson', 'New Zealand', './../playerImages/1109.jpg', 'All-Rounder', 61, '', '', 207),
+(1110, 'Misbah-ul-Haq', 'Pakistan', './../playerImages/1110.jpg', 'Batsman', 153, 'Captain', '', 63),
+(1111, 'Ahmed Shehzad', 'Pakistan', './../playerImages/1111.jpg', 'Batsman', 56, '', '', 93),
+(1112, 'Ehsan Adil', 'Pakistan', './../playerImages/1112.jpg', 'Pace Bowler ', 2, '', '', 1),
+(1113, 'Haris Sohail', 'Pakistan', './../playerImages/1113.jpg', 'Batsman', 3, '', '', 7),
+(1114, 'Junaid Khan', 'Pakistan', './../playerImages/1114.jpg', 'Pace Bowler', 48, '', '', 0),
+(1115, 'Mohammad Hafeez', 'Pakistan', './../playerImages/1115.jpg', 'Batsman', 153, '', '', 149),
+(1116, 'Mohammad Irfan', 'Pakistan', './../playerImages/1116.jpg', 'Pace Bowler', 38, '', '', 0),
+(1117, 'Sarfraz Ahmed', 'Pakistan', './../playerImages/1117.jpg', 'Wicketkeeper', 34, '', '', 10),
+(1118, 'Shahid Afridi', 'Pakistan', './../playerImages/1118.jpg', 'All-Rounder', 389, '', '', 12),
+(1119, 'Sohaib Maqsood', 'Pakistan', './../playerImages/1119.jpg', 'Batsman', 14, '', '', 0),
+(1120, 'Sohail Khan', 'Pakistan', './../playerImages/1120.jpg', ' Pace Bowler', 5, '', '', 0),
+(1121, 'Umar Akmal', 'Pakistan', './../playerImages/1121.jpg', 'Wicketkeeper', 102, '', '', 5),
+(1122, 'Wahab Riaz', 'Pakistan', './../playerImages/1122.jpg', 'Pace Bowler', 47, '', '', 0),
+(1123, 'Yasir Shah', 'Pakistan', './../playerImages/1123.jpg', ' Spin Bowler', 1, '', '', 0),
+(1124, 'Younis Khan', 'Pakistan', './../playerImages/1124.jpg', ' Batsman', 259, '', '', 12),
+(1125, 'Preston Mommsen', 'Scotland', './../playerImages/1125.jpg', 'Batsman', 9, '', '', 0),
+(1126, 'Kyle Coetzer', 'Scotland', './../playerImages/1126.jpg', 'Batsman', 20, 'Captain', '', 0),
+(1127, 'Richie Berrington', 'Scotland', './../playerImages/1127.jpg', 'Batsman', 21, '', '', 0),
+(1128, 'Freddie Coleman', 'Scotland', './../playerImages/1128.jpg', 'Batsman', 1, '', '', 0),
+(1129, 'Matthew Cross', 'Scotland', './../playerImages/1129.jpg', ' Wicketkeeper', 4, '', '', 0),
+(1130, 'Josh Davey', 'Scotland', './../playerImages/1130.jpg', 'Pace Bowler', 1, '', '', 0),
+(1131, 'Alasdair Evans', 'Scotland', './../playerImages/1131.jpg', 'Pace Bowler', 8, '', '', 0),
+(1132, 'Hamish Gardiner', 'Scotland', './../playerImages/1132.jpg', 'Batsman', 1, '', '', 0),
+(1133, 'Majid Haq', 'Scotland', './../playerImages/1133.jpg', 'All-Rounder', 21, '', '', 0),
+(1134, 'Michael Leask', 'Scotland', './../playerImages/1134.jpg', 'All-Rounder', 3, '', '', 0),
+(1135, 'Matt Machan', 'England', './../playerImages/1135.jpg', 'All-Rounder', 6, '', '', 0),
+(1136, 'Calum MacLeod', 'Scotland', './../playerImages/1136.jpg', 'Batsman', 15, '', '', 0),
+(1137, 'Safyaan Sharif', 'Scotland', './../playerImages/1137.jpg', 'Pace Bowler', 7, '', '', 0),
+(1138, 'Rob Taylor', 'Scotland', './../playerImages/1138.jpg', 'Pace Bowler', 4, '', 'RML Taylor', 0),
+(1139, 'Iain Wardlaw', 'England', './../playerImages/1139.jpg', 'Pace Bowler', 4, '', '', 0),
+(1140, 'AB de Villiers', 'South Africa', './../playerImages/1140.jpg', 'Batsman', 177, 'Captain', '', 0),
+(1141, 'Hashim Amla', 'South Africa', './../playerImages/1141.jpg', 'Batsman', 105, '', '', 0),
+(1142, 'Kyle Abbott', 'South Africa', './../playerImages/1142.jpg', 'Pace Bowler', 9, '', '', 0),
+(1143, 'Farhaan Behardien', 'South Africa', './../playerImages/1143.jpg', 'Batsman', 19, '', '', 0),
+(1144, 'Quinton de Kock', 'South Africa', './../playerImages/1144.jpg', 'Wicketkeeper', 35, '', '', 0),
+(1145, 'Jean-Paul Duminy', 'South Africa', './../playerImages/1145.jpg', 'Batsman', 131, '', '', 0),
+(1146, 'Faf du Plessis', 'South Africa', './../playerImages/1146.jpg', ' All-Rounder', 64, '', '', 0),
+(1147, 'Imran Tahir', 'South Africa', './../playerImages/1147.jpg', 'Pace Bowler', 29, '', '', 0),
+(1148, 'David Miller', 'South Africa', './../playerImages/1148.jpg', 'Batsman', 31, '', '', 0),
+(1149, 'Morne Morkel', 'South Africa', './../playerImages/1149.jpg', 'Pace Bowler', 89, '', '', 0),
+(1150, 'Wayne Parnell', 'South Africa', './../playerImages/1150.jpg', 'Pace Bowler', 43, '', '', 0),
+(1151, 'Aaron Phangiso', 'South Africa', './../playerImages/1151.jpg', 'Pace Bowler', 5, '', '', 0),
+(1152, 'Vernon Philander', 'South Africa', './../playerImages/1152.jpg', 'Pace Bowler', 23, '', '', 0),
+(1153, 'Rilee Rossouw', 'South Africa', './../playerImages/1153.jpg', ' Batsman', 6, '', '', 0),
+(1154, 'Dale Steyn', 'South Africa', './../playerImages/1154.jpg', 'Pace Bowler', 95, '', '', 0),
+(1155, 'Angelo Mathews', 'Sri Lanka', './../playerImages/1155.jpg', 'All-Rounder', 149, 'Captain', '', 0),
+(1156, 'Lahiru Thirimanne', 'Sri Lanka', './../playerImages/1156.jpg', 'Batsman', 84, '', '', 0),
+(1157, 'Dinesh Chandimal', 'Sri Lanka', './../playerImages/1157.jpg', 'Wicketkeeper', 89, '', '', 0),
+(1158, 'Tillakaratne Dilshan', 'Sri Lanka', './../playerImages/1158.jpg', 'Batsman', 304, '', '', 0),
+(1159, 'Rangana Herath', 'Sri Lanka', './../playerImages/1159.jpg', 'Spin Bowler', 66, '', '', 0),
+(1160, 'Mahela Jayawardene', 'Sri Lanka', './../playerImages/1160.jpg', 'Batsman', 438, '', '', 0),
+(1161, 'Dimuth Karunaratne', 'Sri Lanka', './../playerImages/1161.jpg', 'Batsman', 10, '', '', 0),
+(1162, 'Nuwan Kulasekara', 'Sri Lanka', './../playerImages/1162.jpg', 'Pace Bowler', 163, '', '', 0),
+(1163, 'Suranga Lakmal', 'Sri Lanka', './../playerImages/1163.jpg', 'Pace Bowler', 29, '', '', 0),
+(1164, 'Lasith Malinga', 'Sri Lanka', './../playerImages/1164.jpg', 'Pace Bowler', 177, '', '', 0),
+(1165, 'Jeevan Mendis', 'Sri Lanka', './../playerImages/1165.jpg', 'All-Rounder', 16, '', '', 0),
+(1166, 'Thisara Perera', 'Sri Lanka', './../playerImages/1166.jpg', 'All-Rounder', 95, '', '', 0),
+(1167, 'Dhammika Prasad', 'Sri Lanka', './../playerImages/1167.jpg', 'Pace Bowler', 23, '', '', 0),
+(1168, 'Kumar Sangakkara', 'Sri Lanka', './../playerImages/1168.jpg', 'Wicketkeeper', 394, '', '', 0),
+(1169, 'Sachithra Senanayake', 'Sri Lanka', './../playerImages/1169.jpg', 'All-Rounder', 43, '', '', 0),
+(1170, 'Mohammad Tauqir', 'United Arab Emirates', './../playerImages/1170.jpg', ' Spin Bowler', 13, '', '', 0),
+(1171, 'Khurram Khan', 'United Arab Emirates', './../playerImages/1171.jpg', 'All-Rounder', 3, 'Captain', '', 0),
+(1172, 'Amjad Ali', 'United Arab Emirates', './../playerImages/1172.jpg', 'Batsman', 3, '', '', 0),
+(1173, 'Amjad Javed', 'United Arab Emirates', './../playerImages/1173.jpg', 'All-Rounder', 3, '', '', 0),
+(1174, 'Andri Berenger', 'United Arab Emirates', './../playerImages/1174.jpg', ' Batsman', 5, '', '', 0),
+(1175, 'Fahad Alhashmi', 'United Arab Emirates', './../playerImages/1175.jpg', ' Pace Bowler', 7, '', '', 0),
+(1176, 'Manjula Guruge', 'United Arab Emirates', './../playerImages/1176.jpg', 'Pace Bowler', 2, '', '', 0),
+(1177, 'Kamran Shazad', 'United Arab Emirates', './../playerImages/1177.jpg', 'Pace Bowler', 3, '', '', 0),
+(1178, 'Krishna Chandran', 'United Arab Emirates', './../playerImages/1178.jpg', ' All-Rounder', 15, '', '', 0),
+(1179, 'Mohammad Naveed', 'United Arab Emirates', './../playerImages/1179.jpg', 'Pace Bowler', 2, '', '', 0),
+(1180, 'Nasir Aziz', 'United Arab Emirates', './../playerImages/1180.jpg', ' Spin Bowler', 2, '', '', 0),
+(1181, 'Swapnil Patil', 'United Arab Emirates', './../playerImages/1181.jpg', 'Wicketkeeper', 3, '', '', 0),
+(1182, 'Rohan Mustafa', 'United Arab Emirates', './../playerImages/1182.jpg', 'All-Rounder', 3, '', '', 0),
+(1183, 'Saqlain Haider', 'United Arab Emirates', './../playerImages/1183.jpg', ' Batsman', 4, '', '', 0),
+(1184, 'Shaiman Anwar', 'United Arab Emirates', './../playerImages/1184.jpg', 'Batsman', 3, '', '', 0),
+(1185, 'Jason Holder', 'West Indies', './../playerImages/1185.jpg', 'All-Rounder', 23, '', '', 0),
+(1186, 'Marlon Samuels', 'West Indies', './../playerImages/1186.jpg', 'Batsman', 164, '', '', 0),
+(1187, 'Sulieman Benn', 'West Indies', './../playerImages/1187.jpg', ' Spin Bowler', 30, '', '', 0),
+(1188, 'Darren Bravo', 'West Indies', './../playerImages/1188.jpg', 'Batsman', 79, '', '', 0),
+(1189, 'Jonathan Carter', 'West Indies', './../playerImages/1189.jpg', ' Batsman', 51, '', '', 0),
+(1190, 'Sheldon Cottrell', 'West Indies', './../playerImages/1190.jpg', ' Pace Bowler', 6, '', '', 0),
+(1191, 'Chris Gayle', 'West Indies', './../playerImages/1191.jpg', 'Batsman', 260, '', '', 0),
+(1192, 'Sunil Narine', 'West Indies', './../playerImages/1192.jpg', ' Spin Bowler', 52, '', '', 0),
+(1193, 'Denesh Ramdin', 'West Indies', './../playerImages/1193.jpg', 'Wicketkeeper', 117, '', '', 0),
+(1194, 'Kemar Roach', 'West Indies', './../playerImages/1194.jpg', 'Pace Bowler', 64, '', '', 0),
+(1195, 'Andre Russell', 'West Indies', './../playerImages/1195.jpg', 'All-Rounder', 40, '', '', 0),
+(1196, 'Darren Sammy', 'West Indies', './../playerImages/1196.jpg', 'All-Rounder', 117, '', '', 0),
+(1197, 'Lendl Simmons', 'West Indies', './../playerImages/1197.jpg', 'Batsman', 61, '', '', 0),
+(1198, 'Dwayne Smith', 'West Indies', './../playerImages/1198.jpg', 'All-Rounder', 96, '', 'DR Smith', 0),
+(1199, 'Jerome Taylor', 'West Indies', './../playerImages/1199.jpg', 'Pace Bowler', 71, '', 'JE Taylor', 0),
+(1200, 'Elton Chigumbura', 'Zimbabwe', './../playerImages/1200.jpg', 'All-Rounder', 169, 'Captain', '', 0),
+(1201, 'Regis Chakabva', 'Zimbabwe', './../playerImages/1201.jpg', 'Wicketkeeper', 24, '', '', 0),
+(1202, 'Tendai Chatara', 'Zimbabwe', './../playerImages/1202.jpg', 'Pace Bowler', 21, '', '', 0),
+(1203, 'Chamu Chibhabha', 'Zimbabwe', './../playerImages/1203.jpg', ' All-Rounder', 17, '', '', 0),
+(1204, 'Craig Ervine', 'Zimbabwe', './../playerImages/1204.jpg', 'Batsman', 25, '', '', 0),
+(1205, 'Tafadzwa Kamungozi', 'Zimbabwe', './../playerImages/1205.jpg', ' Spin Bowler', 11, '', '', 0),
+(1206, 'Hamilton Masakadza', 'Zimbabwe', './../playerImages/1206.jpg', 'Batsman', 144, '', '', 0),
+(1207, 'Stuart Matsikenyeri', 'Zimbabwe', './../playerImages/1207.jpg', ' Batsman', 112, '', '', 0),
+(1208, 'Solomon Mire', 'Zimbabwe', './../playerImages/1208.jpg', ' Batsman', 13, '', '', 0),
+(1209, 'Tawanda Mupariwa', 'Zimbabwe', './../playerImages/1209.jpg', ' Pace Bowler', 35, '', '', 0),
+(1210, 'Tinashe Panyangara', 'Zimbabwe', './../playerImages/1210.jpg', 'Pace Bowler', 38, '', '', 0),
+(1211, 'Sikandar Raza', 'Zimbabwe', './../playerImages/1211.jpg', 'Batsman', 21, '', '', 0),
+(1212, 'Brendan Taylor', 'Zimbabwe', './../playerImages/1212.jpg', 'Batsman', 161, '', 'BRM Taylor', 0),
+(1213, 'Prosper Utseya', 'Zimbabwe', './../playerImages/1213.jpg', ' Spin Bowler', 160, '', '', 0),
+(1214, 'Sean Williams', 'Zimbabwe', './../playerImages/1214.jpg', 'All-Rounder', 69, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1387,8 +1384,7 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   `score` bigint(20) NOT NULL,
   `actualBalance` bigint(20) NOT NULL,
   `p11` int(11) NOT NULL,
-  `transferNum` int(11) NOT NULL,
-  UNIQUE KEY `teamId` (`teamId`)
+  `transferNum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1406,8 +1402,7 @@ INSERT INTO `userdata` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`
 
 CREATE TABLE IF NOT EXISTS `userlogin` (
   `userId` bigint(20) NOT NULL,
-  `password` varchar(40) NOT NULL,
-  UNIQUE KEY `userId` (`userId`)
+  `password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1417,6 +1412,46 @@ CREATE TABLE IF NOT EXISTS `userlogin` (
 INSERT INTO `userlogin` (`userId`, `password`) VALUES
 (1, '356a192b7913b04c54574d18c28d46e6395428ab'),
 (2, '356a192b7913b04c54574d18c28d46e6395428ab');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `batting`
+--
+ALTER TABLE `batting`
+ ADD UNIQUE KEY `playerId` (`playerId`);
+
+--
+-- Indexes for table `bowling`
+--
+ALTER TABLE `bowling`
+ ADD UNIQUE KEY `playerId` (`playerId`);
+
+--
+-- Indexes for table `fielding`
+--
+ALTER TABLE `fielding`
+ ADD UNIQUE KEY `playerId` (`playerId`);
+
+--
+-- Indexes for table `players`
+--
+ALTER TABLE `players`
+ ADD UNIQUE KEY `playerId` (`playerId`);
+
+--
+-- Indexes for table `userdata`
+--
+ALTER TABLE `userdata`
+ ADD UNIQUE KEY `teamId` (`teamId`);
+
+--
+-- Indexes for table `userlogin`
+--
+ALTER TABLE `userlogin`
+ ADD UNIQUE KEY `userId` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
