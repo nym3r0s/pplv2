@@ -23,7 +23,7 @@ if(!isset($user))
 
     <link rel="stylesheet" href="./transferstyle.css">
     <script src="./transferscript.js"></script>
-    <script src="./datatable.js"></script>
+    <script src="./../includes/datatable.js"></script>
     </head>
 
   <body>

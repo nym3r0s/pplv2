@@ -96,7 +96,7 @@ function bindClickEvents()
             presentPlayers.splice(index,1);
 
             localStorage.removeItem('playerList');
-            localStorage.setItem('playerList',presentPlayers.join(','));
+            if(presentPlayers.length>0) localStorage.setItem('playerList',presentPlayers.join(','));
             refreshElements();
             $('#pleaseWait').hide();
         });

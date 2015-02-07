@@ -74,14 +74,7 @@ if(isset($userResult))
       </div>
     </nav>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="footer text-center">
-            <p>Developed by Delta Force.</p>
-        </div>
-    </nav>
-    </body>
-</html>
-    </nav>
+
 
 
 <!--      This are The main divs - Either if they are choosing or if they have already chosen -->
@@ -144,21 +137,7 @@ else
 {
 
     echo <<< EOT
-
-<!--
-        <div id="confirmedP11List">
-        <center><h3>Playing 11</h3></center>
-        <div class="table-responsive">
-            <table id="sort" class="table">
-                <thead>
-                  <tr id="p11Heading">
-                    <th style="text-align:left;">Name</th>
-                    <th style="text-align:left;">Country</th>
-                    <th style="text-align:left;">Role</th>
-                  </tr>
-                </thead>
-                <tbody id="userSquadTable">
--->
+        <div id="animContainer">
         <div id="confirmed11" class="imageflow">
 EOT;
 
@@ -204,9 +183,10 @@ EOD;
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="footer text-center">
-            <p>Developed by Delta Force.</p>
+        <div class="footer">
+            <p> Developed by Delta Force.</p>
         </div>
     </nav>
+
     </body>
 </html>

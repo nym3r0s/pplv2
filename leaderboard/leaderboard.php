@@ -33,17 +33,12 @@ if(isset($userResult))
     <link href="../includes/css/common.css" rel="stylesheet">
 
     <!-- CSS styles  -->
-    <link href="./matchdayStyle.css" rel="stylesheet">
+    <link href="./leaderboardStyle.css" rel="stylesheet">
 
     <!-- Adding the Appropriate JS file  -->
-    <script src="./ratioCheck.js"></script>
-<?php
-
-    if($userP11 == 0)
-        echo('<script src="./matchdayNotConfirmed.js"></script>');
-    else
-        echo('<script src="./matchdayConfirmed.js"></script>');
-?>
+    <script src="./../includes/datatable.js"></script>
+    <script src="./leaderboard.js"></script>
+<? echo("<script> var yourId = $user; </script>"); ?>
   </head>
 
   <body>
@@ -69,22 +64,23 @@ if(isset($userResult))
       </div>
     </nav>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="footer text-center">
-            <p>Developed by Delta Force.</p>
-        </div>
-    </nav>
-    </body>
-</html>
-    </nav>
+        <div id="theHeading"><h4><b>Leaderboard</b></h4></div>
 
-
-
-    <!-- Modal here -->
-    <div id="playerInfo">
-        <div id="modalclose"><button class="close">X</button></div>
-        <div id="playerData"></div>
+    <div class="table-responsive">
+        <table id="sort" class="table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Pragyan ID</th>
+                <th>Pragyan ID</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="rankingList">
+            </tbody>
+        </table>
     </div>
+
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="footer text-center">
