@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 3.4.11.1deb2+deb7u1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 06, 2015 at 02:37 PM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Host: localhost
+-- Generation Time: Feb 07, 2015 at 10:45 AM
+-- Server version: 5.5.41
+-- PHP Version: 5.4.36-0+deb7u3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,19 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminlogin`
+-- Table structure for table `adminLogin`
 --
 
-CREATE TABLE IF NOT EXISTS `adminlogin` (
+CREATE TABLE IF NOT EXISTS `adminLogin` (
   `userId` bigint(20) NOT NULL,
   `password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `adminlogin`
+-- Dumping data for table `adminLogin`
 --
 
-INSERT INTO `adminlogin` (`userId`, `password`) VALUES
+INSERT INTO `adminLogin` (`userId`, `password`) VALUES
 (1, 'd033e22ae348aeb5660fc2140aec35850c4da997');
 
 -- --------------------------------------------------------
@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `batting` (
   `average` float NOT NULL,
   `strikeRate` float NOT NULL,
   `hundred` bigint(20) NOT NULL,
-  `fifty` bigint(20) NOT NULL
+  `fifty` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -288,7 +289,8 @@ CREATE TABLE IF NOT EXISTS `bowling` (
   `average` float NOT NULL,
   `economy` float NOT NULL,
   `four` bigint(20) NOT NULL,
-  `five` bigint(20) NOT NULL
+  `five` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -515,10 +517,10 @@ INSERT INTO `bowling` (`playerId`, `wickets`, `best`, `average`, `economy`, `fou
 -- --------------------------------------------------------
 
 --
--- Table structure for table `confirmedp11`
+-- Table structure for table `confirmedP11`
 --
 
-CREATE TABLE IF NOT EXISTS `confirmedp11` (
+CREATE TABLE IF NOT EXISTS `confirmedP11` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -526,10 +528,10 @@ CREATE TABLE IF NOT EXISTS `confirmedp11` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `confirmedsquad`
+-- Table structure for table `confirmedSquad`
 --
 
-CREATE TABLE IF NOT EXISTS `confirmedsquad` (
+CREATE TABLE IF NOT EXISTS `confirmedSquad` (
   `teamId` bigint(20) NOT NULL,
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
@@ -546,7 +548,8 @@ CREATE TABLE IF NOT EXISTS `fielding` (
   `playerId` bigint(20) NOT NULL,
   `innings` bigint(20) NOT NULL,
   `catches` bigint(20) NOT NULL,
-  `stumpings` bigint(20) NOT NULL
+  `stumpings` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -773,10 +776,10 @@ INSERT INTO `fielding` (`playerId`, `innings`, `catches`, `stumpings`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matchdetailsbatting`
+-- Table structure for table `matchDetailsBatting`
 --
 
-CREATE TABLE IF NOT EXISTS `matchdetailsbatting` (
+CREATE TABLE IF NOT EXISTS `matchDetailsBatting` (
   `playerName` varchar(40) NOT NULL,
   `wicketInfo` varchar(40) NOT NULL,
   `runs` int(11) NOT NULL,
@@ -786,10 +789,10 @@ CREATE TABLE IF NOT EXISTS `matchdetailsbatting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `matchdetailsbatting`
+-- Dumping data for table `matchDetailsBatting`
 --
 
-INSERT INTO `matchdetailsbatting` (`playerName`, `wicketInfo`, `runs`, `four`, `six`, `strikeRate`) VALUES
+INSERT INTO `matchDetailsBatting` (`playerName`, `wicketInfo`, `runs`, `four`, `six`, `strikeRate`) VALUES
 ('MJ Guptill', 'Bilawal Bhatti', 76, 8, 1, 86.36),
 ('BB McCullum', '', 31, 5, 1, 114.81),
 ('KS Williamson', 'Haris Sohail', 112, 14, 1, 127.27),
@@ -812,10 +815,10 @@ INSERT INTO `matchdetailsbatting` (`playerName`, `wicketInfo`, `runs`, `four`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matchdetailsbowling`
+-- Table structure for table `matchDetailsBowling`
 --
 
-CREATE TABLE IF NOT EXISTS `matchdetailsbowling` (
+CREATE TABLE IF NOT EXISTS `matchDetailsBowling` (
   `playerName` varchar(40) NOT NULL,
   `overs` int(11) NOT NULL,
   `maidens` int(11) NOT NULL,
@@ -824,10 +827,10 @@ CREATE TABLE IF NOT EXISTS `matchdetailsbowling` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `matchdetailsbowling`
+-- Dumping data for table `matchDetailsBowling`
 --
 
-INSERT INTO `matchdetailsbowling` (`playerName`, `overs`, `maidens`, `wickets`, `economy`) VALUES
+INSERT INTO `matchDetailsBowling` (`playerName`, `overs`, `maidens`, `wickets`, `economy`) VALUES
 ('Mohammad Irfan', 10, 0, 2, 5.2),
 ('Bilawal Bhatti', 10, 0, 0, 9.3),
 ('Shahid Afridi', 10, 0, 1, 5.7),
@@ -845,10 +848,10 @@ INSERT INTO `matchdetailsbowling` (`playerName`, `overs`, `maidens`, `wickets`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playerdata`
+-- Table structure for table `playerData`
 --
 
-CREATE TABLE IF NOT EXISTS `playerdata` (
+CREATE TABLE IF NOT EXISTS `playerData` (
   `playerId` bigint(20) NOT NULL,
   `form` bigint(20) NOT NULL,
   `confidence` bigint(20) NOT NULL,
@@ -856,10 +859,10 @@ CREATE TABLE IF NOT EXISTS `playerdata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `playerdata`
+-- Dumping data for table `playerData`
 --
 
-INSERT INTO `playerdata` (`playerId`, `form`, `confidence`, `cost`) VALUES
+INSERT INTO `playerData` (`playerId`, `form`, `confidence`, `cost`) VALUES
 (1000, 1000, 1000, 1000),
 (1001, 1000, 1000, 1050),
 (1002, 1000, 1000, 900),
@@ -1091,7 +1094,8 @@ CREATE TABLE IF NOT EXISTS `players` (
   `matches` bigint(20) NOT NULL,
   `captain` varchar(20) NOT NULL,
   `secondName` varchar(40) NOT NULL,
-  `roundOne` int(11) NOT NULL
+  `roundOne` int(11) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1374,84 +1378,46 @@ CREATE TABLE IF NOT EXISTS `pplround_3` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userdata`
+-- Table structure for table `userData`
 --
 
-CREATE TABLE IF NOT EXISTS `userdata` (
+CREATE TABLE IF NOT EXISTS `userData` (
   `teamId` bigint(20) NOT NULL,
   `userId1` bigint(20) NOT NULL,
   `userId2` bigint(20) NOT NULL,
   `score` bigint(20) NOT NULL,
   `actualBalance` bigint(20) NOT NULL,
   `p11` int(11) NOT NULL,
-  `transferNum` int(11) NOT NULL
+  `transferNum` int(11) NOT NULL,
+  UNIQUE KEY `teamId` (`teamId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `userdata`
+-- Dumping data for table `userData`
 --
 
-INSERT INTO `userdata` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`, `p11`, `transferNum`) VALUES
+INSERT INTO `userData` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`, `p11`, `transferNum`) VALUES
 (1, 1, 2, 0, 20000, 0, 84);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userlogin`
+-- Table structure for table `userLogin`
 --
 
-CREATE TABLE IF NOT EXISTS `userlogin` (
+CREATE TABLE IF NOT EXISTS `userLogin` (
   `userId` bigint(20) NOT NULL,
-  `password` varchar(40) NOT NULL
+  `password` varchar(40) NOT NULL,
+  UNIQUE KEY `userId` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `userlogin`
+-- Dumping data for table `userLogin`
 --
 
-INSERT INTO `userlogin` (`userId`, `password`) VALUES
+INSERT INTO `userLogin` (`userId`, `password`) VALUES
 (1, '356a192b7913b04c54574d18c28d46e6395428ab'),
 (2, '356a192b7913b04c54574d18c28d46e6395428ab');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `batting`
---
-ALTER TABLE `batting`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `bowling`
---
-ALTER TABLE `bowling`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `fielding`
---
-ALTER TABLE `fielding`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `players`
---
-ALTER TABLE `players`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `userdata`
---
-ALTER TABLE `userdata`
- ADD UNIQUE KEY `teamId` (`teamId`);
-
---
--- Indexes for table `userlogin`
---
-ALTER TABLE `userlogin`
- ADD UNIQUE KEY `userId` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -6,7 +6,7 @@ import MySQLdb
 db = MySQLdb.connect(
 host = "localhost",
 user = "root",
-passwd = "Mysql131",
+passwd = "stein238",
 db = "ppl"
 )
 cur = db.cursor()
@@ -23,7 +23,7 @@ def find_between(s, first, last ):
         return s[start:end]
     except ValueError:
         return ""
-# The tag details from batting table. 
+# The tag details from batting table.
 
         #<th scope="col" class="th-r" title="runs scored">R</th>
         #<th scope="col" class="th-m" title="minutes batted">M</th>
@@ -45,33 +45,33 @@ def find_between(s, first, last ):
 
 def parse():
     soup = BeautifulSoup(open("test.html"))
-    #print soup.prettify()   
+    #print soup.prettify()
 
     # Finding the Batting Tables
-    
+
     battingTables = soup.find_all("table",class_="batting-table")
-    
+
     #print battingTables
     print "The Batting Details"
-    for table in battingTables:    
+    for table in battingTables:
         tableRows = table.select("tr")
         for info in tableRows:
             if(not("class" in info.attrs.keys())):
                 #print info
-                #print info.select('td')[1].select('a')[0].contents[0]    
-                playerName = info.select('td')[1].select('a')[0].contents[0]    
+                #print info.select('td')[1].select('a')[0].contents[0]
+                playerName = info.select('td')[1].select('a')[0].contents[0]
                 #print info.select('td')[2].contents[0].split(" ")[-3]
                 playerWicketBowler= info.select('td')[2].contents[0].replace(u'\u2020',' ').encode('utf-8')
-		
-		playerWicketBowler =  find_between( playerWicketBowler, "c ", " b" )
-		#print info.select('td')[3].contents[0] 
-                playerRuns =  info.select('td')[3].contents[0] 
-                #print info.select('td')[6].contents[0] 
-                playerFour = info.select('td')[6].contents[0] 
-                #print info.select('td')[7].contents[0] 
-                playerSix =  info.select('td')[7].contents[0] 
-                #print info.select('td')[8].contents[0] 
-                playerStrikeRate = info.select('td')[8].contents[0] 
+
+        playerWicketBowler =  find_between( playerWicketBowler, "c ", " b" )
+        #print info.select('td')[3].contents[0]
+                playerRuns =  info.select('td')[3].contents[0]
+                #print info.select('td')[6].contents[0]
+                playerFour = info.select('td')[6].contents[0]
+                #print info.select('td')[7].contents[0]
+                playerSix =  info.select('td')[7].contents[0]
+                #print info.select('td')[8].contents[0]
+                playerStrikeRate = info.select('td')[8].contents[0]
                 a = []
                 a.append(playerName)
                 a.append(playerWicketBowler)
@@ -80,22 +80,22 @@ def parse():
                 a.append(playerSix)
                 a.append(playerStrikeRate)
                 # Creating SQL Query
-                battingInsertQuery = "INSERT INTO matchdetailsbatting VALUES ('"+ "','".join(a) + "');"
-                print battingInsertQuery                
+                battingInsertQuery = "INSERT INTO matchDetailsBatting VALUES ('"+ "','".join(a) + "');"
+                print battingInsertQuery
                 cur.execute(battingInsertQuery)
                 db.commit()
-   
-   # Finding the Bowling Tables           
+
+   # Finding the Bowling Tables
     print "The Bowling Details"
     bowlingTables = soup.find_all("table",class_="bowling-table")
 
-    for table in bowlingTables:    
+    for table in bowlingTables:
         tableRows = table.select("tr")
         for info in tableRows:
             if(not("class" in info.attrs.keys())):
                 #print info
-                #print info.select('td')[1].select('a')[0].contents[0]    
-                playerName = info.select('td')[1].select('a')[0].contents[0]    
+                #print info.select('td')[1].select('a')[0].contents[0]
+                playerName = info.select('td')[1].select('a')[0].contents[0]
                 #print info.select('td')[2].contents[0]
                 playerOvers = info.select('td')[2].contents[0]
                 #print info.select('td')[3].contents[0]
@@ -110,7 +110,7 @@ def parse():
                 a.append(playerMaidens)
                 a.append(playerWickets)
                 a.append(playerEcon)
-                bowlingInsertQuery= "INSERT INTO matchdetailsbowling VALUES ('"+ "','".join(a) + "');"
+                bowlingInsertQuery= "INSERT INTO matchDetailsBowling VALUES ('"+ "','".join(a) + "');"
                 print bowlingInsertQuery
                 cur.execute(bowlingInsertQuery)
                 db.commit()
@@ -118,6 +118,6 @@ def parse():
 if(__name__ == "__main__"):
     #getPage("http://www.espncricinfo.com/carlton-mid-triangular-series-2015/engine/match/754761.html")
     getPage("http://www.espncricinfo.com/new-zealand-v-pakistan-2014-15/engine/match/749797.html")
-    cur.execute('TRUNCATE TABLE matchdetailsbatting')
-    cur.execute('TRUNCATE TABLE matchdetailsbowling')
+    cur.execute('TRUNCATE TABLE matchDetailsBatting')
+    cur.execute('TRUNCATE TABLE matchDetailsBowling')
     parse()

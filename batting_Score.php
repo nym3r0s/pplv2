@@ -7,30 +7,34 @@ $dbname = 'ppl';
 mysql_connect($dbhost,$dbuser,$dbpass) or die('MySQL Connection Failed');
 mysql_select_db($dbname);
 
-$query = "SELECT * FROM matchDetailsBowling WHERE 1";
+$query = "SELECT * FROM matchDetailsBatting WHERE 1";
 $query_res = mysql_query($query);
 
 for($i = 0,$score = 0; $i < mysql_num_rows($query_res); $i++, $score=0){
 
-        $wickets = mysql_result($query_res,$i,"wickets");
-        $score = $wickets * 20;
+        $run = mysql_result($query_res,$i,"runs");
+        $score = $run;
 
-        $score = $score + intval($wickets)*15 - 15;             //Bonus for milestones
+        $score = $score + intval($score/25)*15;                 //Bonus for milestones
 
+        $four = mysql_result($query_res,$i,"four");                //Bonus for fours
+        $score = $score + $four;
 
-        $maidens = mysql_result($query_res,$i,"maidens");                //Bonus for maidens
-        $score = $score + $maidens;
+        $six = mysql_result($query_res,$i,"six");                //Bonus for sixers
+        $score = $score + $six;
 
-        $economy = mysql_result($query_res,$i,"economy");    //Bonus for strike rate
-        if($economy < 3)
-            $score= $score + 40;
-        else if($economy < 4.5)
-            $score= $score + 30;
-        else if($economy < 6)
-            $score= $score + 20;
-        else if($economy < 8);
-        else
-            $score = $score - 10;
+        $runRate = mysql_result($query_res,$i,"strikeRate");    //Bonus for strike rate
+        if($runRate < 70 && $run >= 20)
+            $score= $score - 10;
+        else if($runRate < 90 && $run >= 20);
+        else if($runRate < 120 && $run >= 20)
+            $score = $score + 10;
+        else if($runRate < 150 && $run >= 20)
+            $score = $score + 20;
+        else if($runRate <= 180 && $run >= 20)
+            $score = $score + 30;
+        else if($runRate > 180 && $run >=20)
+            $score = $score + 50;
 
         $name = mysql_result($query_res,$i,"playerName");
 
@@ -64,9 +68,15 @@ for($i = 0,$score = 0; $i < mysql_num_rows($query_res); $i++, $score=0){
         }
 
         echo $playerId." ";
-        $init_score = mysql_result(mysql_query("SELECT `roundOne` FROM `players` WHERE playerId = '".$playerId."'"),0,"roundOne");
 
-        $score = $score + $init_score;
+        $type_query = mysql_query("SELECT `type` FROM `players` WHERE playerId = '".$playerId."'");
+
+        $duck = mysql_result($query_res,$i,"wicketInfo");
+        if($run == 0 && $duck != "" && mysql_result($type_query,0,"type") != "Batsman")                            //Minus for ducks
+            $score = -5;
+        else if($run == 0 && $duck != "")
+            $score = -10;
+
         mysql_query("UPDATE `players` SET roundOne = '".$score."' WHERE playerId = '".$playerId."'");
         }
 ?>
