@@ -22,6 +22,7 @@ if(isset($userResult))
 }
 
 $squadQuery = "SELECT * FROM confirmedSquad WHERE teamId=$userTeamId";
+//echo($squadQuery);
 $squadResult = mysql_query($squadQuery);
 
 $jsonarray = [];
@@ -58,6 +59,7 @@ for($i=0;$i<mysql_num_rows($squadResult);$i++)
     $obj['playerCaptain'] = $playerCaptain;
     $obj['playerClass'] = $pclass;
     $obj['playerCost'] = $pcost;
+//    var_dump($obj);
     $jsonarray[] = $obj;
 }
 

@@ -14,7 +14,7 @@ if(!isset($user))
     <script src="./../includes/jquery-2.1.1.min.js"></script>
   </head>
   <body>
-	<nav class="header navbar navbar-default navbar-fixed-top">
+    <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href=".">PPL '15</a>
@@ -24,19 +24,19 @@ if(!isset($user))
             <li><a href="../transfers/transfers.php">Transfers</a></li>
             <li><a href="../matchday/matchday.php">Matchday</a></li>
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
-			<li><a href="../wclive/wclive.php">WCLive</a></li>
+            <li><a href="../wclive/wclive.php">WCLive</a></li>
             <li><a href="../analysis/analysis.php">Analysis</a></li>
             </ul>
-					
+
             <div class="navbar-header navbar-right">
                 <a href="./../logout.php">
                     <div class="navbar-text navbar-right">Logout</div>
                 </a>
             </div>
-		</div>
+        </div>
       </div>
-	</nav>
-	
+    </nav>
+
       <?php
 
         $query = "SELECT * FROM userData WHERE userId1=$user or userId2=$user ;";
@@ -46,7 +46,7 @@ if(!isset($user))
         {
             $teamid = mysql_result($result,0,"teamId");
             $score  = mysql_result($result,0,"score");
-            $money   = mysql_result($result,0,"money");
+            $money   = mysql_result($result,0,"actualBalance");
         }
         else
         {
@@ -54,19 +54,19 @@ if(!isset($user))
         }
         ?>
 
-	<center>
-		<h2>Welcome Back</h2>
-		<h3>Team ID: <?php echo($teamid); ?></h3>
-		<h3>Player ID: <?php echo($user); ?></h3>
-		<h3>Money : <?php echo($money); ?></h3>
-		<h4>Score: <? echo($score); ?></h4>
-	</center>
+    <center>
+        <h2>Welcome Back</h2>
+        <h3>Team ID: <?php echo($teamid); ?></h3>
+        <h3>Player ID: <?php echo($user); ?></h3>
+        <h3>Money : <?php echo($money); ?></h3>
+        <h4>Score: <? echo($score); ?></h4>
+    </center>
 
-  	<nav class=" footer navbar navbar-default navbar-fixed-bottom">
-		<div class="footer">
-			<p>Developed by Delta Force</p>
-		</div>
-	</nav>
+      <nav class=" footer navbar navbar-default navbar-fixed-bottom">
+        <div class="footer">
+            <p>Developed by Delta Force</p>
+        </div>
+    </nav>
 
   </body>
 </html>

@@ -42,7 +42,12 @@ if(isset($userResult))
     if($userP11 == 0)
         echo('<script src="./matchdayNotConfirmed.js"></script>');
     else
+    {
         echo('<script src="./matchdayConfirmed.js"></script>');
+        echo('<script src="./../includes/imgAnim/matchdayImage.js"></script>');
+        echo('<link rel="stylesheet" href="./../includes/imgAnim/imageflow.packed.css" type="text/css" />');
+//        echo('<style> body { background-color: black; !important}</style>');
+    }
 ?>
   </head>
 
@@ -139,6 +144,8 @@ else
 {
 
     echo <<< EOT
+
+<!--
         <div id="confirmedP11List">
         <center><h3>Playing 11</h3></center>
         <div class="table-responsive">
@@ -151,7 +158,8 @@ else
                   </tr>
                 </thead>
                 <tbody id="userSquadTable">
-
+-->
+        <div id="confirmed11" class="imageflow">
 EOT;
 
     $confirmedListQuery = "SELECT * FROM confirmedP11 WHERE teamId=$userTeamId";
@@ -169,15 +177,16 @@ EOT;
             $playerCountry = mysql_result($playerResult,0,"country");
             $playerType    = mysql_result($playerResult,0,"type");
             $playerCaptain = mysql_result($playerResult,0,"captain");
-
-        echo("<tr><td>$playerName</td><td>$playerCountry</td><td>$playerType</td></tr>");
+            $photoUrl      = mysql_result($playerResult,0,"photoUrl");
+//        echo("<tr><td>$playerName</td><td>$playerCountry</td><td>$playerType</td></tr>");
+          echo('<img src="'.$photoUrl.'" width="150" height="150" class="imgAnimPic" alt="'.$playerName."-".$playerCountry.'-'.$playerType.'">');
     }
 
 
     echo <<< EOD
 
-            </tbody>
-            </table>
+    <!--        </tbody> -->
+    <!--        </table> -->
             </div>
         </div>
 

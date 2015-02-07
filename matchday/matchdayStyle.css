@@ -201,3 +201,11 @@
     vertical-align: middle;
     font-size: 20px;
 }
+
+.imgAnimPic
+{
+    border: solid !important;
+    border-width: thin !important;
+    border-color: #e7e7e7 !important;
+    border-radius: 5px;
+}
