@@ -1,0 +1,18 @@
+#instructions
+{
+    position: absolute;
+    left:5%;
+    height:80%;
+    width:90%;
+    top:10%;
+    overflow: auto;
+    overflow: -moz-scrollbars-none !important;
+}
+#instructions::-webkit-scrollbar {
+ display: none;
+}
+#ratioTable
+{
+    width:60%;
+    text-align: center;
+}

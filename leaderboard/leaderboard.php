@@ -38,7 +38,7 @@ if(isset($userResult))
     <!-- Adding the Appropriate JS file  -->
     <script src="./../includes/datatable.js"></script>
     <script src="./leaderboard.js"></script>
-<? echo("<script> var yourId = $user; </script>"); ?>
+    <script> var yourId = <? echo $user; ?>;</script>
   </head>
 
   <body>

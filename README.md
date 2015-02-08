@@ -6,3 +6,8 @@
 * Analysis and WCLive are the Major TODOs
 * Admin Panel to be added.
 * Tables and Variables to be named in Camel-Case whenever Possible.
+
+#Contributors
+
+* [baxiz](https://github.com/baxiz)
+* [GokulSrinivas](https://github.com/GokulSrinivas)
