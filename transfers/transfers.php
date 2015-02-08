@@ -30,7 +30,7 @@ if(!isset($user))
     <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="">PPL '15</a>
+          <a class="navbar-brand" href="../home/home.php">PPL '15</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -39,6 +39,7 @@ if(!isset($user))
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
             <li><a href="../analysis/analysis.php">Analysis</a></li>
+            <li><a href="../instructions/instructions.php">Instructions</a></li>
             </ul>
             <div class="navbar-header navbar-right">
                 <a href="./../logout.php">

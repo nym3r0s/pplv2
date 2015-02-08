@@ -55,7 +55,7 @@ if(isset($userResult))
     <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="">PPL '15</a>
+          <a class="navbar-brand" href="../home/home.php">PPL '15</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -64,6 +64,7 @@ if(isset($userResult))
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
             <li><a href="../analysis/analysis.php">Analysis</a></li>
+            <li><a href="../instructions/instructions.php">Instructions</a></li>
             </ul>
             <div class="navbar-header navbar-right">
                 <a href="./../logout.php">
@@ -158,7 +159,7 @@ EOT;
             $playerCaptain = mysql_result($playerResult,0,"captain");
             $photoUrl      = mysql_result($playerResult,0,"photoUrl");
 //        echo("<tr><td>$playerName</td><td>$playerCountry</td><td>$playerType</td></tr>");
-          echo('<img src="'.$photoUrl.'" width="150" height="150" class="imgAnimPic" alt="'.$playerName."-".$playerCountry.'-'.$playerType.'">');
+          echo('<img src="'.$photoUrl.'" width="250" height="250" class="imgAnimPic" alt="'.$playerName."-".$playerCountry.'-'.$playerType.'">');
     }
 
 

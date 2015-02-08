@@ -26,7 +26,7 @@ if(!isset($user))
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
             <li><a href="../analysis/analysis.php">Analysis</a></li>
-            <li><a href="../instructions/instructions.php">Instructions</a></li>
+            <li class="active"><a href="../instructions/instructions.php">Instructions</a></li>
             </ul>
 
             <div class="navbar-header navbar-right">
