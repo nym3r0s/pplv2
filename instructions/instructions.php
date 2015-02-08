@@ -2,42 +2,57 @@
 session_start();
 require './../includes/dbconfig.php';
 $user = $_SESSION['user'];
-if(!isset($user))
-{
-    header('Location: ./../login.php');
-}
 ?>
 <html>
   <head>
+    <script src="./../includes/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="./../includes/css/bootstrap.css">
     <link rel="stylesheet" href="./../includes/css/common.css">
-    <script src="./../includes/jquery-2.1.1.min.js"></script>
+	<script src="../includes/bootstrap.js"></script>
+	
     <link rel="stylesheet" href="./instructions.css">
   </head>
   <body>
-    <nav class="header navbar navbar-default navbar-fixed-top">
+	<nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="../home/home.php">PPL '15</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../transfers/transfers.php">Transfers</a></li>
+            <?php
+			if(isset($user)){?>
+			<li><a href="../transfers/transfers.php">Transfers</a></li>
             <li><a href="../matchday/matchday.php">Matchday</a></li>
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
-            <li><a href="../analysis/analysis.php">Analysis</a></li>
             <li class="active"><a href="../instructions/instructions.php">Instructions</a></li>
-            </ul>
-
+            <?php }else{ ?>
+			<li><a href="../wclive/wclive.php">WCLive</a></li>
+			<li class="active"><a href="../instructions/instructions.php">Instructions</a></li>
+			<?php } ?>
+			</ul>
+			<?php if(isset($user)){ ?>
             <div class="navbar-header navbar-right">
-                <a href="./../logout.php">
-                    <div class="navbar-text navbar-right">Logout</div>
-                </a>
+                <div class="dropdown" style="margin-top:10%">
+				<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+					<b>PID :</b> <?php echo $user ?>
+				<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
+					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+					<li class="drop" role="presentation" class="divider"></li>
+					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
+				</ul>
+				</div>
             </div>
-        </div>
+			<?php } ?>
+      </div>
       </div>
     </nav>
+
+<div id="instruction-container">
     <div id="instructions">
 <!-- The About part of the event.    \-->
     <h4><b>About</b></h4>
@@ -136,18 +151,14 @@ if(!isset($user))
             <b>When will the matches be simulated?</b><br>
             <p>The matches will be simulated at 23:59 HRS (IST) of every match day and the scoreboard will be updated immediately.</p>
         </li>
-<!--
-        <li>
-            <b></b><br>
-            <p></p>
-        </li>
--->
 
     </ul>
     </div>
+	</div>
+	
     <nav class=" footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
-            <p>Developed by Delta Force</p>
+            <p>Developed by <b>Delta Force.</b></p>
         </div>
     </nav>
 

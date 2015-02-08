@@ -22,7 +22,7 @@ body{
 }
 
 .btn{
-	border:none;
+	border: none;
 }
 .btn:hover{
 	transition:background 0.5s;
@@ -30,4 +30,14 @@ body{
 
 th{
 	text-align:center;
+}
+
+.dropdown-menu{
+	background-color:#f7f7f7;
+}
+.drop{
+	opacity:0.5;
+}
+.drop:hover{
+	opacity:1;
 }

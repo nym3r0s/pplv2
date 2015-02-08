@@ -19,9 +19,9 @@ session_destroy();
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
-			<li><a href="../wclive/wclive.php">WCLive</a></li>
-            </ul>
+			<li><a href="./wclive/wclive.php">WCLive</a></li>
+            <li><a href="./instructions/instructions.php">Instructions</a></li>
+			</ul>
 		</div>
       </div>
 	</nav>
@@ -52,7 +52,7 @@ session_destroy();
 	
 	<nav class=" footer navbar navbar-default navbar-fixed-bottom">
 		<div class="footer">
-			<p>Developed by Delta Force</p>
+			<p>Developed by <b>Delta Force.</b></p>
 		</div>
 	</nav>
 </body>

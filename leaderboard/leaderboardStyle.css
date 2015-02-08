@@ -7,13 +7,13 @@ div.table-responsive
     bottom:0;
     margin:auto;
 
-    width:80%;
+    width:60%;
     height:60%;
     text-align: center;
 }
 tr.you
 {
-    background-color: #9E9E9E;
+    background-color: #d8d8d8;
 }
 #theHeading
 {

@@ -38,13 +38,21 @@ if(!isset($user))
             <li><a href="../matchday/matchday.php">Matchday</a></li>
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
-            <li><a href="../analysis/analysis.php">Analysis</a></li>
             <li><a href="../instructions/instructions.php">Instructions</a></li>
             </ul>
             <div class="navbar-header navbar-right">
-                <a href="./../logout.php">
-                    <div class="navbar-text navbar-right">Logout</div>
-                </a>
+                <div class="dropdown" style="margin-top:10%">
+				<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+					<b>PID :</b> <?php echo $user ?>
+				<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
+					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+					<li class="drop" role="presentation" class="divider"></li>
+					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
+				</ul>
+				</div>
             </div>
       </div>
       </div>
@@ -126,7 +134,7 @@ if(!isset($user))
 
     <nav class=" footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
-            <p>Developed by Delta Force.</p>
+            <p>Developed by <b>Delta Force.</b></p>
         </div>
     </nav>
     </body>
