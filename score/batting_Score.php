@@ -1,8 +1,6 @@
 <?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'ppl';
+require './../includes/dbconfig.php';
+
 
 mysql_connect($dbhost,$dbuser,$dbpass) or die('MySQL Connection Failed');
 mysql_select_db($dbname);

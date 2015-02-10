@@ -7,6 +7,7 @@ function ratioCheck()
     if($('.userplayer').length!=11)
     {
         //alert('not 11 players');
+        $('#ratioCheckDiv').html("Incorrect Ratio - Less than 11 players");
         return returnVal;
     }
 
@@ -41,7 +42,7 @@ function ratioCheck()
     wkeeper = 0;
     captain = 0;
 
-     console.log("playerJq "+playerJq.length);
+//     console.log("playerJq "+playerJq.length);
     for(i=0;i<playerJq.length;i++)
     {
 //        alert(getPlayer($(playerJq[i]).attr('id')));
@@ -65,16 +66,17 @@ function ratioCheck()
     $.when(incrementVals()).then(function(){
 //            alert('entered checking function');
             var checkString = batsman.toString() + bowler.toString() + rounder.toString() + wkeeper.toString();
-
             if(captain >= 1)
             {
                 if((checkString=='5411')||(checkString=='5321')||(checkString=='4331'))
                 {
                     returnVal = true;
+                    $('#ratioCheckDiv').html("Correct Ratio "+checkString);
                     return true;
                 }
                 else
                 {
+                    $('#ratioCheckDiv').html("Incorrect Ratio "+checkString);
                     alert('Your Ratio is not correct '+checkString);
                     returnVal = false;
                     return false;

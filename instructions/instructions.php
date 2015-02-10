@@ -8,12 +8,12 @@ $user = $_SESSION['user'];
     <script src="./../includes/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="./../includes/css/bootstrap.css">
     <link rel="stylesheet" href="./../includes/css/common.css">
-	<script src="../includes/bootstrap.js"></script>
-	
+    <script src="../includes/bootstrap.js"></script>
+
     <link rel="stylesheet" href="./instructions.css">
   </head>
   <body>
-	<nav class="header navbar navbar-default navbar-fixed-top">
+    <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="../home/home.php">PPL '15</a>
@@ -21,33 +21,33 @@ $user = $_SESSION['user'];
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <?php
-			if(isset($user)){?>
-			<li><a href="../transfers/transfers.php">Transfers</a></li>
+            if(isset($user)){?>
+            <li><a href="../transfers/transfers.php">Transfers</a></li>
             <li><a href="../matchday/matchday.php">Matchday</a></li>
             <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
             <li class="active"><a href="../instructions/instructions.php">Instructions</a></li>
             <?php }else{ ?>
-			<li><a href="../wclive/wclive.php">WCLive</a></li>
-			<li class="active"><a href="../instructions/instructions.php">Instructions</a></li>
-			<?php } ?>
-			</ul>
-			<?php if(isset($user)){ ?>
+            <li><a href="../wclive/wclive.php">WCLive</a></li>
+            <li class="active"><a href="../instructions/instructions.php">Instructions</a></li>
+            <?php } ?>
+            </ul>
+            <?php if(isset($user)){ ?>
             <div class="navbar-header navbar-right">
                 <div class="dropdown" style="margin-top:10%">
-				<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					<b>PID :</b> <?php echo $user ?>
-				<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
-					<li class="drop" role="presentation" class="divider"></li>
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
-				</ul>
-				</div>
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <b>PID :</b> <?php echo $user ?>
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+                    <li class="drop" role="presentation" class="divider"></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
+                </ul>
+                </div>
             </div>
-			<?php } ?>
+            <?php } ?>
       </div>
       </div>
     </nav>
@@ -71,7 +71,7 @@ $user = $_SESSION['user'];
         </ul>
     <hr>
 <!-- Judging Criteria-->
-    <h4><b>Judging Criteria</b></h4>
+    <h4><b>Scoring</b></h4>
         <ul>
             <li>Participant start with zero points</li>
             <li>For every match, all the participant's players are awarded points based on their performances in the world cup.</li>
@@ -154,8 +154,8 @@ $user = $_SESSION['user'];
 
     </ul>
     </div>
-	</div>
-	
+    </div>
+
     <nav class=" footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
             <p>Developed by <b>Delta Force.</b></p>

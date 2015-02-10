@@ -1,0 +1,42 @@
+#matchBetween
+{
+    position:absolute;
+    top:12%;
+
+    left:0;
+    right:0;
+    margin:auto;
+}
+#matchWinner
+{
+    position:absolute;
+    top:18%;
+
+    left:0;
+    right:0;
+    margin:auto;
+}
+#battingTable
+{
+    position:absolute;
+    top:25%;
+
+    font-size: 14px;
+    left:5%;
+    width:90%;
+}
+#bowlingTable
+{
+    position:absolute;
+    top:25%;
+
+    font-size: 14px;
+    left:5%;
+    width:90%;
+}
+#choices
+{
+    position:absolute;
+    top:15%;
+    right:15%;
+}

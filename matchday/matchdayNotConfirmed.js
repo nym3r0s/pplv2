@@ -152,16 +152,16 @@ function updateProgressBar()
         $('#progbar').addClass('progress-bar-info');
     else if (value==100)
         $('#progbar').addClass('progress-bar-success');
-
-    if(number==11)
-    {
-        $('#confirmSquad').removeClass('disabled').addClass('btn-success');
-    }
-    if(number < 11)
-    {
-        $('#confirmSquad').addClass('disabled');
-        $('#confirmSquad').removeClass('btn-success');
-    }
+//
+//    if(number==11)
+//    {
+//        $('#confirmSquad').removeClass('disabled').addClass('btn-success');
+//    }
+//    if(number < 11)
+//    {
+//        $('#confirmSquad').addClass('disabled');
+//        $('#confirmSquad').removeClass('btn-success');
+//    }
 
 }
 
@@ -214,16 +214,21 @@ function updateRatioDiv()
     if(ratioCheck())
     {
         $('#ratioCheckDiv').removeClass('btn-danger').addClass('btn-success');
+        $('#confirmSquad').removeClass('disabled').addClass('btn-success');
+//        $('#ratioCheckDiv').html("Correct Ratio");
     }
     else
     {
         $('#ratioCheckDiv').removeClass('btn-success').addClass('btn-danger');
+        $('#confirmSquad').removeClass('btn-success').addClass('disabled');
     }
 }
 
 var click;
 $(document).ready(function(){
     updateRatioDiv();
+    $('#ratioCheckDiv').html("Incorrect Ratio");
+
 //    Clicking The other buttons.
     click = 0;
     AJAXcalls(function(){
@@ -240,7 +245,12 @@ $(document).ready(function(){
     $('#confirmSquad').click(function(){
         if(ratioCheck())
         {
-        alert('condition true. Entering confirm11');
+        var check = confirm("Do you want to confirm your playing 11? \n This cannot be reversed.");
+        if(!check)
+        {
+            return;
+        }
+//        alert('condition true. Entering confirm11');
         $.when(confirm11()).then(function(){
             location.reload();
         });
@@ -248,7 +258,8 @@ $(document).ready(function(){
         }
         else
         {
-            alert("ratiocheck returns: "+ratioCheck());
+            ;
+//            alert("ratiocheck returns: "+ratioCheck());
         }
 //        AJAXcalls(function(){bindClickEvents();});
     });

@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 3.4.11.1deb2+deb7u1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 07, 2015 at 07:31 PM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Host: localhost
+-- Generation Time: Feb 10, 2015 at 05:59 PM
+-- Server version: 5.5.41
+-- PHP Version: 5.4.36-0+deb7u3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `batting` (
   `average` float NOT NULL,
   `strikeRate` float NOT NULL,
   `hundred` bigint(20) NOT NULL,
-  `fifty` bigint(20) NOT NULL
+  `fifty` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -288,7 +289,8 @@ CREATE TABLE IF NOT EXISTS `bowling` (
   `average` float NOT NULL,
   `economy` float NOT NULL,
   `four` bigint(20) NOT NULL,
-  `five` bigint(20) NOT NULL
+  `five` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -523,23 +525,6 @@ CREATE TABLE IF NOT EXISTS `confirmedP11` (
   `playerId` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `confirmedP11`
---
-
-INSERT INTO `confirmedP11` (`teamId`, `playerId`) VALUES
-(1, 1028),
-(1, 1044),
-(1, 1064),
-(1, 1065),
-(1, 1076),
-(1, 1106),
-(1, 1107),
-(1, 1113),
-(1, 1128),
-(1, 1141),
-(1, 1158);
-
 -- --------------------------------------------------------
 
 --
@@ -558,22 +543,94 @@ CREATE TABLE IF NOT EXISTS `confirmedSquad` (
 --
 
 INSERT INTO `confirmedSquad` (`teamId`, `playerId`, `form`, `confidence`) VALUES
-(1, 1028, 1000, 1000),
+(1, 1002, 1000, 1000),
+(1, 1003, 1000, 1000),
+(1, 1006, 1000, 1000),
+(1, 1015, 1000, 1000),
+(1, 1042, 1000, 1000),
 (1, 1044, 1000, 1000),
 (1, 1064, 1000, 1000),
-(1, 1065, 1000, 1000),
-(1, 1074, 1000, 1000),
-(1, 1075, 1000, 1000),
 (1, 1076, 1000, 1000),
 (1, 1106, 1000, 1000),
 (1, 1107, 1000, 1000),
 (1, 1113, 1000, 1000),
 (1, 1128, 1000, 1000),
 (1, 1141, 1000, 1000),
-(1, 1158, 1000, 1000),
-(1, 1161, 1000, 1000),
+(1, 1149, 1000, 1000),
 (1, 1172, 1000, 1000),
 (1, 1191, 1000, 1000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `displayBatting`
+--
+
+CREATE TABLE IF NOT EXISTS `displayBatting` (
+  `playerName` varchar(40) NOT NULL,
+  `wicketInfo` varchar(40) NOT NULL,
+  `runs` int(11) NOT NULL,
+  `four` int(11) NOT NULL,
+  `six` int(11) NOT NULL,
+  `strikeRate` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `displayBatting`
+--
+
+INSERT INTO `displayBatting` (`playerName`, `wicketInfo`, `runs`, `four`, `six`, `strikeRate`) VALUES
+('MJ Guptill', 'c Bilawal Bhatti b Ahmed Shehzad  ', 76, 8, 1, 86.36),
+('BB McCullum', ' b Shahid Afridi  ', 31, 5, 1, 114.81),
+('KS Williamson', 'c Haris Sohail b Mohammad Irfan  ', 112, 14, 1, 127.27),
+('LRPL Taylor', 'not out  ', 102, 13, 2, 145.71),
+('GD Elliott', 'c Haris Sohail b Ehsan Adil  ', 28, 0, 2, 133.33),
+('L Ronchi', 'c  Sarfraz Ahmed b Mohammad Irfan  ', 0, 0, 0, 0),
+('NL McCullum', 'not out  ', 9, 0, 1, 180),
+('Mohammad Hafeez', 'c Milne b Elliott  ', 86, 5, 3, 96.62),
+('Ahmed Shehzad', 'c Milne b NL McCullum  ', 55, 8, 0, 88.7),
+('Younis Khan', 'c Southee b NL McCullum  ', 11, 1, 0, 78.57),
+('Misbah-ul-Haq', 'c Taylor b Southee  ', 45, 2, 1, 88.23),
+('Shahid Afridi', 'c Elliott b Vettori  ', 11, 1, 0, 122.22),
+('Umar Akmal', ' b Milne  ', 4, 1, 0, 200),
+('Haris Sohail', 'c BB McCullum b Milne  ', 6, 1, 0, 100),
+('Sarfraz Ahmed', 'c BB McCullum b Elliott  ', 13, 1, 0, 108.33),
+('Bilawal Bhatti', 'c Guptill b Southee  ', 9, 1, 0, 81.81),
+('Ehsan Adil', 'c  Ronchi b Boult  ', 1, 0, 0, 50),
+('Mohammad Irfan', 'not out  ', 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `displayBowling`
+--
+
+CREATE TABLE IF NOT EXISTS `displayBowling` (
+  `playerName` varchar(40) NOT NULL,
+  `overs` int(11) NOT NULL,
+  `maidens` int(11) NOT NULL,
+  `wickets` int(11) NOT NULL,
+  `economy` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `displayBowling`
+--
+
+INSERT INTO `displayBowling` (`playerName`, `overs`, `maidens`, `wickets`, `economy`) VALUES
+('Mohammad Irfan', 10, 0, 2, 5.2),
+('Bilawal Bhatti', 10, 0, 0, 9.3),
+('Shahid Afridi', 10, 0, 1, 5.7),
+('Ehsan Adil', 8, 0, 1, 8.5),
+('Haris Sohail', 6, 0, 0, 7.83),
+('Younis Khan', 2, 0, 0, 8.5),
+('Ahmed Shehzad', 4, 0, 1, 7.25),
+('TG Southee', 8, 0, 2, 6.5),
+('TA Boult', 8, 0, 1, 4.28),
+('DL Vettori', 10, 0, 1, 4.1),
+('AF Milne', 8, 0, 2, 6.5),
+('NL McCullum', 5, 0, 2, 6.6),
+('GD Elliott', 4, 0, 2, 8.75);
 
 -- --------------------------------------------------------
 
@@ -585,7 +642,8 @@ CREATE TABLE IF NOT EXISTS `fielding` (
   `playerId` bigint(20) NOT NULL,
   `innings` bigint(20) NOT NULL,
   `catches` bigint(20) NOT NULL,
-  `stumpings` bigint(20) NOT NULL
+  `stumpings` bigint(20) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1130,7 +1188,8 @@ CREATE TABLE IF NOT EXISTS `players` (
   `matches` bigint(20) NOT NULL,
   `captain` varchar(20) NOT NULL,
   `secondName` varchar(40) NOT NULL,
-  `roundOne` int(11) NOT NULL
+  `roundOne` int(11) NOT NULL,
+  UNIQUE KEY `playerId` (`playerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1357,62 +1416,6 @@ INSERT INTO `players` (`playerId`, `name`, `country`, `photoUrl`, `type`, `match
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pplround_1`
---
-
-CREATE TABLE IF NOT EXISTS `pplround_1` (
-  `teamId` bigint(20) NOT NULL,
-  `playerId` bigint(20) NOT NULL,
-  `form` bigint(20) NOT NULL,
-  `confidence` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pplround_1`
---
-
-INSERT INTO `pplround_1` (`teamId`, `playerId`, `form`, `confidence`) VALUES
-(1, 1012, 1000, 1000),
-(1, 1013, 1000, 1000),
-(1, 1014, 1000, 1000),
-(1, 1015, 1000, 1000),
-(1, 1016, 1000, 1000),
-(1, 1017, 1000, 1000),
-(1, 1018, 1000, 1000),
-(1, 1019, 1000, 1000),
-(1, 1020, 1000, 1000),
-(1, 1021, 1000, 1000),
-(1, 1022, 1000, 1000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pplround_2`
---
-
-CREATE TABLE IF NOT EXISTS `pplround_2` (
-  `teamId` bigint(20) NOT NULL,
-  `playerId` bigint(20) NOT NULL,
-  `form` bigint(20) NOT NULL,
-  `confidence` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pplround_3`
---
-
-CREATE TABLE IF NOT EXISTS `pplround_3` (
-  `teamId` bigint(20) NOT NULL,
-  `playerId` bigint(20) NOT NULL,
-  `form` bigint(20) NOT NULL,
-  `confidence` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `userData`
 --
 
@@ -1424,7 +1427,8 @@ CREATE TABLE IF NOT EXISTS `userData` (
   `actualBalance` bigint(20) NOT NULL,
   `p11` int(11) NOT NULL,
   `transferNum` int(11) NOT NULL,
-  `roundOneScore` int(11) NOT NULL
+  `roundOneScore` int(11) NOT NULL,
+  UNIQUE KEY `teamId` (`teamId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1432,7 +1436,7 @@ CREATE TABLE IF NOT EXISTS `userData` (
 --
 
 INSERT INTO `userData` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`, `p11`, `transferNum`, `roundOneScore`) VALUES
-(1, 1, 2, 0, 0, 1, 57, 204),
+(1, 1, 2, 600, 800, 1, 51, 204),
 (2, 3, 4, 200, 0, 0, 0, 0),
 (3, 5, 6, 100, 0, 0, 0, 0),
 (4, 0, 0, 400, 0, 0, 0, 0),
@@ -1464,7 +1468,8 @@ INSERT INTO `userData` (`teamId`, `userId1`, `userId2`, `score`, `actualBalance`
 
 CREATE TABLE IF NOT EXISTS `userLogin` (
   `userId` bigint(20) NOT NULL,
-  `password` varchar(40) NOT NULL
+  `password` varchar(40) NOT NULL,
+  UNIQUE KEY `userId` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1474,46 +1479,6 @@ CREATE TABLE IF NOT EXISTS `userLogin` (
 INSERT INTO `userLogin` (`userId`, `password`) VALUES
 (1, '356a192b7913b04c54574d18c28d46e6395428ab'),
 (2, '356a192b7913b04c54574d18c28d46e6395428ab');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `batting`
---
-ALTER TABLE `batting`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `bowling`
---
-ALTER TABLE `bowling`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `fielding`
---
-ALTER TABLE `fielding`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `players`
---
-ALTER TABLE `players`
- ADD UNIQUE KEY `playerId` (`playerId`);
-
---
--- Indexes for table `userData`
---
-ALTER TABLE `userData`
- ADD UNIQUE KEY `teamId` (`teamId`);
-
---
--- Indexes for table `userLogin`
---
-ALTER TABLE `userLogin`
- ADD UNIQUE KEY `userId` (`userId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

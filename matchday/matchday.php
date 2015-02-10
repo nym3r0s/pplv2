@@ -166,7 +166,7 @@ EOT;
             $playerCaptain = mysql_result($playerResult,0,"captain");
             $photoUrl      = mysql_result($playerResult,0,"photoUrl");
 //        echo("<tr><td>$playerName</td><td>$playerCountry</td><td>$playerType</td></tr>");
-          echo('<img src="'.$photoUrl.'" width="250" height="250" class="imgAnimPic" alt="'.$playerName."-".$playerCountry.'-'.$playerType.'">');
+          echo('<img src="'.$photoUrl.'" width="250" height="250" class="imgAnimPic" alt="'.$playerName."<br>".$playerCountry.'<br>'.$playerType.'">');
     }
 
 
