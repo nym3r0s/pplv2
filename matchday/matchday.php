@@ -31,7 +31,7 @@ if(isset($userResult))
     <!-- Bootstrap core CSS -->
     <link href="../includes/css/bootstrap.css" rel="stylesheet">
     <link href="../includes/css/common.css" rel="stylesheet">
-	<script src="../includes/bootstrap.js"></script>
+    <script src="../includes/bootstrap.js"></script>
 
     <!-- CSS styles  -->
     <link href="./matchdayStyle.css" rel="stylesheet">
@@ -68,17 +68,17 @@ if(isset($userResult))
             </ul>
             <div class="navbar-header navbar-right">
                 <div class="dropdown" style="margin-top:10%">
-				<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					<b>PID :</b> <?php echo $user ?>
-				<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
-					<li class="drop" role="presentation" class="divider"></li>
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
-				</ul>
-				</div>
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <b>PID :</b> <?php echo $user ?>
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+                    <li class="drop" role="presentation" class="divider"></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
+                </ul>
+                </div>
             </div>
       </div>
       </div>
@@ -144,6 +144,7 @@ else
 {
 
     echo <<< EOT
+        <h4 id="theHeading"><center>Your Playing 11</center></h4>
         <div id="animContainer">
         <div id="confirmed11" class="imageflow">
 EOT;

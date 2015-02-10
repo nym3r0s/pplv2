@@ -215,3 +215,12 @@
 /*    top:0%;*/
     max-height:calc(100% - 100px);
 }
+#theHeading
+{
+    position:absolute;
+    top: 12%;
+    left:0;
+    right:0;
+    margin:auto;
+    text-align: center;
+}

@@ -50,7 +50,7 @@ function ImageFlow ()
         imageFocusMax:      4,              /* Max number of images on each side of the focussed one */
         imagePath:          '',             /* Path to the images relative to the reflect_.php script */
         imageScaling:       true,           /* Toggle image scaling */
-        imagesHeight:       0.60,           /* Height of the images div container in percent */
+        imagesHeight:       0.67,           /* Height of the images div container in percent */
         imagesM:            1.0,            /* Multiplicator for all images in percent */
         onClick:            function() { return false;},//document.location = this.url; },   /* Onclick behaviour */
         opacity:            false,          /* Toggle image opacity */
