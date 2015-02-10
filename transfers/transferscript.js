@@ -50,7 +50,6 @@ function bindClickEvents()
         $('.player,.userplayer').unbind('dblclick');
 
         $('.player').dblclick(function(){
-
             $('#pleaseWait').show();
             var playerId = $(this).attr('id');
 //            var player = getPlayer(playerId);

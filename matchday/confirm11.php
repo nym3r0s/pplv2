@@ -45,7 +45,22 @@ if(count($ids)!=11)
     exit("You have sent corrupt data: Error (Count mismatch P11)");
 }
 
+$inSquadQuery  = "SELECT * from confirmedSquad where teamId=$userTeamId";
+$inSquadResult = mysql_query($inSquadQuery);
+$confSquad = [];
 
+for($i=0;$i<mysql_num_rows($inSquadResult);$i++)
+{
+    $confSquad[] = mysql_result($inSquadResult,$i,"playerId");
+}
+
+for($i=0;$i<count($ids);$i++)
+{
+    if(!in_array($ids[$i],$confSquad))
+    {
+        exit("One of your players is not in your squad. ");
+    }
+}
 //Deleting existing confirmedSquad before Copying And clearing the show P11
 
 $deleteQuery    = "DELETE FROM confirmedP11 where teamId=".$userTeamId.";";

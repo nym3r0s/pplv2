@@ -64,8 +64,8 @@ function bindClickEvents()
 
 
 var players; // The array of players
-var confirmedSquad // The list of Ids of Confirmed Players
-var presentPlayers //The list of existing players. Default = Confirmed Players
+var confirmedSquad; // The list of Ids of Confirmed Players
+var presentPlayers; //The list of existing players. Default = Confirmed Players
 
 //Function to get Player Details
 
