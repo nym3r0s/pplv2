@@ -74,7 +74,7 @@ if(isset($userResult))
       </div>
     </nav>
 
-        <div id="theHeading"><h4><b>Leaderboard</b></h4></div>
+        <div id="theHeading"><h3><b>Leaderboard</b></h3></div>
 
     <div class="table-responsive">
         <table id="sort" class="table">

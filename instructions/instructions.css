@@ -6,6 +6,9 @@ body{
 	width:100%;
 	height:100%;
 	top:10%;
+	font-family:"SourceSansPro";
+	font-size:15px;
+	
 	overflow-y:scroll;
 }
 #instructions

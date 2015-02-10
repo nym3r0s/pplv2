@@ -6,6 +6,7 @@
     left:0;
     right:0;
     margin:auto;
+	font-family:"Roboto";
 }
 #matchWinner
 {
@@ -15,28 +16,29 @@
     left:0;
     right:0;
     margin:auto;
+	font-family:"Roboto";
 }
 #battingTable
 {
     position:absolute;
     top:25%;
 
-    font-size: 14px;
-    left:5%;
-    width:90%;
+    font-size: 13px;
+    left:17.5%;
+    width:65%;
 }
 #bowlingTable
 {
     position:absolute;
     top:25%;
 
-    font-size: 14px;
-    left:5%;
-    width:90%;
+    font-size: 13px;
+    left:15%;
+    width:70%;
 }
 #choices
 {
     position:absolute;
     top:15%;
-    right:15%;
+    right:17.5%;
 }

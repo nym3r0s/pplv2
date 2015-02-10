@@ -158,8 +158,8 @@ function updateChanges()
 
     transferChanges = numchanges;
 
-    var balance = "<h5>Current Balance: "+presentBalance+"</h5>";
-    var transferChanges = "<h5>Transfers Remaining: "+transferBalance+"</h5><h5>Changes: "+numchanges+"</h5>";
+    var balance = "<h5><b>Current Balance:</b> "+presentBalance+"</h5>";
+    var transferChanges = "<h5><b>Transfers Remaining:</b> "+transferBalance+"</h5><h5><b>Changes:</b> "+numchanges+"</h5>";
     $('#playerBalance').html(balance);
     $('#transferBalance').html(transferChanges);
 

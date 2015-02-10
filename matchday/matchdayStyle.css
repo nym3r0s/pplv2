@@ -1,3 +1,8 @@
+@font-face{
+		font-family: "Roboto-regular";
+		src: url("./../includes/fonts/RobotoCondensed-Regular.ttf");
+}
+
 #playerList{
     position:absolute;
     height:60%;
@@ -48,13 +53,13 @@
     width:90%;
     margin:0 auto;
     border-radius:5px;
-    font-size:13px;
+    font-size:14px;
     height:30px;
 }
 .userplayer{
     width:90%;
     margin:0 auto;
-    font-size:13px;
+    font-size:14px;
     border-radius:5px;
     height:30px;
 }
@@ -215,12 +220,19 @@
 /*    top:0%;*/
     max-height:calc(100% - 100px);
 }
+
 #theHeading
 {
     position:absolute;
-    top: 12%;
+    top: 11%;
     left:0;
     right:0;
     margin:auto;
     text-align: center;
+	
+	font-family:"Roboto";
+}
+
+.table{
+	font-family:"Roboto-regular";
 }

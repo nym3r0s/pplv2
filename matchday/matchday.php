@@ -144,7 +144,7 @@ else
 {
 
     echo <<< EOT
-        <h4 id="theHeading"><center>Your Playing 11</center></h4>
+        <h3 id="theHeading"><center>Your Playing 11</center></h3>
         <div id="animContainer">
         <div id="confirmed11" class="imageflow">
 EOT;

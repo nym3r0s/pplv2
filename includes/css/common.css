@@ -1,3 +1,13 @@
+@font-face{
+		font-family: "Roboto";
+		src: url("./../fonts/RobotoCondensed-Bold.ttf");
+}
+
+@font-face{
+		font-family: "SourceSansPro";
+		src: url("./../fonts/SourceSansPro-Regular.ttf");
+}
+
 body{
     width:100%;
     overflow-x: hidden;
@@ -11,6 +21,7 @@ body{
 }
 
 .header{
+	font-family:"Roboto";
 	border-bottom:1px solid #099;
 }
 
@@ -19,6 +30,7 @@ body{
 	padding-top:10px;
     font-size:12px;
 	text-align:center;
+	font-family:"Roboto";
 }
 
 .btn{
@@ -40,4 +52,15 @@ th{
 }
 .drop:hover{
 	opacity:1;
+}
+
+.btn{
+	font-family:"SourceSansPro";
+}
+
+.panel-heading{
+	font-family:"Roboto";
+}
+.panel-body,.panel-primary{
+	font-family:"SourceSansPro";
 }

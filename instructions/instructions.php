@@ -55,7 +55,7 @@ $user = $_SESSION['user'];
 <div id="instruction-container">
     <div id="instructions">
 <!-- The About part of the event.    \-->
-    <h4><b>About</b></h4>
+    <h3>About</h3>
         <ul>
         <li>
           Pragyan Premier League is a Cricket Management Event, in which participants have to participate in an auction of players, and decide  their  playing strategy in a virtual Cricket tournament where results are based on matches from the day's world cup game. The event is a fantasy cricket league for the ICC WC 2015.
@@ -71,7 +71,7 @@ $user = $_SESSION['user'];
         </ul>
     <hr>
 <!-- Judging Criteria-->
-    <h4><b>Scoring</b></h4>
+    <h3>Scoring</h3>
         <ul>
             <li>Participant start with zero points</li>
             <li>For every match, all the participant's players are awarded points based on their performances in the world cup.</li>
@@ -80,7 +80,7 @@ $user = $_SESSION['user'];
         </ul>
     <hr>
 <!-- Player Ratios        -->
-    <h4><b>Player Ratios</b></h4>
+    <h3>Player Ratios</h3>
         These are the acceptable ratios for your playing 11.<br><br>
         <table class="table table-bordered" id="ratioTable">
             <thead>
@@ -101,7 +101,7 @@ $user = $_SESSION['user'];
     <hr>
 
 <!--    FAQ  -->
-    <h4><b>FAQ (Frequently Asked Questions)</b></h4>
+    <h3>FAQ (Frequently Asked Questions)</h3>
     <ul>
         <li>
             <b>Can I make changes to my squad after entering the game?</b><br>

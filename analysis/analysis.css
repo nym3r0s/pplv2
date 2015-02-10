@@ -2,7 +2,7 @@
 	position:absolute;
 	width:40%;
 	height:8%;
-	margin:5% 0% 0% 30%;
+	margin:7% 0% 0% 30%;
 	background-color:#f7f7f7;
 }
 .stat{
@@ -23,9 +23,10 @@
 }
 #canvasContainer{
 	position:absolute;
-	margin-top:10.5%;
+	margin-top:15%;
 	width:100%;
 	height:82%;
+	font-family:"Roboto";
 }
 .lineGraph{
 	position:relative;

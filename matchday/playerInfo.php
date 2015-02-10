@@ -81,7 +81,7 @@ echo('</div>');
 echo('<div class="panel panel-primary" id="playerStats">');
 echo('<div class="panel-heading"><h3 class="panel-title">Performance</h3></div>');
 echo('<div id="battingStats">');
-echo("<h5>Batting statistics</h5>");
+echo("<h5><b>Batting statistics</b></h5>");
 
 echo('<table class="table table-striped table-bordered" id="battingTable">');
   echo('<thead>');
@@ -110,7 +110,7 @@ echo('</div>');
 
 
 echo('<div id="bowlingStats">');
-echo("<h5>Bowling statistics</h5>");
+echo("<h5><b>Bowling statistics</b></h5>");
 
 echo('<table class="table table-striped table-bordered" id="bowlingTable">');
   echo('<thead>');
@@ -138,7 +138,7 @@ echo('</table>');
 echo('</div>');
 
 echo('<div id="fieldingStats">');
-echo("<h5>Fielding statistics</h5>");
+echo("<h5><b>Fielding statistics</b></h5>");
 
 echo('<table class="table table-striped table-bordered" id="battingTable">');
   echo('<thead>');

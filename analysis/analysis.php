@@ -123,13 +123,13 @@ for($i = 0; $i < 11; $i++){
 	</div>
         <div id="canvasContainer">
 		<!-- line chart canvas element -->
-		<p style = "margin:0 0 0 7%;padding:0px;float:left"><u>Relative Performance</u></p>
-		<p style = "margin:0 0 0 54%;padding:0px;"><u>Team Performance</u></p>
+		<p style = "margin:0 0 1% 7%;float:left"><u>Relative Performance</u></p>
+		<p style = "margin:0 0 1% 54%;"><u>Team Performance</u></p>
 		<canvas id="playerPerformance" class="lineGraph"></canvas>
 		<!-- bar chart canvas element -->
         <canvas id="teamPerformance" class="lineGraph"></canvas>
         
-		<p style="position:relative;margin:23% 0% 1% 7%;padding:0px;"><u>Pie charts</u></p>
+		<p style="margin:27% 0% 1% 7%;padding:0px;"><u>Pie charts</u></p>
 		<canvas id="pie"></canvas>
 		</div>
 		
@@ -260,7 +260,7 @@ for($i = 0; $i < 11; $i++){
             }
 			new Chart(pie).Doughnut(data,pieOptions);
 	</script>
-	<nav class=" footer navbar navbar-default navbar-fixed-bottom">
+	<nav class="footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
             <p>Developed by <b>Delta Force.</b></p>
         </div>
