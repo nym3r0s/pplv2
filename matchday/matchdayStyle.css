@@ -1,8 +1,3 @@
-@font-face{
-		font-family: "Roboto-regular";
-		src: url("./../includes/fonts/RobotoCondensed-Regular.ttf");
-}
-
 #playerList{
     position:absolute;
     height:60%;
@@ -53,13 +48,13 @@
     width:90%;
     margin:0 auto;
     border-radius:5px;
-    font-size:14px;
+    font-size:13px;
     height:30px;
 }
 .userplayer{
     width:90%;
     margin:0 auto;
-    font-size:14px;
+    font-size:13px;
     border-radius:5px;
     height:30px;
 }
@@ -231,8 +226,4 @@
     text-align: center;
 	
 	font-family:"Roboto";
-}
-
-.table{
-	font-family:"Roboto-regular";
 }

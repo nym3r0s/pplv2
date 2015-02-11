@@ -158,8 +158,8 @@ function updateChanges()
 
     transferChanges = numchanges;
 
-    var balance = "<h5><b>Current Balance:</b> "+presentBalance+"</h5>";
-    var transferChanges = "<h5><b>Transfers Remaining:</b> "+transferBalance+"</h5><h5><b>Changes:</b> "+numchanges+"</h5>";
+    var balance = "<h5><b>CURRENT BALANCE:</b> "+presentBalance+"</h5>";
+    var transferChanges = "<h5><b>TRANSFERS REMAINING:</b> "+transferBalance+"</h5><h5><b>CHANGES:</b> "+numchanges+"</h5>";
     $('#playerBalance').html(balance);
     $('#transferBalance').html(transferChanges);
 
@@ -297,7 +297,7 @@ function generatePlayers()
         {
             playerClass = playerClass+ ' player';
 
-            var divText = '<td>'+playerName+'</td><td>'+playerCountry;
+            var divText = '<td><b>'+playerName+'</b></td><td>'+playerCountry;
             divText = divText + '</td><td>' +playerType + '</td><td>'+playerCost+'</td>';
 
             var divName = '<tr id=\"'+playerId+'\"></tr>';

@@ -1,10 +1,6 @@
 <?php
 require './../includes/dbconfig.php';
 
-
-mysql_connect($dbhost,$dbuser,$dbpass) or die('MySQL Connection Failed');
-mysql_select_db($dbname);
-
 $query = "SELECT * FROM matchDetailsBowling WHERE 1";
 $query_res = mysql_query($query);
 

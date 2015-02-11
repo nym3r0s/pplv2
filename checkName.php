@@ -1,11 +1,5 @@
 <?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'ppl';
-
-mysql_connect($dbhost,$dbuser,$dbpass) or die('MySQL Connection Failed');
-mysql_select_db($dbname);
+require './includes/dbconfig.php';
 
 $query = "SELECT `name` FROM `players` WHERE 1";
 $res = mysql_query($query);

@@ -2,15 +2,15 @@
 		font-family: "Roboto";
 		src: url("./../fonts/RobotoCondensed-Bold.ttf");
 }
-
 @font-face{
-		font-family: "SourceSansPro";
-		src: url("./../fonts/SourceSansPro-Regular.ttf");
+		font-family: "OpenSans";
+		src: url("./../fonts/OpenSans-Semibold.ttf");
 }
+
+
 
 body{
     width:100%;
-    overflow-x: hidden;
 }
 
 .navbar-header{
@@ -55,12 +55,17 @@ th{
 }
 
 .btn{
-	font-family:"SourceSansPro";
+	font-family:"Calibri";
 }
 
 .panel-heading{
 	font-family:"Roboto";
 }
 .panel-body,.panel-primary{
-	font-family:"SourceSansPro";
+	font-family:"Calibri";
+}
+
+.table{
+	font-family:"OpenSans";
+	font-size:13px;
 }
