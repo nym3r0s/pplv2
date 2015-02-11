@@ -57,7 +57,7 @@ def parse():
         tableRows = table.select("tr")
         for info in tableRows:
             if(not("class" in info.attrs.keys())):
-                #print info
+                print info
                 #print info.select('td')[1].select('a')[0].contents[0]
                 playerName = info.select('td')[1].select('a')[0].contents[0]
                 #print info.select('td')[2].contents[0].split(" ")[-3]
@@ -67,11 +67,11 @@ def parse():
         #print info.select('td')[3].contents[0]
                 playerRuns =  info.select('td')[3].contents[0]
                 #print info.select('td')[6].contents[0]
-                playerFour = info.select('td')[6].contents[0]
+                playerFour = info.select('td')[5].contents[0]
                 #print info.select('td')[7].contents[0]
-                playerSix =  info.select('td')[7].contents[0]
+                playerSix =  info.select('td')[6].contents[0]
                 #print info.select('td')[8].contents[0]
-                playerStrikeRate = info.select('td')[8].contents[0]
+                playerStrikeRate = info.select('td')[7].contents[0]
                 a = []
                 a.append(playerName)
                 a.append(playerWicketBowler)
@@ -121,5 +121,5 @@ if(__name__ == "__main__"):
     cur.execute('TRUNCATE TABLE displayBatting')
     cur.execute('TRUNCATE TABLE displayBowling')
     db.commit()
-    getPage("http://www.espncricinfo.com/new-zealand-v-pakistan-2014-15/engine/match/749797.html")
+    getPage("http://www.espncricinfo.com/icc-cricket-world-cup-2015/engine/match/806135.html")
     parse()

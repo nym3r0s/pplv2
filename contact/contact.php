@@ -1,47 +1,23 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = mysql_real_escape_string($_SESSION['user']);
+$user = $_SESSION['user'];
 if(!isset($user))
 {
     header('Location: ./../login.php');
 }
-
-$userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
-$userResult = mysql_query($userQuery);
-
-if(isset($userResult))
-{
-    $userBalance = mysql_result($userResult,0,"actualBalance");
-    $userTeamId  = mysql_result($userResult,0,"teamId");
-    $userP11     = mysql_result($userResult,0,"p11");
-}
-
-
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>PPL'15</title>
-    <!-- Jquery     -->
     <script src="./../includes/jquery-2.1.1.min.js"></script>
-    <!-- Bootstrap core CSS -->
-    <link href="../includes/css/bootstrap.css" rel="stylesheet">
-    <link href="../includes/css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../includes/css/bootstrap.css">
     <script src="../includes/bootstrap.js"></script>
 
-    <!-- CSS styles  -->
-    <link href="./leaderboardStyle.css" rel="stylesheet">
-
-    <!-- Adding the Appropriate JS file  -->
-    <script> var yourId = <?php echo $user; ?>;</script>
-<!--    <script src="./../includes/datatable.js"></script>-->
-    <script src="./leaderboard.js"></script>
+    <link rel="stylesheet" href="./../includes/css/common.css">
+    <link rel="stylesheet" href="./home.css">
   </head>
-
   <body>
     <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -52,7 +28,7 @@ if(isset($userResult))
           <ul class="nav navbar-nav">
             <li><a href="../transfers/transfers.php">Transfers</a></li>
             <li><a href="../matchday/matchday.php">Matchday</a></li>
-            <li class="active"><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
+            <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
             <li><a href="../wclive/wclive.php">WCLive</a></li>
             <li><a href="../instructions/instructions.php">Instructions</a></li>
             </ul>
@@ -64,7 +40,7 @@ if(isset($userResult))
                 </button>
                 <ul class="dropdown-menu">
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./contact.php">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>
@@ -73,29 +49,22 @@ if(isset($userResult))
       </div>
       </div>
     </nav>
-
-        <div id="theHeading"><h3><b>Leaderboard</b></h3></div>
-
-    <div class="table-responsive">
-        <table id="sort" class="table">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Pragyan ID</th>
-                <th>Pragyan ID</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody id="rankingList">
-            </tbody>
-        </table>
+    <div style="position:absolute; width:30%; top:20%;left:35%; right:35%;">
+    <h3><center>Contact</center></h3>
+        <br><br><center>
+        <h4>Ajay Prasadh</h4><h5> +91-85084-07917</h5><br>
+        <h4>Karthikeyan</h4><h5> +91-94871-81761</h5><br>
+        <h4>Harsha Manne</h4><h5> +91-87543-35248</h5><br>
+        </center>
     </div>
 
 
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="footer text-center">
+
+    <nav class=" footer navbar navbar-default navbar-fixed-bottom">
+        <div class="footer">
             <p>Developed by <b>Delta Force.</b></p>
         </div>
     </nav>
-    </body>
+
+  </body>
 </html>

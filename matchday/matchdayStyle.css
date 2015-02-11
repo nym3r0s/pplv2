@@ -198,8 +198,8 @@
     right:5%;
     border-radius: 5px;
     text-align: center;
-	
-	font-family:"Calibri";
+
+    font-family:"Calibri";
     font-size: 16px;
 }
 
@@ -225,6 +225,12 @@
     right:0;
     margin:auto;
     text-align: center;
-	
-	font-family:"Roboto";
+
+    font-family:"Roboto";
+}
+#sorryMsg
+{
+    position:absolute;
+    top:40%;
+    width:100%;
 }

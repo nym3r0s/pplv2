@@ -41,7 +41,7 @@ $user = $_SESSION['user'];
                 </button>
                 <ul class="dropdown-menu">
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>

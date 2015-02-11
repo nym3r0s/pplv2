@@ -9,13 +9,13 @@ if(!isset($user))
 ?>
 <html>
   <head>
-	<title>PPL'15</title>
+    <title>PPL'15</title>
     <script src="./../includes/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="./../includes/css/bootstrap.css">
     <link rel="stylesheet" href="./../includes/css/common.css">
-	<script src="../includes/bootstrap.js"></script>
-    
-	<link rel="stylesheet" href="./wclive.css">
+    <script src="../includes/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="./wclive.css">
     <script src="./wclive.js"></script>
   </head>
   <body>
@@ -40,7 +40,7 @@ if(!isset($user))
                 </button>
                 <ul class="dropdown-menu">
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>
@@ -56,9 +56,9 @@ if(!isset($user))
         <button id="choiceBatting" class="btn">Batting</button>
         <button id="choiceBowling" class="btn">Bowling</button>
     </div>
-	
-	<div class="data-container">
-	<div class="table-responsive">
+
+    <div class="data-container">
+    <div class="table-responsive">
     <table id="battingTable" class="table table-bordered">
         <thead>
             <tr>
@@ -134,9 +134,9 @@ if(!isset($user))
 
         </tbody>
     </table>
-	</div>
-	</div>
-	
+    </div>
+    </div>
+
     <nav class=" footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
             <p>Developed by <b>Delta Force.</b></p>

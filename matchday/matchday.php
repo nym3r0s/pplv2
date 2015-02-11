@@ -74,7 +74,7 @@ if(isset($userResult))
                 </button>
                 <ul class="dropdown-menu">
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>
@@ -142,6 +142,15 @@ EOD;
 
 else
 {
+    $anyPlayers = false;
+    $confirmedListQuery = "SELECT * FROM confirmedP11 WHERE teamId=$userTeamId";
+    $confirmedListResult = mysql_query($confirmedListQuery);
+    if(mysql_num_rows($confirmedListResult)!=0)
+    {
+        $anyPlayers = true;
+    }
+    if($anyPlayers)
+    {
 
     echo <<< EOT
         <h3 id="theHeading"><center>Your Playing 11</center></h3>
@@ -149,8 +158,6 @@ else
         <div id="confirmed11" class="imageflow">
 EOT;
 
-    $confirmedListQuery = "SELECT * FROM confirmedP11 WHERE teamId=$userTeamId";
-    $confirmedListResult = mysql_query($confirmedListQuery);
 
     for($i=0;$i<mysql_num_rows($confirmedListResult);$i++)
     {
@@ -179,6 +186,11 @@ EOT;
 
 EOD;
 
+    }
+    else
+    {
+        echo('<h3 id="sorryMsg"><center>Sorry, you have not confirmed any playing 11 or you have resubmitted after confirming your playing 11.<br><br>Please try for the next match</center></h3>');
+    }
 }
 
 

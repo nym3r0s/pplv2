@@ -63,15 +63,15 @@ def parse():
                 #print info.select('td')[2].contents[0].split(" ")[-3]
                 playerWicketBowler= info.select('td')[2].contents[0].replace(u'\u2020',' ').encode('utf-8')
 
-        playerWicketBowler =  find_between( playerWicketBowler, "c ", " b" )
+                playerWicketBowler =  find_between( playerWicketBowler, "c ", " b" )
         #print info.select('td')[3].contents[0]
                 playerRuns =  info.select('td')[3].contents[0]
                 #print info.select('td')[6].contents[0]
-                playerFour = info.select('td')[6].contents[0]
+                playerFour = info.select('td')[5].contents[0]
                 #print info.select('td')[7].contents[0]
-                playerSix =  info.select('td')[7].contents[0]
+                playerSix =  info.select('td')[6].contents[0]
                 #print info.select('td')[8].contents[0]
-                playerStrikeRate = info.select('td')[8].contents[0]
+                playerStrikeRate = info.select('td')[7].contents[0]
                 a = []
                 a.append(playerName)
                 a.append(playerWicketBowler)
@@ -117,7 +117,7 @@ def parse():
 
 if(__name__ == "__main__"):
     #getPage("http://www.espncricinfo.com/carlton-mid-triangular-series-2015/engine/match/754761.html")
-    getPage("http://www.espncricinfo.com/new-zealand-v-pakistan-2014-15/engine/match/749797.html")
     cur.execute('TRUNCATE TABLE matchDetailsBatting')
     cur.execute('TRUNCATE TABLE matchDetailsBowling')
+    getPage("http://www.espncricinfo.com/icc-cricket-world-cup-2015/engine/match/806135.html")
     parse()
