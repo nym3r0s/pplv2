@@ -9,11 +9,13 @@ if(!isset($user))
 ?>
 <html>
   <head>
+	<title>PPL'15</title>
+    <script src="./../includes/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="./../includes/css/bootstrap.css">
     <link rel="stylesheet" href="./../includes/css/common.css">
-    <link rel="stylesheet" href="./wclive.css">
-    <script src="./../includes/jquery-2.1.1.min.js"></script>
-    <script src="../includes/bootstrap.js"></script>
+	<script src="../includes/bootstrap.js"></script>
+    
+	<link rel="stylesheet" href="./wclive.css">
     <script src="./wclive.js"></script>
   </head>
   <body>
@@ -54,6 +56,9 @@ if(!isset($user))
         <button id="choiceBatting" class="btn">Batting</button>
         <button id="choiceBowling" class="btn">Bowling</button>
     </div>
+	
+	<div class="data-container">
+	<div class="table-responsive">
     <table id="battingTable" class="table table-bordered">
         <thead>
             <tr>
@@ -129,6 +134,9 @@ if(!isset($user))
 
         </tbody>
     </table>
+	</div>
+	</div>
+	
     <nav class=" footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
             <p>Developed by <b>Delta Force.</b></p>

@@ -7,7 +7,6 @@
     margin:auto;
 	font-family:"Roboto";
 }
-
 #matchWinner
 {
     position:absolute;
@@ -18,21 +17,21 @@
 	font-family:"Roboto";
 }
 
-#battingTable
-{
-	position:absolute;
-    margin:12% 0% 0% 25%;
+.data-container{
+    position:absolute;
+    height:65%;
     width:60%;
+	top:25%;
+	background-color:#f8f8f8;
+    left:20%;
+    overflow-y: scroll;
+    text-align: center;
+	cursor:pointer;
 }
-#bowlingTable
-{
-	position:absolute;
-    margin:12% 0% 0% 20%;
-    width:60%;
-}
+
 #choices
 {
     position:absolute;
     top:15%;
-    right:17.5%;
+    right:20%;
 }
