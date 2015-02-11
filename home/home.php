@@ -84,7 +84,7 @@ if(!isset($user))
                   <td>Feb 14</td>
                   <td>03:30 IST</td>
                   <td>New Zealand v Sri Lanka</td>
-                  <td>Melbourne Cricket Ground</td>
+                  <td>Hagley Oval, Christchurch</td>
               </tr>
               <tr>
                   <td>Feb 15</td>
@@ -124,9 +124,9 @@ if(!isset($user))
               </tr>
               <tr>
                   <td>Feb 23</td>
-                  <td>09:00 IST</td>
+                  <td>03:30 IST</td>
                   <td>England v Scotland</td>
-                  <td>Melbourne Cricket Ground</td>
+                  <td>Hagley Oval, Christchurch</td>
               </tr>
           </tbody>
       </table>
