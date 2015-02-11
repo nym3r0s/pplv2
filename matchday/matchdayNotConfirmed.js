@@ -111,7 +111,7 @@ function generatePlayers()
         var playerClass   = obj.playerClass;
         var playerCost    = obj.playerCost;
 
-        var divText = '<td>'+playerName+'</td><td>'+playerCountry;
+        var divText = '<td>'+playerName+'</td><td><img style="float:left" src="./../includes/flags/'+playerCountry.replace(/ /g,"_")+'.gif">'+playerCountry;
         divText = divText + '</td><td>' +playerType + '</td><td>'+playerCost+'</td>';
         var divName = '<tr id=\"'+playerId+'\"></tr>';
         $(divName).addClass('player').html(divText).appendTo('#playerListTable');

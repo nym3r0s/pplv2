@@ -297,7 +297,7 @@ function generatePlayers()
         {
             playerClass = playerClass+ ' player';
 
-            var divText = '<td><b>'+playerName+'</b></td><td>'+playerCountry;
+            var divText = '<td><b>'+playerName+'</b></td><td><img style="float:left" src="./../includes/flags/'+playerCountry.replace(/ /g,"_")+'.gif">'+playerCountry;
             divText = divText + '</td><td>' +playerType + '</td><td>'+playerCost+'</td>';
 
             var divName = '<tr id=\"'+playerId+'\"></tr>';
@@ -310,7 +310,7 @@ function generatePlayers()
         {
             playerClass = 'userplayer';
 
-            var divText = '<td>'+playerName+'</td><td>'+playerCountry;
+            var divText = '<td>'+playerName+'</td><td><img style="float:left" src="./../includes/flags/'+playerCountry.replace(/ /g,"_")+'.gif">'+playerCountry;
             divText = divText + '</td><td>' +playerType + '</td><td>'+playerCost+'</td>';
 
 
@@ -496,6 +496,6 @@ $(document).ready(function(){
         AJAXcalls(function(){bindClickEvents();});
     });
 
-
+    $.toaster({ priority : 'info', title : 'Instructions', message : 'Double click on a player to move him to the other box. Single click to view stats.'});
 
 });

@@ -10,11 +10,11 @@ if(!isset($user))
 <!DOCTYPE html>
 <html>
   <head>
-	<title>PPL'15</title>
+    <title>PPL'15</title>
     <script src="./../includes/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="./../includes/css/bootstrap.css">
     <script src="../includes/bootstrap.js"></script>
-	
+
     <link rel="stylesheet" href="./../includes/css/common.css">
     <link rel="stylesheet" href="./home.css">
   </head>
@@ -82,49 +82,49 @@ if(!isset($user))
           <tbody>
               <tr>
                   <td>Feb 14</td>
-                  <td>22:00 GMT (prev day) | 11:00 local 03:30 IST</td>
+                  <td>03:30 IST</td>
                   <td>New Zealand v Sri Lanka</td>
                   <td>Melbourne Cricket Ground</td>
               </tr>
               <tr>
                   <td>Feb 15</td>
-                  <td>03:30 GMT | 14:00 local 09:00 IST</td>
+                  <td>09:00 IST</td>
                   <td>India v Pakistan</td>
                   <td>Adelaide Oval</td>
               </tr>
               <tr>
                   <td>Feb 16</td>
-                  <td>22:00 GMT (prev day) | 11:00 local 03:30 IST</td>
+                  <td>03:30 IST</td>
                   <td>Ireland v West Indies</td>
                   <td>Saxton Oval, Nelson</td>
               </tr>
               <tr>
                   <td>Feb 18</td>
-                  <td>03:30 GMT | 14:00 local 09:00 IST</td>
+                  <td>09:00 IST</td>
                   <td>Bangladesh v Afghanistan</td>
                   <td>Manuka Oval, Canberra</td>
               </tr>
               <tr>
                   <td>Feb 19</td>
-                  <td>22:00 GMT (prev day) | 11:00 local 03:30 IST</td>
+                  <td>03:30 IST</td>
                   <td>United Arab Emirates v Zimbabwe</td>
                   <td>Saxton Oval, Nelson</td>
               </tr>
               <tr>
                   <td>Feb 21</td>
-                  <td>22:00 GMT (prev day) | 11:00 local 09:00 IST</td>
+                  <td>09:00 IST</td>
                   <td>Australia v Bangladesh</td>
                   <td>Brisbane Cricket Ground, Brisbane</td>
               </tr>
               <tr>
                   <td>Feb 22</td>
-                  <td>03:30 GMT | 14:30 local 09:00 IST</td>
+                  <td>09:00 IST</td>
                   <td>India v South Africa</td>
                   <td>Melbourne Cricket Ground</td>
               </tr>
               <tr>
                   <td>Feb 23</td>
-                  <td>03:30 GMT | 14:30 local 09:00 IST</td>
+                  <td>09:00 IST</td>
                   <td>England v Scotland</td>
                   <td>Melbourne Cricket Ground</td>
               </tr>
