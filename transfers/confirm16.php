@@ -46,7 +46,10 @@ for($i=0;$i<16;$i++)
         $numchanges++;
     }
 }
-
+if($numchanges==0)
+{
+    exit("You have not made any changes to your Squad");
+}
 //Exiting if user does not have sufficient transfers
 if($numchanges > $transferNum)
 {
@@ -120,6 +123,10 @@ $balanceUpdateResult = mysql_query($balanceUpdateQuery);
 
 $transferUpdateQuery = "UPDATE userData SET transferNum = transferNum - $numchanges WHERE teamId = $userTeamId";
 $transferUpdateResult = mysql_query($transferUpdateQuery);
+
+$deleteConfP11Query = "DELETE FROM confirmedP11 WHERE teamId=$userTeamId";
+$deleteConfP11Result = mysql_query($deleteConfP11Query);
+
 echo("Your Squad has been confirmed\n");
 echo("You may now choose your playing 11");
 //echo($newBalance);

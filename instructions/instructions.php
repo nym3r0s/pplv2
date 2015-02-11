@@ -106,7 +106,8 @@ $user = $_SESSION['user'];
         <li>
             <b>Can I make changes to my squad after entering the game?</b><br>
             <p>Yes. You can transfer (buy/sell) players after entering the game. You can confirm your squad only after you have 16 players.
-            The number of transfers is limited and the prices of the players may vary after each match.
+            The number of transfers is limited and the prices of the players may vary after each match.<br>
+            Please remember that <b style="color:red;"> changing your squad after confirming your playing 11 will result in your playing 11 being deleted</b>.You               will NOT be allowed to select a team until the next match.
             </p>
         </li>
         <li>

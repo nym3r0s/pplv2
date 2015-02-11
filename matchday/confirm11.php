@@ -8,7 +8,7 @@ if(!isset($user))
 }
 
 $idString = mysql_real_escape_string($_POST['c11']);
-echo($idString."\n");
+//echo($idString."\n");
 $ids = explode(',',$idString);
 sort($ids);
 

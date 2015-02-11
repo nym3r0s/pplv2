@@ -31,14 +31,14 @@ if(isset($userResult))
     <!-- Bootstrap core CSS -->
     <link href="../includes/css/bootstrap.css" rel="stylesheet">
     <link href="../includes/css/common.css" rel="stylesheet">
-	<script src="../includes/bootstrap.js"></script>
+    <script src="../includes/bootstrap.js"></script>
 
     <!-- CSS styles  -->
     <link href="./leaderboardStyle.css" rel="stylesheet">
 
     <!-- Adding the Appropriate JS file  -->
-	<script> var yourId = <?php echo $user; ?>;</script>
-    <script src="./../includes/datatable.js"></script>
+    <script> var yourId = <?php echo $user; ?>;</script>
+<!--    <script src="./../includes/datatable.js"></script>-->
     <script src="./leaderboard.js"></script>
   </head>
 
@@ -58,17 +58,17 @@ if(isset($userResult))
             </ul>
             <div class="navbar-header navbar-right">
                 <div class="dropdown" style="margin-top:10%">
-				<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					<b>PID :</b> <?php echo $user ?>
-				<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
-					<li class="drop" role="presentation" class="divider"></li>
-					<li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
-				</ul>
-				</div>
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <b>PID :</b> <?php echo $user ?>
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="#">Contact</a></li>
+                    <li class="drop" role="presentation" class="divider"></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
+                </ul>
+                </div>
             </div>
       </div>
       </div>
