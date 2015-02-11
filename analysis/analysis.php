@@ -15,14 +15,32 @@ $round6avg = 0;
 $round7avg = 0;
 $round8avg = 0;
 
+$rank = 0;
+$count = 0;
+
+$batsman = 0;
+$bowler = 0;
+$keeper = 0;
+$all_rounder = 0;
+
 $userQuery = "SELECT * FROM userData WHERE 1";
 $userResult = mysql_query($userQuery);
 
 $rows = mysql_num_rows($userResult);
 
+$teamId = "SELECT * FROM userData WHERE userId1 = $user or userId2 = $user";
+$teamIdQuery = mysql_query($teamId);
+
+$team = mysql_result($teamIdQuery,0,"teamId");
+$score = mysql_result($teamIdQuery,0,"score");
+$roundScore = mysql_result($teamIdQuery,0,"round1Score");
+
 for($i = 0;$i < $rows ;$i++){
 $user1 = mysql_result($userResult,$i,"userId1");
 $user2 = mysql_result($userResult,$i,"userId2");
+
+if(mysql_result($userResult,$i,"score") > $score )
+	$count++;
 
     $round1avg  = $round1avg + mysql_result($userResult,$i,"round1Score")/$rows;
     $round2avg  = $round2avg + mysql_result($userResult,$i,"round2Score")/$rows;
@@ -44,26 +62,47 @@ if($user == $user1 || $user == $user2){
     $round8 = mysql_result($userResult,$i,"round8Score");
 }
 }
-$teamId = "SELECT teamId FROM userData WHERE userId1 = $user or userId2 = $user";
-$teamIdQuery = mysql_query($teamId);
 
-$team = mysql_result($teamIdQuery,0,"teamId");
-
-$player = "SELECT playerId FROM confirmedP11 WHERE teamId = '".$team."' ";
+$player = "SELECT playerId FROM confirmedP11_back WHERE teamId = '".$team."' ";
 $playerQuery = mysql_query($player);
 
+$confirm_rows = mysql_num_rows($playerQuery);
+if($confirm_rows != 0){
 for($i = 0; $i < 11; $i++){
     $playerId[$i] = mysql_result($playerQuery,$i,"playerId");
     $playername = "SELECT * FROM players WHERE playerId = '".$playerId[$i]."' ";
     $playerquery = mysql_query($playername);
-
+	
     $playerName1[$i] = mysql_result($playerquery,0,"name");
     $playerName2 = explode(" ",$playerName1[$i]);
     $pos = substr_count($playerName1[$i]," ");
 
     $playerName[$i] = $playerName2[$pos];
     $playerScore[$i] = mysql_result($playerquery,0,"roundOne");
-    }
+    
+	if(mysql_result($playerquery,0,"type") == "Batsman")
+		$batsman = $batsman + $playerScore[$i];
+	else if(mysql_result($playerquery,0,"type") == "All-Rounder")
+		$all_rounder = $all_rounder + $playerScore[$i];
+	else if(mysql_result($playerquery,0,"type") == "Wicketkeeper")
+		$keeper = $keeper + $playerScore[$i];
+	else
+		$bowler = $bowler + $playerScore[$i];
+	}
+
+$favourites_query = "SELECT playerId,COUNT(playerId) FROM confirmedP11_back GROUP BY playerId ORDER BY COUNT(playerId) DESC";
+$favourites_res = mysql_query($favourites_query);
+
+$favourites[0] = mysql_result($favourites_res,0,"playerId") - 1000;
+$favourites[1] = mysql_result($favourites_res,1,"playerId") - 1000;
+$favourites[2] = mysql_result($favourites_res,2,"playerId") - 1000;
+
+$player_row_query = "SELECT * FROM players WHERE 1";
+$player_row = mysql_query($player_row_query);
+$favourites_img[0] = mysql_result($player_row, $favourites[0],"photoUrl");
+$favourites_img[1] = mysql_result($player_row, $favourites[1],"photoUrl");
+$favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,30 +150,57 @@ for($i = 0; $i < 11; $i++){
       </div>
       </div>
     </nav>
-
+<?php if($confirm_rows != 0){ ?> 
     <div class="statBoard">
         <div class="stat">
-        <h4><b>100<b></h4>
-        <p>Online players</p>
+        <h4><b><?php echo $rows; ?></b></h4>
+        <p>Online Players</p>
         </div>
-        <div class="stat"></div>
-        <div class="stat"></div>
-        <div class="stat"></div>
+        <div class="stat">
+        <h4><b><?php echo $score; ?></b></h4>
+		<p>Total Score</p>
+		</div>
+        <div class="stat">
+		<h4><b><?php echo $roundScore; ?></b></h4>
+		<p>Round Score</p>
+		</div>
+        <div class="stat">
+		<h4><b><?php echo ++$count; ?></b></h4>
+		<p>Rank</p>
+		</div>
     </div>
-        <div id="canvasContainer">
-        <!-- line chart canvas element -->
-        <p style = "margin:0 0 1% 7%;float:left"><u>Relative Performance</u></p>
-        <p style = "margin:0 0 1% 54%;"><u>Team Performance</u></p>
+	
+	<p style="position:absolute;top:25%;margin-left:4%;"><b><u>Relative Performance</u></b></p>
+	<p style="position:absolute;top:25%;margin-left:54%;"><b><u>Team Performance</u></b></p>
+	<p style="position:absolute;top:90%;margin-left:4%;"><b><u>Favourites</u></b></p>
+	<p style="position:absolute;top:90%;margin-left:54%;"><b><u>Department-wise Performance</u></b></p>
+	
+    <div id="canvasContainer">
         <canvas id="playerPerformance" class="lineGraph"></canvas>
         <!-- bar chart canvas element -->
         <canvas id="teamPerformance" class="lineGraph"></canvas>
 
-        <p style="margin:27% 0% 1% 7%;padding:0px;"><u>Pie charts</u></p>
-        <canvas id="pie"></canvas>
+		<div class="favourites">
+		<img style="margin-right:1%;border-radius:5%;" id="favourites1" />
+		<img style="margin-right:1%;border-radius:5%;" id="favourites2" />
+		<img style="margin-right:1%;border-radius:5%;" id="favourites3" />
+		</div>
+        
+		<canvas id="pie" class="lineGraph"></canvas>
+    </div>
+<?php } 
+else
+	echo '<h1 style="margin-top:20%;text-align:center;font-family:Roboto;">Analysis currently is not available.<br />Your playing\'11 isn\'t confirmed. </h1>';
+?>
+	<nav class="footer navbar navbar-default navbar-fixed-bottom">
+        <div class="footer">
+            <p>Developed by <b>Delta Force.</b></p>
         </div>
-
-    <script>
-        var round1 = <?php echo $round1 ; ?> ;
+    </nav>
+</body>
+<?php if($confirm_rows!=0){?>
+<script>
+		var round1 = <?php echo $round1 ; ?> ;
         var round2 = <?php echo $round2 ; ?> ;
         var round3 = <?php echo $round3 ; ?> ;
         var round4 = <?php echo $round4 ; ?> ;
@@ -216,7 +282,6 @@ for($i = 0; $i < 11; $i++){
                 datasets : [
                     {
                         fillColor : "#48A497",
-                        strokeColor : "#48A4D1",
                         data : [playerscore0,playerscore1,playerscore2,playerscore3,playerscore4,playerscore5,playerscore6,playerscore7,playerscore8,playerscore9,playerscore10]
                     }
                 ]
@@ -229,41 +294,49 @@ for($i = 0; $i < 11; $i++){
             // draw bar chart
             new Chart(teamPerformance).Bar(barData);
 
+			var batsman = <?php echo $batsman; ?>;
+			var bowler = <?php echo $bowler; ?>;
+			var keeper = <?php echo $keeper; ?>;
+			var all_rounder = <?php echo $all_rounder; ?>;
             var data = [
             {
-                value: 300,
-                color:"#F7464A",
-                highlight: "#FF5A5E",
-                label: "Red"
+                value: batsman,
+                color:"#FF2500",
+                label: "Batsmen"
             },
             {
-                value: 50,
-                color: "#46BFBD",
-                highlight: "#5AD3D1",
-                label: "Green"
+                value: bowler,
+                color: "#00FFA5",
+                label: "Bowlers"
             },
             {
-                value: 100,
-                color: "#FDB45C",
-                highlight: "#FFC870",
-                label: "Yellow"
+                value: keeper,
+                color: "#FFA500",
+                label: "Wicket Keeper"
+            },
+            {
+                value: all_rounder,
+                color: "#005AFF",
+                label: "All-rounders"
             }
             ]
             var pie = document.getElementById("pie").getContext("2d");
             canvas = document.getElementsByTagName('canvas')[2];
-            canvas.width  = 0.15*w;
-            canvas.height = 0.15*h;
+            canvas.width  = 0.3*w;
+            canvas.height = 0.3*h;
 
             var pieOptions = {
                  segmentShowStroke : false,
                  animateScale : true
             }
-            new Chart(pie).Doughnut(data,pieOptions);
-    </script>
-    <nav class="footer navbar navbar-default navbar-fixed-bottom">
-        <div class="footer">
-            <p>Developed by <b>Delta Force.</b></p>
-        </div>
-    </nav>
-    </body>
+            new Chart(pie).Pie(data,pieOptions);
+
+			var img_1 ="<?php echo $favourites_img[0]; ?>";
+			document.getElementById("favourites1").src = img_1;
+			var img_2 ="<?php echo $favourites_img[1]; ?>";
+			document.getElementById("favourites2").src = img_2;
+			var img_3 ="<?php echo $favourites_img[2]; ?>";
+			document.getElementById("favourites3").src = img_3;
+</script>
+<?php } ?>
 </html>

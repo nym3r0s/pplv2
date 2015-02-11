@@ -232,5 +232,7 @@
 {
     position:absolute;
     top:40%;
-    width:100%;
+	left:10%;
+    width:80%;
+    font-family:"Roboto";
 }

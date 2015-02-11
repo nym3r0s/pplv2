@@ -189,7 +189,7 @@ EOD;
     }
     else
     {
-        echo('<h3 id="sorryMsg"><center>Sorry, you have not confirmed any playing 11 or you have resubmitted after confirming your playing 11.<br><br>Please try for the next match</center></h3>');
+        echo('<h3 id="sorryMsg"><center>Sorry, you have not confirmed your playing 11.</center></h3>');
     }
 }
 

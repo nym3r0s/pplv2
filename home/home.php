@@ -112,9 +112,9 @@ if(!isset($user))
               </tr>
               <tr>
                   <td>Feb 21</td>
-                  <td>09:00 IST</td>
-                  <td>Australia v Bangladesh</td>
-                  <td>Brisbane Cricket Ground, Brisbane</td>
+                  <td>03:30 IST</td>
+                  <td>Pakistan v West Indies</td>
+                  <td>Hagley Oval, Christchurch</td>
               </tr>
               <tr>
                   <td>Feb 22</td>

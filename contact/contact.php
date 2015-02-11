@@ -16,7 +16,11 @@ if(!isset($user))
     <script src="../includes/bootstrap.js"></script>
 
     <link rel="stylesheet" href="./../includes/css/common.css">
-    <link rel="stylesheet" href="./home.css">
+    <style>
+		h4,h1{
+			font-family:"Roboto";
+		}
+	</style>
   </head>
   <body>
     <nav class="header navbar navbar-default navbar-fixed-top">
@@ -49,13 +53,11 @@ if(!isset($user))
       </div>
       </div>
     </nav>
-    <div style="position:absolute; width:30%; top:20%;left:35%; right:35%;">
-    <h3><center>Contact</center></h3>
-        <br><br><center>
-        <h4>Ajay Prasadh</h4><h5> +91-85084-07917</h5><br>
-        <h4>Karthikeyan</h4><h5> +91-94871-81761</h5><br>
-        <h4>Harsha Manne</h4><h5> +91-87543-35248</h5><br>
-        </center>
+    <div style="position:absolute; width:100%; height:10px; top:20%;">
+    <h1><center>Contact</center></h1>
+        <div style="float:left;width:20%;margin:5% 0% 0% 20%;"><center><h4>Ajay Prasadh</h4><h5> +91-85084-07917</h5></center></div>
+        <div style="float:left;width:20%;margin:5% 0% 0% 0%;"><center><h4>Karthikeyan</h4><h5> +91-94871-81761</h5></center></div>
+        <div style="float:left;width:20%;margin:5% 0% 0% 0%;;"><center><h4>Harsha Manne</h4><h5> +91-87543-35248</h5></center></div>
     </div>
 
 
