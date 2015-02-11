@@ -7,13 +7,16 @@ if(!isset($user))
     header('Location: ./../login.php');
 }
 ?>
+<!DOCTYPE html>
 <html>
   <head>
+	<title>PPL'15</title>
+    <script src="./../includes/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="./../includes/css/bootstrap.css">
+    <script src="../includes/bootstrap.js"></script>
+	
     <link rel="stylesheet" href="./../includes/css/common.css">
     <link rel="stylesheet" href="./home.css">
-    <script src="./../includes/jquery-2.1.1.min.js"></script>
-    <script src="../includes/bootstrap.js"></script>
   </head>
   <body>
     <nav class="header navbar navbar-default navbar-fixed-top">
@@ -65,18 +68,9 @@ if(!isset($user))
         ?>
 
 
-    <center>
-        <h2>Welcome Back</h2>
-<!--        <h3>Team ID: <?php echo($teamid); ?></h3>-->
-        <h3>Player ID: <?php echo($user); ?></h3>
-<!--        <h3>Money : <?php echo($money); ?></h3>-->
-        <h4>Score: <? echo($score); ?></h4>
-    </center>
-      <hr>
+      <h3><center style="margin:6% 0% 3% 0%;font-family:Roboto;">Fixtures</center></h3>
 
-      <h2><center>Fixtures</center></h2>
-
-      <table class="table table-striped" id="fixtures">
+      <table class="table table-striped table-bordered" id="fixtures">
           <thead>
               <tr>
                   <th>Date</th>
@@ -88,8 +82,8 @@ if(!isset($user))
           <tbody>
               <tr>
                   <td>Feb 14</td>
-                  <td>03:30 GMT | 14:30 local 09:00 IST</td>
-                  <td>Australia v England</td>
+                  <td>22:00 GMT (prev day) | 11:00 local 03:30 IST</td>
+                  <td>New Zealand v Sri Lanka</td>
                   <td>Melbourne Cricket Ground</td>
               </tr>
               <tr>
@@ -105,10 +99,10 @@ if(!isset($user))
                   <td>Saxton Oval, Nelson</td>
               </tr>
               <tr>
-                  <td>Feb 17</td>
-                  <td>22:00 GMT (prev day) | 11:00 local 03:30 IST</td>
-                  <td>New Zealand v Scotland</td>
-                  <td>University Oval, Dunedin</td>
+                  <td>Feb 18</td>
+                  <td>03:30 GMT | 14:00 local 09:00 IST</td>
+                  <td>Bangladesh v Afghanistan</td>
+                  <td>Manuka Oval, Canberra</td>
               </tr>
               <tr>
                   <td>Feb 19</td>
@@ -117,21 +111,21 @@ if(!isset($user))
                   <td>Saxton Oval, Nelson</td>
               </tr>
               <tr>
-                  <td>Feb 20</td>
-                  <td>01:00 GMT | 14:00 local 06:30 IST</td>
-                  <td>New Zealand v England</td>
-                  <td>Westpac Stadium, Wellington</td>
-              </tr>
-              <tr>
                   <td>Feb 21</td>
-                  <td>22:00 GMT (prev day) | 11:00 local 03:30 IST</td>
-                  <td>Pakistan v West Indies</td>
-                  <td>Hagley Oval, Christchurch</td>
+                  <td>22:00 GMT (prev day) | 11:00 local 09:00 IST</td>
+                  <td>Australia v Bangladesh</td>
+                  <td>Brisbane Cricket Ground, Brisbane</td>
               </tr>
               <tr>
                   <td>Feb 22</td>
                   <td>03:30 GMT | 14:30 local 09:00 IST</td>
                   <td>India v South Africa</td>
+                  <td>Melbourne Cricket Ground</td>
+              </tr>
+              <tr>
+                  <td>Feb 23</td>
+                  <td>03:30 GMT | 14:30 local 09:00 IST</td>
+                  <td>England v Scotland</td>
                   <td>Melbourne Cricket Ground</td>
               </tr>
           </tbody>
