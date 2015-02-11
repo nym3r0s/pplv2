@@ -6,7 +6,10 @@
 		font-family: "OpenSans";
 		src: url("./../fonts/OpenSans-Semibold.ttf");
 }
-
+@font-face{
+		font-family: "Calibri";
+		src: url("./../fonts/Calibri.ttf");
+}
 
 
 body{
