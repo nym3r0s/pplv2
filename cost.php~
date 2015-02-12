@@ -28,7 +28,7 @@ for($id = 1000; $id < 1216; $id++){
     $res = mysql_query($query);
     $strike = mysql_result($res,0,"strikeRate");
 
-    $cost = 650 + $matches + $runs/20 + $average*10 + ($strike-60)*4;
+    $cost = 600 + $matches + $runs/20 + $average*10 + ($strike-60)*4;
     }
 
     if($type != "Batsman"){

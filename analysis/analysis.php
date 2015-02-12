@@ -190,7 +190,7 @@ $favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
     </div>
 <?php } 
 else
-	echo '<h1 style="margin-top:20%;text-align:center;font-family:Roboto;">Analysis currently is not available.<br />Your playing\'11 isn\'t confirmed. </h1>';
+	echo '<h1 style="margin-top:20%;text-align:center;font-family:Roboto;">Analysis is currently not available.<br />Your playing\'11 isn\'t confirmed. </h1>';
 ?>
 	<nav class="footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">

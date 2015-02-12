@@ -71,7 +71,7 @@ function ratioCheck()
                 if((checkString=='5411')||(checkString=='5321')||(checkString=='4331'))
                 {
                     returnVal = true;
-                    $('#ratioCheckDiv').html("Correct Ratio "+checkString);
+                    $('#ratioCheckDiv').html("Correct Ratio ");
                     return true;
                 }
                 else
