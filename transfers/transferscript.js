@@ -31,7 +31,8 @@ function AJAXcalls(callback)
                 balanceRequest.done(function(){
                     changesRequest.done(function(){
 
-                        presentSquadArray();
+//                        presentSquadArray();
+                        loadFirstTime();
                         generatePlayers();
                         callback();
                         updateProgressBar();
@@ -96,6 +97,7 @@ function bindClickEvents()
 
             localStorage.removeItem('playerList');
             if(presentPlayers.length>0) localStorage.setItem('playerList',presentPlayers.join(','));
+            if(presentPlayers.length==0) localStorage.removeItem('playerList');
             refreshElements();
             $('#pleaseWait').hide();
         });
@@ -241,7 +243,34 @@ function confirmedSquadArray(msg)
 //    console.log(confirmedSquad);
 //    console.log(confirmedSquad.length);
 }
+function loadFirstTime()
+{
+    var presentList = localStorage.getItem("playerList");
+    if(presentList == null)
+    {
+//        console.log('entering null condition');
+//        console.log('confirmed squad'+confirmedSquad);
+//        console.log(confirmedSquad);
+            presentPlayers = [];
+        if(confirmedSquad != null)
+        {
+        presentPlayers = confirmedSquad.slice();
+        }
+        else
+        {
+//            console.log('no confirmed squad');
+            presentPlayers = [];
+        }
+    }
+    else
+    {
+//        console.log('entering other condition');
+//        console.log('non empty list');
+        presentPlayers = presentList.split(",");
 
+    }
+
+}
 function presentSquadArray()
 {
 //    localStorage.setItem('playerList','100,200,300');
@@ -254,15 +283,16 @@ function presentSquadArray()
 //        console.log('entering null condition');
 //        console.log('confirmed squad'+confirmedSquad);
 //        console.log(confirmedSquad);
-        if(confirmedSquad != null)
-        {
-        presentPlayers = confirmedSquad.slice();
-        }
-        else
-        {
-//            console.log('no confirmed squad');
             presentPlayers = [];
-        }
+//        if(confirmedSquad != null)
+//        {
+//        presentPlayers = confirmedSquad.slice();
+//        }
+//        else
+//        {
+////            console.log('no confirmed squad');
+//            presentPlayers = [];
+//        }
     }
     else
     {

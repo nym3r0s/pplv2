@@ -20,12 +20,24 @@ sort($ids);
 $userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
 $userResult = mysql_query($userQuery);
 
+$ids = array_values(array_unique($ids));
+if(count($ids)!=16)
+{
+    exit('Incorrect data');
+}
+
+
 if(isset($userResult))
 {
     $userBalance = mysql_result($userResult,0,"actualBalance");
     $userTeamId  = mysql_result($userResult,0,"teamId");
     $transferNum = mysql_result($userResult,0,"transferNum");
+    $p11 = mysql_result($userResult,0,"p11");
+}
 
+if($p11==1)
+{
+    exit("You cannot select your new squad before this match has been simulated");
 }
 
 $oldSquadQuery = "SELECT * FROM confirmedSquad where teamId='".$userTeamId."';";
