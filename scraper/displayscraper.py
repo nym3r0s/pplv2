@@ -6,7 +6,7 @@ import MySQLdb
 db = MySQLdb.connect(
 host = "localhost",
 user = "root",
-passwd = "stein238",
+passwd = "Mysql131",
 db = "ppl"
 )
 cur = db.cursor()
@@ -121,5 +121,5 @@ if(__name__ == "__main__"):
     cur.execute('TRUNCATE TABLE displayBatting')
     cur.execute('TRUNCATE TABLE displayBowling')
     db.commit()
-    getPage("http://www.espncricinfo.com/icc-cricket-world-cup-2015/engine/match/806135.html")
+    getPage("http://www.espncricinfo.com/icc-cricket-world-cup-2015/engine/match/806125.html")
     parse()

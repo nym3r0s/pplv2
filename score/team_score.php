@@ -17,7 +17,15 @@ for($i = 0, $score = 0; $i < mysql_num_rows($sel_teamId_res); $i++, $score = 0){
         $score = $score + mysql_result($score_query,0,"roundOne");
     }
 
-    $update_query = "UPDATE `userData` SET `roundOneScore` = '".$score."' WHERE `teamId` ='".$teamId."' ";
+    $update_query = "UPDATE `userData` SET `round1Score` = '".$score."' WHERE `teamId` ='".$teamId."' ";
     mysql_query($update_query);
-    }
+
+    for($k = 1, $total = 0; $k <= 8; $k++){
+	$update_query = "SELECT `round".$k."Score` FROM `userData` WHERE `teamId` ='".$teamId."' ";
+   	$update_total = mysql_query($update_query);
+	$total = $total + mysql_result($update_total, 0 , "round".$k."score");
+	}
+    $update_query = "UPDATE `userData` SET `score` = '".$total."' WHERE `teamId` ='".$teamId."' ";
+    mysql_query($update_query); 
+   }
 ?>

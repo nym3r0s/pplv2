@@ -1,7 +1,7 @@
 <?php
 require './../includes/dbconfig.php';
 
-$query = "SELECT * FROM matchDetailsBatting WHERE 1";
+$query = "SELECT * FROM displayBatting WHERE 1";
 $query_res = mysql_query($query);
 
 for($i = 0,$score = 0; $i < mysql_num_rows($query_res); $i++, $score=0){

@@ -170,10 +170,10 @@ $favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
 		</div>
     </div>
 	
-	<p style="position:absolute;top:25%;margin-left:4%;"><b><u>Relative Performance</u></b></p>
-	<p style="position:absolute;top:25%;margin-left:54%;"><b><u>Team Performance</u></b></p>
-	<p style="position:absolute;top:90%;margin-left:4%;"><b><u>Favourites</u></b></p>
-	<p style="position:absolute;top:90%;margin-left:54%;"><b><u>Department-wise Performance</u></b></p>
+	<p style="position:absolute;top:23%;margin-left:4%;"><b><u>Relative Performance</u></b></p>
+	<p style="position:absolute;top:23%;margin-left:54%;"><b><u>Team Performance</u></b></p>
+	<p style="position:absolute;top:88%;margin-left:4%;"><b><u>Favourites</u></b></p>
+	<p style="position:absolute;top:88%;margin-left:54%;"><b><u>Department-wise Performance</u></b></p>
 	
     <div id="canvasContainer">
         <canvas id="playerPerformance" class="lineGraph"></canvas>
