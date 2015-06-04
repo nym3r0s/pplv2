@@ -1,13 +1,15 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = mysql_real_escape_string($_SESSION['user']);
+$user = 
+mysqli_real_escape_string($link,$_SESSION['user']);
 if(!isset($user))
 {
     header('Location: ./../login.php');
 }
 
-$idString = mysql_real_escape_string($_POST['c11']);
+$idString = 
+mysqli_real_escape_string($link,$_POST['c11']);
 //echo($idString."\n");
 $ids = explode(',',$idString);
 sort($ids);
@@ -19,14 +21,18 @@ sort($ids);
 // Getting User Balance and data.
 
 $userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
-$userResult = mysql_query($userQuery);
+$userResult = mysqli_query($link,$userQuery);
 
 if(isset($userResult))
 {
-    $userBalance = mysql_result($userResult,0,"actualBalance");
-    $userTeamId  = mysql_result($userResult,0,"teamId");
-    $transferNum = mysql_result($userResult,0,"transferNum");
-    $p11status   = mysql_result($userResult,0,"p11");
+    $userBalance = 
+mysql_result($userResult,0,"actualBalance");
+    $userTeamId  = 
+mysql_result($userResult,0,"teamId");
+    $transferNum = 
+mysql_result($userResult,0,"transferNum");
+    $p11status   = 
+mysql_result($userResult,0,"p11");
 }
 
 
@@ -46,12 +52,13 @@ if(count($ids)!=11)
 }
 
 $inSquadQuery  = "SELECT * from confirmedSquad where teamId=$userTeamId";
-$inSquadResult = mysql_query($inSquadQuery);
+$inSquadResult = mysqli_query($link,$inSquadQuery);
 $confSquad = [];
 
-for($i=0;$i<mysql_num_rows($inSquadResult);$i++)
+for($i=0;$i<mysqli_num_rows($inSquadResult);$i++)
 {
-    $confSquad[] = mysql_result($inSquadResult,$i,"playerId");
+    $confSquad[] = 
+mysql_result($inSquadResult,$i,"playerId");
 }
 
 for($i=0;$i<count($ids);$i++)
@@ -64,10 +71,10 @@ for($i=0;$i<count($ids);$i++)
 //Deleting existing confirmedSquad before Copying And clearing the show P11
 
 $deleteQuery    = "DELETE FROM confirmedP11 where teamId=".$userTeamId.";";
-$deleteResult   = mysql_query($deleteQuery);
+$deleteResult   = mysqli_query($link,$deleteQuery);
 
 $clearP11Query  = "DELETE FROM userP11 where teamId=".$userTeamId.";";
-$clearP11Result = mysql_query($clearP11Query);
+$clearP11Result = mysqli_query($link,$clearP11Query);
 
 
 //echo($spent."spent");
@@ -85,10 +92,12 @@ for($i=0;$i<count($ids);$i++)
     $pid = $ids[$i];
 
     $playerTypeQuery = "SELECT * FROM players WHERE playerId='$pid';";
-    $playerTypeResult = mysql_query($playerTypeQuery);
+    $playerTypeResult = mysqli_query($link,$playerTypeQuery);
 
-    $playerType = mysql_result($playerTypeResult,0,'type');
-    $playerTypeCaptain = mysql_result($playerTypeResult,0,'captain');
+    $playerType = 
+mysql_result($playerTypeResult,0,'type');
+    $playerTypeCaptain = 
+mysql_result($playerTypeResult,0,'captain');
 //    echo($playerType);
 //    echo($playerTypeCaptain);
 
@@ -121,24 +130,27 @@ for($i=0;$i<count($ids);$i++)
     $playerId = $ids[$i];
 
     $playerQuery = "SELECT * FROM playerData WHERE playerId='$playerId' ;";
-    $playerResult = mysql_query($playerQuery);
+    $playerResult = mysqli_query($link,$playerQuery);
 
 
     if(isset($playerResult))
     {
-        $playerCost       = mysql_result($playerResult,0,"cost");
-        $playerForm       = mysql_result($playerResult,0,"form");
-        $playerConfidence = mysql_result($playerResult,0,"confidence");
+        $playerCost       = 
+mysql_result($playerResult,0,"cost");
+        $playerForm       = 
+mysql_result($playerResult,0,"form");
+        $playerConfidence = 
+mysql_result($playerResult,0,"confidence");
     }
 
     $transferQuery = "INSERT INTO confirmedP11 VALUES ('$userTeamId','$playerId'); ";
-    $transferresult = mysql_query($transferQuery);
+    $transferresult = mysqli_query($link,$transferQuery);
 }
 
 //Update the p11 status
 
 $p11UpdateQuery = "UPDATE userData SET p11=1 WHERE teamId=$userTeamId";
-$p11UpdateResult = mysql_query($p11UpdateQuery);
+$p11UpdateResult = mysqli_query($link,$p11UpdateQuery);
 
 echo("Your playing 11 has been confirmed\n");
 //echo("You may now choose your playing 11");

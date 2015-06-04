@@ -2,14 +2,14 @@
     position:absolute;
     height:50%;
     width:48.5%;
-	top:30%;
-	background-color:#f8f8f8;
+    top:30%;
+    background-color:#f8f8f8;
     left:1%;
     overflow-y: scroll;
     text-align: center;
-	cursor:pointer;
-	
-	-webkit-user-select: none;
+    cursor:pointer;
+
+    -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -19,14 +19,14 @@
     position:absolute;
     height:50%;
     width:48.5%;
-	top:30%;
+    top:30%;
     right:1%;
-	background-color:#f8f8f8;
-	overflow-y: scroll;
+    background-color:#f8f8f8;
+    overflow-y: scroll;
     text-align: center;
-	cursor:pointer;
-	
-	-webkit-user-select: none;
+    cursor:pointer;
+
+    -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -34,56 +34,56 @@
 }
 
 .transferDetails{
-	position:fixed;
-	top:25%;
-	left:52%;
-	width:48%;
-	height:10%;
-	font-family:"Calibri";
+    position:fixed;
+    top:25%;
+    left:52%;
+    width:48%;
+    height:10%;
+    font-family:"Calibri";
 }
 #playerBalance{
-	position:relative;
-	float:right;
-	width:35%;
+    position:relative;
+    float:right;
+    width:35%;
 }
 #transferBalance{
-	position:relative;
-	float:right;
+    position:relative;
+    float:right;
     width:65%;
     float:right;
 }
 #transferBalance h5,#playerBalance h5{
-	float:left;
-	margin:0px 0px 0px 30px;
+    float:left;
+    margin:0px 0px 0px 30px;
 }
 
 .player{
     width:90%;
-	margin:0 auto;
-	border-radius:5px;
-	font-size:13px;
+    margin:0 auto;
+    border-radius:5px;
+    font-size:13px;
     height:30px;
 }
 .userplayer{
     width:90%;
-	margin:0 auto;
-	font-size:13px;
-	border-radius:5px;
+    margin:0 auto;
+    font-size:13px;
+    border-radius:5px;
     height:30px;
 }
 
 #switches{
-	position:absolute;
+    position:absolute;
     text-align: center;
-	top:24%;
+    top:24%;
     width:50%;
 }
 
 #progbardiv{
     position:absolute;
     width:50%;
-	height:5px;
-	left:15%;
+    height:5px;
+    left:15%;
     bottom:9%;
 }
 
@@ -107,18 +107,18 @@
 }
 
 .row_left{
-	width:50%;
-	float:left;
-	text-align:right;
-	padding-right:5px;
-	margin-top:10%;
+    width:50%;
+    float:left;
+    text-align:right;
+    padding-right:5px;
+    margin-top:10%;
 }
 .row_right{
-	width:50%;
-	float:right;
-	text-align:left;
-	padding-left:5px;
-	margin-top:10%;
+    width:50%;
+    float:right;
+    text-align:left;
+    padding-left:5px;
+    margin-top:10%;
 }
 
 #modalclose
@@ -189,4 +189,11 @@
     width:20%;
     bottom:10%;
     right:10%;
+}
+#theMarquee
+{
+    position:absolute;
+    top:10%;
+    width:50%;
+    left:25%;
 }

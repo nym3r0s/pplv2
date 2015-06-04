@@ -1,7 +1,8 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = mysql_real_escape_string($_SESSION['user']);
+$user = 
+mysqli_real_escape_string($link,$_SESSION['user']);
 if(!isset($user))
 {
     header('Location: ./../login.php');
@@ -24,84 +25,118 @@ $keeper = 0;
 $all_rounder = 0;
 
 $userQuery = "SELECT * FROM userData WHERE 1";
-$userResult = mysql_query($userQuery);
+$userResult = mysqli_query($link,$userQuery);
 
-$rows = mysql_num_rows($userResult);
+$rows = mysqli_num_rows($userResult);
 
 $teamId = "SELECT * FROM userData WHERE userId1 = $user or userId2 = $user";
-$teamIdQuery = mysql_query($teamId);
+$teamIdQuery = mysqli_query($link,$teamId);
 
-$team = mysql_result($teamIdQuery,0,"teamId");
-$score = mysql_result($teamIdQuery,0,"score");
-$roundScore = mysql_result($teamIdQuery,0,"round1Score");
+$team = 
+mysql_result($teamIdQuery,0,"teamId");
+$score = 
+mysql_result($teamIdQuery,0,"score");
+$roundScore = 
+mysql_result($teamIdQuery,0,"round1Score");
 
 for($i = 0;$i < $rows ;$i++){
-$user1 = mysql_result($userResult,$i,"userId1");
-$user2 = mysql_result($userResult,$i,"userId2");
+$user1 = 
+mysql_result($userResult,$i,"userId1");
+$user2 = 
+mysql_result($userResult,$i,"userId2");
 
-if(mysql_result($userResult,$i,"score") > $score )
-	$count++;
+if(
+mysql_result($userResult,$i,"score") > $score )
+    $count++;
 
-    $round1avg  = $round1avg + mysql_result($userResult,$i,"round1Score")/$rows;
-    $round2avg  = $round2avg + mysql_result($userResult,$i,"round2Score")/$rows;
-    $round3avg  = $round3avg + mysql_result($userResult,$i,"round3Score")/$rows;
-    $round4avg  = $round4avg + mysql_result($userResult,$i,"round4Score")/$rows;
-    $round5avg  = $round5avg + mysql_result($userResult,$i,"round5Score")/$rows;
-    $round6avg  = $round6avg + mysql_result($userResult,$i,"round6Score")/$rows;
-    $round7avg  = $round7avg + mysql_result($userResult,$i,"round7Score")/$rows;
-    $round8avg  = $round8avg + mysql_result($userResult,$i,"round8Score")/$rows;
+    $round1avg  = $round1avg + 
+mysql_result($userResult,$i,"round1Score")/$rows;
+    $round2avg  = $round2avg + 
+mysql_result($userResult,$i,"round2Score")/$rows;
+    $round3avg  = $round3avg + 
+mysql_result($userResult,$i,"round3Score")/$rows;
+    $round4avg  = $round4avg + 
+mysql_result($userResult,$i,"round4Score")/$rows;
+    $round5avg  = $round5avg + 
+mysql_result($userResult,$i,"round5Score")/$rows;
+    $round6avg  = $round6avg + 
+mysql_result($userResult,$i,"round6Score")/$rows;
+    $round7avg  = $round7avg + 
+mysql_result($userResult,$i,"round7Score")/$rows;
+    $round8avg  = $round8avg + 
+mysql_result($userResult,$i,"round8Score")/$rows;
 
 if($user == $user1 || $user == $user2){
-    $round1 = mysql_result($userResult,$i,"round1Score");
-    $round2 = mysql_result($userResult,$i,"round2Score");
-    $round3 = mysql_result($userResult,$i,"round3Score");
-    $round4 = mysql_result($userResult,$i,"round4Score");
-    $round5 = mysql_result($userResult,$i,"round5Score");
-    $round6 = mysql_result($userResult,$i,"round6Score");
-    $round7 = mysql_result($userResult,$i,"round7Score");
-    $round8 = mysql_result($userResult,$i,"round8Score");
+    $round1 = 
+mysql_result($userResult,$i,"round1Score");
+    $round2 = 
+mysql_result($userResult,$i,"round2Score");
+    $round3 = 
+mysql_result($userResult,$i,"round3Score");
+    $round4 = 
+mysql_result($userResult,$i,"round4Score");
+    $round5 = 
+mysql_result($userResult,$i,"round5Score");
+    $round6 = 
+mysql_result($userResult,$i,"round6Score");
+    $round7 = 
+mysql_result($userResult,$i,"round7Score");
+    $round8 = 
+mysql_result($userResult,$i,"round8Score");
 }
 }
 
 $player = "SELECT playerId FROM confirmedP11_back WHERE teamId = '".$team."' ";
-$playerQuery = mysql_query($player);
+$playerQuery = mysqli_query($link,$player);
 
-$confirm_rows = mysql_num_rows($playerQuery);
+$confirm_rows = mysqli_num_rows($playerQuery);
 if($confirm_rows != 0){
 for($i = 0; $i < 11; $i++){
-    $playerId[$i] = mysql_result($playerQuery,$i,"playerId");
+    $playerId[$i] = 
+mysql_result($playerQuery,$i,"playerId");
     $playername = "SELECT * FROM players WHERE playerId = '".$playerId[$i]."' ";
-    $playerquery = mysql_query($playername);
-	
-    $playerName1[$i] = mysql_result($playerquery,0,"name");
+    $playerquery = mysqli_query($link,$playername);
+
+    $playerName1[$i] = 
+mysql_result($playerquery,0,"name");
     $playerName2 = explode(" ",$playerName1[$i]);
     $pos = substr_count($playerName1[$i]," ");
 
     $playerName[$i] = $playerName2[$pos];
-    $playerScore[$i] = mysql_result($playerquery,0,"roundOne");
-    
-	if(mysql_result($playerquery,0,"type") == "Batsman")
-		$batsman = $batsman + $playerScore[$i];
-	else if(mysql_result($playerquery,0,"type") == "All-Rounder")
-		$all_rounder = $all_rounder + $playerScore[$i];
-	else if(mysql_result($playerquery,0,"type") == "Wicketkeeper")
-		$keeper = $keeper + $playerScore[$i];
-	else
-		$bowler = $bowler + $playerScore[$i];
-	}
+    $playerScore[$i] = 
+mysql_result($playerquery,0,"roundOne");
+
+    if(
+mysql_result($playerquery,0,"type") == "Batsman")
+        $batsman = $batsman + $playerScore[$i];
+    else if(
+mysql_result($playerquery,0,"type") == "All-Rounder")
+        $all_rounder = $all_rounder + $playerScore[$i];
+    else if(
+mysql_result($playerquery,0,"type") == "Wicketkeeper")
+        $keeper = $keeper + $playerScore[$i];
+    else
+        $bowler = $bowler + $playerScore[$i];
+    }
 
 $favourites_query = "SELECT playerId,COUNT(playerId) FROM confirmedP11_back GROUP BY playerId ORDER BY COUNT(playerId) DESC";
-$favourites_res = mysql_query($favourites_query);
+$favourites_res = mysqli_query($link,$favourites_query);
 
-$favourites[0] = mysql_result($favourites_res,0,"playerId") - 1000;
-$favourites[1] = mysql_result($favourites_res,1,"playerId") - 1000;
-$favourites[2] = mysql_result($favourites_res,2,"playerId") - 1000;
+$favourites[0] = 
+mysql_result($favourites_res,0,"playerId") - 1000;
+$favourites[1] = 
+mysql_result($favourites_res,1,"playerId") - 1000;
+$favourites[2] = 
+mysql_result($favourites_res,2,"playerId") - 1000;
 
 $player_row_query = "SELECT * FROM players WHERE 1";
-$player_row = mysql_query($player_row_query);
-$favourites_img[0] = mysql_result($player_row, $favourites[0],"photoUrl");
-$favourites_img[1] = mysql_result($player_row, $favourites[1],"photoUrl");
-$favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
+$player_row = mysqli_query($link,$player_row_query);
+$favourites_img[0] = 
+mysql_result($player_row, $favourites[0],"photoUrl");
+$favourites_img[1] = 
+mysql_result($player_row, $favourites[1],"photoUrl");
+$favourites_img[2] = 
+mysql_result($player_row, $favourites[2],"photoUrl");
 }
 ?>
 <!DOCTYPE html>
@@ -123,15 +158,15 @@ $favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
     <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="../home/home.php">PPL '15</a>
+          <a class="navbar-brand" href="../home/">PPL '15</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../transfers/transfers.php">Transfers</a></li>
-            <li><a href="../matchday/matchday.php">Matchday</a></li>
-            <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
-            <li><a href="../wclive/wclive.php">WCLive</a></li>
-            <li><a href="../instructions/instructions.php">Instructions</a></li>
+            <li><a href="../transfers/">Transfers</a></li>
+            <li><a href="../matchday/">Matchday</a></li>
+            <li><a href="../leaderboard/">Leaderboard</a></li>
+            <li><a href="../wclive/">WCLive</a></li>
+            <li><a href="../instructions/">Instructions</a></li>
             </ul>
             <div class="navbar-header navbar-right">
                 <div class="dropdown" style="margin-top:10%">
@@ -140,8 +175,8 @@ $favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
                 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/">Analysis</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>
@@ -150,7 +185,7 @@ $favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
       </div>
       </div>
     </nav>
-<?php if($confirm_rows != 0){ ?> 
+<?php if($confirm_rows != 0){ ?>
     <div class="statBoard">
         <div class="stat">
         <h4><b><?php echo $rows; ?></b></h4>
@@ -158,41 +193,41 @@ $favourites_img[2] = mysql_result($player_row, $favourites[2],"photoUrl");
         </div>
         <div class="stat">
         <h4><b><?php echo $score; ?></b></h4>
-		<p>Total Score</p>
-		</div>
+        <p>Total Score</p>
+        </div>
         <div class="stat">
-		<h4><b><?php echo $roundScore; ?></b></h4>
-		<p>Round Score</p>
-		</div>
+        <h4><b><?php echo $roundScore; ?></b></h4>
+        <p>Round Score</p>
+        </div>
         <div class="stat">
-		<h4><b><?php echo ++$count; ?></b></h4>
-		<p>Rank</p>
-		</div>
+        <h4><b><?php echo ++$count; ?></b></h4>
+        <p>Rank</p>
+        </div>
     </div>
-	
-	<p style="position:absolute;top:23%;margin-left:4%;"><b><u>Relative Performance</u></b></p>
-	<p style="position:absolute;top:23%;margin-left:54%;"><b><u>Team Performance</u></b></p>
-	<p style="position:absolute;top:88%;margin-left:4%;"><b><u>Favourites</u></b></p>
-	<p style="position:absolute;top:88%;margin-left:54%;"><b><u>Department-wise Performance</u></b></p>
-	
+
+    <p style="position:absolute;top:23%;margin-left:4%;"><b><u>Relative Performance</u></b></p>
+    <p style="position:absolute;top:23%;margin-left:54%;"><b><u>Team Performance</u></b></p>
+    <p style="position:absolute;top:88%;margin-left:4%;"><b><u>Favourites</u></b></p>
+    <p style="position:absolute;top:88%;margin-left:54%;"><b><u>Department-wise Performance</u></b></p>
+
     <div id="canvasContainer">
         <canvas id="playerPerformance" class="lineGraph"></canvas>
         <!-- bar chart canvas element -->
         <canvas id="teamPerformance" class="lineGraph"></canvas>
 
-		<div class="favourites">
-		<img style="margin-right:1%;border-radius:5%;" id="favourites1" />
-		<img style="margin-right:1%;border-radius:5%;" id="favourites2" />
-		<img style="margin-right:1%;border-radius:5%;" id="favourites3" />
-		</div>
-        
-		<canvas id="pie" class="lineGraph"></canvas>
+        <div class="favourites">
+        <img style="margin-right:1%;border-radius:5%;" id="favourites1" />
+        <img style="margin-right:1%;border-radius:5%;" id="favourites2" />
+        <img style="margin-right:1%;border-radius:5%;" id="favourites3" />
+        </div>
+
+        <canvas id="pie" class="lineGraph"></canvas>
     </div>
-<?php } 
+<?php }
 else
-	echo '<h1 style="margin-top:20%;text-align:center;font-family:Roboto;">Analysis is currently not available.<br />Your playing\'11 isn\'t confirmed. </h1>';
+    echo '<h1 style="margin-top:20%;text-align:center;font-family:Roboto;">Analysis is currently not available.<br /></h1>';
 ?>
-	<nav class="footer navbar navbar-default navbar-fixed-bottom">
+    <nav class="footer navbar navbar-default navbar-fixed-bottom">
         <div class="footer">
             <p>Developed by <b>Delta Force.</b></p>
         </div>
@@ -200,7 +235,7 @@ else
 </body>
 <?php if($confirm_rows!=0){?>
 <script>
-		var round1 = <?php echo $round1 ; ?> ;
+        var round1 = <?php echo $round1 ; ?> ;
         var round2 = <?php echo $round2 ; ?> ;
         var round3 = <?php echo $round3 ; ?> ;
         var round4 = <?php echo $round4 ; ?> ;
@@ -294,10 +329,10 @@ else
             // draw bar chart
             new Chart(teamPerformance).Bar(barData);
 
-			var batsman = <?php echo $batsman; ?>;
-			var bowler = <?php echo $bowler; ?>;
-			var keeper = <?php echo $keeper; ?>;
-			var all_rounder = <?php echo $all_rounder; ?>;
+            var batsman = <?php echo $batsman; ?>;
+            var bowler = <?php echo $bowler; ?>;
+            var keeper = <?php echo $keeper; ?>;
+            var all_rounder = <?php echo $all_rounder; ?>;
             var data = [
             {
                 value: batsman,
@@ -331,12 +366,12 @@ else
             }
             new Chart(pie).Pie(data,pieOptions);
 
-			var img_1 ="<?php echo $favourites_img[0]; ?>";
-			document.getElementById("favourites1").src = img_1;
-			var img_2 ="<?php echo $favourites_img[1]; ?>";
-			document.getElementById("favourites2").src = img_2;
-			var img_3 ="<?php echo $favourites_img[2]; ?>";
-			document.getElementById("favourites3").src = img_3;
+            var img_1 ="<?php echo $favourites_img[0]; ?>";
+            document.getElementById("favourites1").src = img_1;
+            var img_2 ="<?php echo $favourites_img[1]; ?>";
+            document.getElementById("favourites2").src = img_2;
+            var img_3 ="<?php echo $favourites_img[2]; ?>";
+            document.getElementById("favourites3").src = img_3;
 </script>
 <?php } ?>
 </html>

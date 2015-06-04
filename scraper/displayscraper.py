@@ -6,7 +6,7 @@ import MySQLdb
 db = MySQLdb.connect(
 host = "localhost",
 user = "root",
-passwd = "Mysql131",
+passwd = "stein238",
 db = "ppl"
 )
 cur = db.cursor()
@@ -67,11 +67,11 @@ def parse():
         #print info.select('td')[3].contents[0]
                 playerRuns =  info.select('td')[3].contents[0]
                 #print info.select('td')[6].contents[0]
-                playerFour = info.select('td')[5].contents[0]
+                playerFour = info.select('td')[6].contents[0]
                 #print info.select('td')[7].contents[0]
-                playerSix =  info.select('td')[6].contents[0]
+                playerSix =  info.select('td')[7].contents[0]
                 #print info.select('td')[8].contents[0]
-                playerStrikeRate = info.select('td')[7].contents[0]
+                playerStrikeRate = info.select('td')[8].contents[0]
                 a = []
                 a.append(playerName)
                 a.append(playerWicketBowler)
@@ -121,5 +121,5 @@ if(__name__ == "__main__"):
     cur.execute('TRUNCATE TABLE displayBatting')
     cur.execute('TRUNCATE TABLE displayBowling')
     db.commit()
-    getPage("http://www.espncricinfo.com/icc-cricket-world-cup-2015/engine/match/806125.html")
+    #getPage("http://www.espncricinfo.com/icc-cricket-world-cup-2015/engine/match/656405.html")
     parse()

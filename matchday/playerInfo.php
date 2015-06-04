@@ -4,8 +4,10 @@ require './../includes/dbconfig.php';
 
 //echo("done");
 
-$playerId = mysql_real_escape_string($_POST['req']);
-$user = mysql_real_escape_string($_SESSION['user']);
+$playerId = 
+mysqli_real_escape_string($link,$_POST['req']);
+$user = 
+mysqli_real_escape_string($link,$_SESSION['user']);
 
 if(!isset($user))
 {
@@ -20,47 +22,72 @@ $fieldQuery  = "SELECT * FROM fielding WHERE playerId=$playerId";
 $dataQuery   = "SELECT * FROM playerData WHERE playerId=$playerId";
 
 
-$playerResult = mysql_query($playerQuery);
-$batResult    = mysql_query($batQuery);
-$bowlResult   = mysql_query($bowlQuery);
-$fieldResult  = mysql_query($fieldQuery);
-$dataResult   = mysql_query($dataQuery);
+$playerResult = mysqli_query($link,$playerQuery);
+$batResult    = mysqli_query($link,$batQuery);
+$bowlResult   = mysqli_query($link,$bowlQuery);
+$fieldResult  = mysqli_query($link,$fieldQuery);
+$dataResult   = mysqli_query($link,$dataQuery);
 
-//$player = mysql_result($Result,0,"");
+//$player = 
+mysql_result($Result,0,"");
 
 // From players
-$playerName     = mysql_result($playerResult,0,"name");
-$playerCountry  = mysql_result($playerResult,0,"country");
-$playerPhoto    = mysql_result($playerResult,0,"photoUrl");
-$playerType     = mysql_result($playerResult,0,"type");
-$playerMatches  = mysql_result($playerResult,0,"matches");
-$playerCaptain  = mysql_result($playerResult,0,"captain");
+$playerName     = 
+mysql_result($playerResult,0,"name");
+$playerCountry  = 
+mysql_result($playerResult,0,"country");
+$playerPhoto    = 
+mysql_result($playerResult,0,"photoUrl");
+$playerType     = 
+mysql_result($playerResult,0,"type");
+$playerMatches  = 
+mysql_result($playerResult,0,"matches");
+$playerCaptain  = 
+mysql_result($playerResult,0,"captain");
 
 // From playerData
-$playerForm       = mysql_result($dataResult,0,"form");
-$playerConfidence = mysql_result($dataResult,0,"confidence");
-$playerCost       = mysql_result($dataResult,0,"cost");
+$playerForm       = 
+mysql_result($dataResult,0,"form");
+$playerConfidence = 
+mysql_result($dataResult,0,"confidence");
+$playerCost       = 
+mysql_result($dataResult,0,"cost");
 
 // From batting
-$playerRuns       = mysql_result($batResult,0,"runs");
-$playerHighscore  = mysql_result($batResult,0,"highScore");
-$playerAverage    = mysql_result($batResult,0,"average");
-$playerStrikeRate = mysql_result($batResult,0,"strikeRate");
-$playerHundred    = mysql_result($batResult,0,"hundred");
-$playerFifty      = mysql_result($batResult,0,"fifty");
+$playerRuns       = 
+mysql_result($batResult,0,"runs");
+$playerHighscore  = 
+mysql_result($batResult,0,"highScore");
+$playerAverage    = 
+mysql_result($batResult,0,"average");
+$playerStrikeRate = 
+mysql_result($batResult,0,"strikeRate");
+$playerHundred    = 
+mysql_result($batResult,0,"hundred");
+$playerFifty      = 
+mysql_result($batResult,0,"fifty");
 
 // From Bowling
-$playerWickets = mysql_result($bowlResult,0,"wickets");
-$playerBest = mysql_result($bowlResult,0,"best");
-$playerBowlAverage = mysql_result($bowlResult,0,"average");
-$playerEconomy = mysql_result($bowlResult,0,"economy");
-$playerFour = mysql_result($bowlResult,0,"four");
-$playerFive = mysql_result($bowlResult,0,"five");
+$playerWickets = 
+mysql_result($bowlResult,0,"wickets");
+$playerBest = 
+mysql_result($bowlResult,0,"best");
+$playerBowlAverage = 
+mysql_result($bowlResult,0,"average");
+$playerEconomy = 
+mysql_result($bowlResult,0,"economy");
+$playerFour = 
+mysql_result($bowlResult,0,"four");
+$playerFive = 
+mysql_result($bowlResult,0,"five");
 
 // From fielding
-$playerInnings   = mysql_result($fieldResult,0,"innings");
-$playerCatches   = mysql_result($fieldResult,0,"catches");
-$playerStumpings = mysql_result($fieldResult,0,"stumpings");
+$playerInnings   = 
+mysql_result($fieldResult,0,"innings");
+$playerCatches   = 
+mysql_result($fieldResult,0,"catches");
+$playerStumpings = 
+mysql_result($fieldResult,0,"stumpings");
 
 /*Starting to create HTML*/
 

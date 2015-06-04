@@ -2,8 +2,8 @@
 require './includes/dbconfig.php';
 
 $truncate = 'truncate table confirmedP11_back';
-mysql_query($truncate);  
+mysqli_query($link,$truncate);  
 $insert_query = "INSERT confirmedP11_back SELECT * FROM ppl.confirmedP11";
-mysql_query($insert_query);
+mysqli_query($link,$insert_query);
 
 ?>

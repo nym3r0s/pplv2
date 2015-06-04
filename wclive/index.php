@@ -22,15 +22,15 @@ if(!isset($user))
     <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="../home/home.php">PPL '15</a>
+          <a class="navbar-brand" href="../home/">PPL '15</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../transfers/transfers.php">Transfers</a></li>
-            <li><a href="../matchday/matchday.php">Matchday</a></li>
-            <li><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
-            <li class="active"><a href="../wclive/wclive.php">WCLive</a></li>
-            <li><a href="../instructions/instructions.php">Instructions</a></li>
+            <li><a href="../transfers/">Transfers</a></li>
+            <li><a href="../matchday/">Matchday</a></li>
+            <li><a href="../leaderboard/">Leaderboard</a></li>
+            <li class="active"><a href="../wclive/">WCLive</a></li>
+            <li><a href="../instructions/">Instructions</a></li>
             </ul>
             <div class="navbar-header navbar-right">
                 <div class="dropdown" style="margin-top:10%">
@@ -39,8 +39,8 @@ if(!isset($user))
                 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/">Analysis</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>
@@ -73,24 +73,31 @@ if(!isset($user))
         <tbody>
             <?php
     $battingDetailsQuery = "SELECT * FROM displayBatting";
-    $battingDetailsResult = mysql_query($battingDetailsQuery);
+    $battingDetailsResult = mysqli_query($link,$battingDetailsQuery);
 //    var_dump($battingDetailsResult);
-    for($i=0;$i<mysql_num_rows($battingDetailsResult);$i++)
+    for($i=0;$i<mysqli_num_rows($battingDetailsResult);$i++)
     {
         echo("<tr>");
-        $batsman        = mysql_result($battingDetailsResult,$i,"playerName");
-        $wicketDetails  = mysql_result($battingDetailsResult,$i,"wicketInfo");
-        $runs           = mysql_result($battingDetailsResult,$i,"runs");
-        $fours          = mysql_result($battingDetailsResult,$i,"four");
-        $six            = mysql_result($battingDetailsResult,$i,"six");
-        $srate          = mysql_result($battingDetailsResult,$i,"strikeRate");
+        $batsman        = 
+mysql_result($battingDetailsResult,$i,"playerName");
+        $wicketDetails  = 
+mysql_result($battingDetailsResult,$i,"wicketInfo");
+        $runs           = 
+mysql_result($battingDetailsResult,$i,"runs");
+        $fours          = 
+mysql_result($battingDetailsResult,$i,"four");
+        $six            = 
+mysql_result($battingDetailsResult,$i,"six");
+        $srate          = 
+mysql_result($battingDetailsResult,$i,"strikeRate");
         echo("<td>$batsman</td>");
         echo("<td>$wicketDetails</td>");
         echo("<td>$runs</td>");
         echo("<td>$fours</td>");
         echo("<td>$six</td>");
         echo("<td>$srate</td>");
-//        $batsman = mysql_result($battingDetailsResult,$i,"playerName");
+//        $batsman = 
+mysql_result($battingDetailsResult,$i,"playerName");
         echo("</tr>");
     }
             ?>
@@ -111,22 +118,28 @@ if(!isset($user))
 
             <?php
     $bowlingDetailsQuery = "SELECT * FROM displayBowling";
-    $bowlingDetailsResult = mysql_query($bowlingDetailsQuery);
+    $bowlingDetailsResult = mysqli_query($link,$bowlingDetailsQuery);
 //    var_dump($battingDetailsResult);
-    for($i=0;$i<mysql_num_rows($bowlingDetailsResult);$i++)
+    for($i=0;$i<mysqli_num_rows($bowlingDetailsResult);$i++)
     {
         echo("<tr>");
-        $bowler   = mysql_result($bowlingDetailsResult,$i,"playerName");
-        $overs    = mysql_result($bowlingDetailsResult,$i,"overs");
-        $maidens  = mysql_result($bowlingDetailsResult,$i,"maidens");
-        $wickets  = mysql_result($bowlingDetailsResult,$i,"wickets");
-        $economy  = mysql_result($bowlingDetailsResult,$i,"economy");
+        $bowler   = 
+mysql_result($bowlingDetailsResult,$i,"playerName");
+        $overs    = 
+mysql_result($bowlingDetailsResult,$i,"overs");
+        $maidens  = 
+mysql_result($bowlingDetailsResult,$i,"maidens");
+        $wickets  = 
+mysql_result($bowlingDetailsResult,$i,"wickets");
+        $economy  = 
+mysql_result($bowlingDetailsResult,$i,"economy");
         echo("<td>$bowler</td>");
         echo("<td>$overs</td>");
         echo("<td>$maidens</td>");
         echo("<td>$wickets</td>");
         echo("<td>$economy</td>");
-//        $batsman = mysql_result($battingDetailsResult,$i,"playerName");
+//        $batsman = 
+mysql_result($battingDetailsResult,$i,"playerName");
         echo("</tr>");
     }
             ?>

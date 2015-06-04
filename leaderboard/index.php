@@ -1,20 +1,24 @@
 <?php
 session_start();
 require './../includes/dbconfig.php';
-$user = mysql_real_escape_string($_SESSION['user']);
+$user = 
+mysqli_real_escape_string($link,$_SESSION['user']);
 if(!isset($user))
 {
     header('Location: ./../login.php');
 }
 
 $userQuery = "SELECT * FROM userData WHERE userId1='$user' or userId2='$user' ; ";
-$userResult = mysql_query($userQuery);
+$userResult = mysqli_query($link,$userQuery);
 
 if(isset($userResult))
 {
-    $userBalance = mysql_result($userResult,0,"actualBalance");
-    $userTeamId  = mysql_result($userResult,0,"teamId");
-    $userP11     = mysql_result($userResult,0,"p11");
+    $userBalance = 
+mysql_result($userResult,0,"actualBalance");
+    $userTeamId  = 
+mysql_result($userResult,0,"teamId");
+    $userP11     = 
+mysql_result($userResult,0,"p11");
 }
 
 
@@ -46,15 +50,15 @@ if(isset($userResult))
     <nav class="header navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="../home/home.php">PPL '15</a>
+          <a class="navbar-brand" href="../home/">PPL '15</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../transfers/transfers.php">Transfers</a></li>
-            <li><a href="../matchday/matchday.php">Matchday</a></li>
-            <li class="active"><a href="../leaderboard/leaderboard.php">Leaderboard</a></li>
-            <li><a href="../wclive/wclive.php">WCLive</a></li>
-            <li><a href="../instructions/instructions.php">Instructions</a></li>
+            <li><a href="../transfers/">Transfers</a></li>
+            <li><a href="../matchday/">Matchday</a></li>
+            <li class="active"><a href="../leaderboard/">Leaderboard</a></li>
+            <li><a href="../wclive/">WCLive</a></li>
+            <li><a href="../instructions/">Instructions</a></li>
             </ul>
             <div class="navbar-header navbar-right">
                 <div class="dropdown" style="margin-top:10%">
@@ -63,8 +67,8 @@ if(isset($userResult))
                 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/analysis.php">Analysis</a></li>
-                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/contact.php">Contact</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="../analysis/">Analysis</a></li>
+                    <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../contact/">Contact</a></li>
                     <li class="drop" role="presentation" class="divider"></li>
                     <li class="drop" role="presentation"><a role="menuitem" tabindex="-1" href="./../logout.php">Logout</a></li>
                 </ul>
@@ -81,7 +85,6 @@ if(isset($userResult))
             <thead>
               <tr>
                 <th>Rank</th>
-                <th>Pragyan ID</th>
                 <th>Pragyan ID</th>
                 <th>Score</th>
               </tr>

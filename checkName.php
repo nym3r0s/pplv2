@@ -2,20 +2,21 @@
 require './includes/dbconfig.php';
 
 $query = "SELECT `name` FROM `players` WHERE 1";
-$res = mysql_query($query);
+$res = mysqli_query($link,$query);
 
-for($i = 0; $i < mysql_num_rows($res); $i++){
-		$player[$i] = mysql_result($res,$i,"name");
+for($i = 0; $i < mysqli_num_rows($res); $i++){
+		$player[$i] = 
+mysql_result($res,$i,"name");
 	}
 
 $sum = 0;
 
-for($i = 0; $i < mysql_num_rows($res); $i++){
+for($i = 0; $i < mysqli_num_rows($res); $i++){
 
 	$player_i = explode(" ",$player[$i]);
 	$pos_i = substr_count($player[$i],' ');
 
-	for($j = 0; $j < mysql_num_rows($res), $i != $j; $j++){
+	for($j = 0; $j < mysqli_num_rows($res), $i != $j; $j++){
 
 		$player_j = explode(" ",$player[$j]);
 		$pos_j = substr_count($player[$j],' ');

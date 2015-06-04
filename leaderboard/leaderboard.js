@@ -6,7 +6,8 @@ function addRows()
         var pid1 = obj.userId1;
         var pid2 = obj.userId2;
         var score = obj.score;
-        var rowHtml = "<td>"+rank+"</td><td>"+pid1+"</td><td>"+pid2+"</td><td>"+score+"</td>";
+//        var rowHtml = "<td>"+rank+"</td><td>"+pid1+"</td><td>"+pid2+"</td><td>"+score+"</td>";
+        var rowHtml = "<td>"+rank+"</td><td>"+pid1+"</td><td>"+score+"</td>";
         var row = "<tr id=\""+i+"\"></tr>";
         if((pid1==yourId)||(pid2==yourId))
         {
